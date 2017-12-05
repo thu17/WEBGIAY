@@ -14,11 +14,22 @@ namespace Entity.EntityFramework
     
     public partial class DONHANG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DONHANG()
+        {
+            this.CTDHs = new HashSet<CTDH>();
+            this.RATINGs = new HashSet<RATING>();
+        }
+    
         public int MADH { get; set; }
         public int MACUSTOMER { get; set; }
         public Nullable<System.DateTime> NGAYMUA { get; set; }
         public Nullable<double> TONGTIEN { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTDH> CTDHs { get; set; }
         public virtual CUSTOMER CUSTOMER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RATING> RATINGs { get; set; }
     }
 }

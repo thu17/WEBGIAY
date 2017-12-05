@@ -26,6 +26,7 @@ namespace Entity.EntityFramework
         }
     
         public virtual DbSet<CTDH> CTDHs { get; set; }
+        public virtual DbSet<CUNGSANPHAM> CUNGSANPHAMs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERS { get; set; }
         public virtual DbSet<DOITUONG> DOITUONGs { get; set; }
         public virtual DbSet<DONHANG> DONHANGs { get; set; }
@@ -34,8 +35,8 @@ namespace Entity.EntityFramework
         public virtual DbSet<LICHSUDANGTIN> LICHSUDANGTINs { get; set; }
         public virtual DbSet<LICHSUMUATIN> LICHSUMUATINs { get; set; }
         public virtual DbSet<MERCHANT> MERCHANTS { get; set; }
-        public virtual DbSet<RATING_C> RATING_C { get; set; }
-        public virtual DbSet<RATING_M> RATING_M { get; set; }
+        public virtual DbSet<PHANLOAI> PHANLOAIs { get; set; }
+        public virtual DbSet<RATING> RATINGs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
         public virtual DbSet<WEBMASTER> WEBMASTERs { get; set; }

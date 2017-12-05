@@ -12,20 +12,18 @@ namespace Entity.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class KICHCO
+    public partial class PHANLOAI
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KICHCO()
+        public PHANLOAI()
         {
-            this.CUNGSANPHAMs = new HashSet<CUNGSANPHAM>();
+            this.SANPHAMs = new HashSet<SANPHAM>();
         }
     
-        public int MAKICHCO { get; set; }
-        public int MADOITUONG { get; set; }
-        public int KICHCO1 { get; set; }
+        public int MALOAI { get; set; }
+        public string TENLOAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CUNGSANPHAM> CUNGSANPHAMs { get; set; }
-        public virtual DOITUONG DOITUONG { get; set; }
+        public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
     }
 }

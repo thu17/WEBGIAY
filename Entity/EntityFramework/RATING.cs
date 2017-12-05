@@ -12,14 +12,19 @@ namespace Entity.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class RATING_M
+    public partial class RATING
     {
         public int MADH { get; set; }
         public int MASP { get; set; }
         public int MAMERCHANT { get; set; }
-        public Nullable<int> RATING { get; set; }
+        public int MACUSTOMER { get; set; }
+        public Nullable<int> RATING_M { get; set; }
+        public Nullable<int> RATING_C { get; set; }
         public Nullable<System.DateTime> NGAYRATING { get; set; }
     
+        public virtual CUSTOMER CUSTOMER { get; set; }
+        public virtual DONHANG DONHANG { get; set; }
         public virtual MERCHANT MERCHANT { get; set; }
+        public virtual SANPHAM SANPHAM { get; set; }
     }
 }

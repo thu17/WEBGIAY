@@ -51,6 +51,9 @@
     <Compile Include="EntityFramework\CTDH.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\CUNGSANPHAM.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\CUSTOMER.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -90,10 +93,10 @@
     <Compile Include="EntityFramework\MERCHANT.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\RATING_C.cs">
+    <Compile Include="EntityFramework\PHANLOAI.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\RATING_M.cs">
+    <Compile Include="EntityFramework\RATING.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\SANPHAM.cs">
@@ -108,13 +111,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="EntityFramework\DBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="EntityFramework\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>

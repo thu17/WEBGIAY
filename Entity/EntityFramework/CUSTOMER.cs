@@ -18,7 +18,7 @@ namespace Entity.EntityFramework
         public CUSTOMER()
         {
             this.DONHANGs = new HashSet<DONHANG>();
-            this.RATING_C = new HashSet<RATING_C>();
+            this.RATINGs = new HashSet<RATING>();
         }
     
         public int MACUSTOMER { get; set; }
@@ -35,6 +35,6 @@ namespace Entity.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONHANG> DONHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RATING_C> RATING_C { get; set; }
+        public virtual ICollection<RATING> RATINGs { get; set; }
     }
 }

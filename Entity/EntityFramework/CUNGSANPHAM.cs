@@ -12,14 +12,13 @@ namespace Entity.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class RATING_C
+    public partial class CUNGSANPHAM
     {
-        public int MADH { get; set; }
         public int MASP { get; set; }
-        public int MACUSTOMER { get; set; }
-        public Nullable<int> RATING { get; set; }
-        public Nullable<System.DateTime> NGAYRATING { get; set; }
+        public int MAKICHCO { get; set; }
+        public int SOLUONG { get; set; }
     
-        public virtual CUSTOMER CUSTOMER { get; set; }
+        public virtual KICHCO KICHCO { get; set; }
+        public virtual SANPHAM SANPHAM { get; set; }
     }
 }

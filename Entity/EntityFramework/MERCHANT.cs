@@ -20,11 +20,12 @@ namespace Entity.EntityFramework
             this.CTDHs = new HashSet<CTDH>();
             this.LICHSUDANGTINs = new HashSet<LICHSUDANGTIN>();
             this.LICHSUMUATINs = new HashSet<LICHSUMUATIN>();
-            this.RATING_M = new HashSet<RATING_M>();
+            this.RATINGs = new HashSet<RATING>();
             this.SANPHAMs = new HashSet<SANPHAM>();
         }
     
         public int MAMERCHANT { get; set; }
+        public string TENDANGNHAP { get; set; }
         public string TENMERCHANT { get; set; }
         public Nullable<System.DateTime> NGAYDK { get; set; }
         public string CMND { get; set; }
@@ -36,6 +37,7 @@ namespace Entity.EntityFramework
         public Nullable<System.DateTime> NGAYSINH { get; set; }
         public string SDT { get; set; }
         public Nullable<int> RATING { get; set; }
+        public Nullable<int> SOTINHIENTAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDHs { get; set; }
@@ -44,7 +46,7 @@ namespace Entity.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LICHSUMUATIN> LICHSUMUATINs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RATING_M> RATING_M { get; set; }
+        public virtual ICollection<RATING> RATINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
     }

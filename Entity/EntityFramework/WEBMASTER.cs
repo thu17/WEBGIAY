@@ -15,6 +15,7 @@ namespace Entity.EntityFramework
     public partial class WEBMASTER
     {
         public int MAWEBMASTER { get; set; }
+        public string TENDANGNHAP { get; set; }
         public string TENWEBMASTER { get; set; }
         public string EMAIL { get; set; }
         public string SDT { get; set; }
