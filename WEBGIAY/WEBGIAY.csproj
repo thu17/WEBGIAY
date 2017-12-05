@@ -231,7 +231,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{24822bde-10c9-435a-9ac3-694a3a8d22ba}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
