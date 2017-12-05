@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TMDT_WEBGIAYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CTDH">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="int" Nullable="false" />
+          <Property Name="MASP" Type="int" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="int" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" Nullable="false" />
+          <Property Name="THANHTIEN" Type="float" />
+          <Property Name="TINHTRANG" Type="int" />
+        </EntityType>
+        <EntityType Name="CUSTOMERS">
+          <Key>
+            <PropertyRef Name="MACUSTOMER" />
+          </Key>
+          <Property Name="MACUSTOMER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENCUSTOMER" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NGAYDK" Type="datetime" />
+          <Property Name="NGAYSINH" Type="datetime" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="RATING" Type="int" />
+          <Property Name="TINHTRANG" Type="int" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOITUONG">
+          <Key>
+            <PropertyRef Name="MADOITUONG" />
+          </Key>
+          <Property Name="MADOITUONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENDOITUONG" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="MADH" />
+          </Key>
+          <Property Name="MADH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MACUSTOMER" Type="int" Nullable="false" />
+          <Property Name="NGAYMUA" Type="datetime" />
+          <Property Name="TONGTIEN" Type="float" />
+        </EntityType>
+        <EntityType Name="GOITIN">
+          <Key>
+            <PropertyRef Name="MAGOITIN" />
+          </Key>
+          <Property Name="MAGOITIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOTIEN" Type="float" Nullable="false" />
+          <Property Name="SOTIN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KICHCO">
+          <Key>
+            <PropertyRef Name="MAKICHCO" />
+          </Key>
+          <Property Name="MAKICHCO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MADOITUONG" Type="int" Nullable="false" />
+          <Property Name="KICHCO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LICHSUDANGTIN">
+          <Key>
+            <PropertyRef Name="IDDANGTIN" />
+          </Key>
+          <Property Name="IDDANGTIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="int" Nullable="false" />
+          <Property Name="NGAYDANG" Type="datetime" />
+          <Property Name="MASP" Type="int" />
+        </EntityType>
+        <EntityType Name="LICHSUMUATIN">
+          <Key>
+            <PropertyRef Name="IDMUATIN" />
+          </Key>
+          <Property Name="IDMUATIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="int" Nullable="false" />
+          <Property Name="MAGOITIN" Type="int" Nullable="false" />
+          <Property Name="NGAYMUA" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MERCHANTS">
+          <Key>
+            <PropertyRef Name="MAMERCHANT" />
+          </Key>
+          <Property Name="MAMERCHANT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENMERCHANT" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NGAYDK" Type="datetime" />
+          <Property Name="CMND" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="TINHTRANG" Type="int" />
+          <Property Name="SOLANBIKHOA" Type="int" />
+          <Property Name="NGAYSINH" Type="datetime" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="RATING" Type="int" />
+        </EntityType>
+        <EntityType Name="RATING_C">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="int" Nullable="false" />
+          <Property Name="MASP" Type="int" Nullable="false" />
+          <Property Name="MACUSTOMER" Type="int" Nullable="false" />
+          <Property Name="RATING" Type="int" />
+          <Property Name="NGAYRATING" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RATING_M">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="int" Nullable="false" />
+          <Property Name="MASP" Type="int" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="int" Nullable="false" />
+          <Property Name="RATING" Type="int" />
+          <Property Name="NGAYRATING" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENSP" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NGAYDANG" Type="datetime" />
+          <Property Name="SOLUONG" Type="int" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="int" Nullable="false" />
+          <Property Name="MATHUONGHIEU" Type="int" Nullable="false" />
+          <Property Name="MADOITUONG" Type="int" Nullable="false" />
+          <Property Name="MAKICHCO" Type="int" Nullable="false" />
+          <Property Name="TINHTRANG" Type="int" />
+          <Property Name="GIA" Type="float" Nullable="false" />
+          <Property Name="GIAGIAM" Type="float" />
+          <Property Name="MOTA" Type="ntext" />
+          <Property Name="ANH" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="MATHUONGHIEU" />
+          </Key>
+          <Property Name="MATHUONGHIEU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENTHUONGHIEU" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WEBMASTER">
+          <Key>
+            <PropertyRef Name="MAWEBMASTER" />
+          </Key>
+          <Property Name="MAWEBMASTER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENWEBMASTER" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CTDH__TINHTRANG__5CD6CB2B">
+          <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DONHANG__TONGTIE__571DF1D5">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="MACUSTOMER" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MACUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KICHCO__KICHCO__36B12243">
+          <End Role="DOITUONG" Type="Self.DOITUONG" Multiplicity="1" />
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITUONG">
+              <PropertyRef Name="MADOITUONG" />
+            </Principal>
+            <Dependent Role="KICHCO">
+              <PropertyRef Name="MADOITUONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUDANG__MASP__5070F446">
+          <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
+          <End Role="LICHSUDANGTIN" Type="Self.LICHSUDANGTIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="LICHSUDANGTIN">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUDANG__MASP__5165187F">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="LICHSUDANGTIN" Type="Self.LICHSUDANGTIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="LICHSUDANGTIN">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUMUA__MAGOI__4AB81AF0">
+          <End Role="GOITIN" Type="Self.GOITIN" Multiplicity="1" />
+          <End Role="LICHSUMUATIN" Type="Self.LICHSUMUATIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GOITIN">
+              <PropertyRef Name="MAGOITIN" />
+            </Principal>
+            <Dependent Role="LICHSUMUATIN">
+              <PropertyRef Name="MAGOITIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUMUA__NGAYM__49C3F6B7">
+          <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
+          <End Role="LICHSUMUATIN" Type="Self.LICHSUMUATIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="LICHSUMUATIN">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RATING_C__NGAYRA__2D27B809">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="1" />
+          <End Role="RATING_C" Type="Self.RATING_C" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="MACUSTOMER" />
+            </Principal>
+            <Dependent Role="RATING_C">
+              <PropertyRef Name="MACUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RATING_M__NGAYRA__276EDEB3">
+          <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
+          <End Role="RATING_M" Type="Self.RATING_M" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="RATING_M">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__ANH__412EB0B6">
+          <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MADOITU__4316F928">
+          <End Role="DOITUONG" Type="Self.DOITUONG" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITUONG">
+              <PropertyRef Name="MADOITUONG" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MADOITUONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MAKICHC__440B1D61">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KICHCO">
+              <PropertyRef Name="MAKICHCO" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MAKICHCO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MATHUON__4222D4EF">
+          <End Role="THUONGHIEU" Type="Self.THUONGHIEU" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TMDT_WEBGIAYModelStoreContainer">
+          <EntitySet Name="CTDH" EntityType="Self.CTDH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOITUONG" EntityType="Self.DOITUONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GOITIN" EntityType="Self.GOITIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KICHCO" EntityType="Self.KICHCO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICHSUDANGTIN" EntityType="Self.LICHSUDANGTIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICHSUMUATIN" EntityType="Self.LICHSUMUATIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MERCHANTS" EntityType="Self.MERCHANTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RATING_C" EntityType="Self.RATING_C" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RATING_M" EntityType="Self.RATING_M" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEBMASTER" EntityType="Self.WEBMASTER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CTDH__TINHTRANG__5CD6CB2B" Association="Self.FK__CTDH__TINHTRANG__5CD6CB2B">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="CTDH" EntitySet="CTDH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DONHANG__TONGTIE__571DF1D5" Association="Self.FK__DONHANG__TONGTIE__571DF1D5">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="DONHANG" EntitySet="DONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KICHCO__KICHCO__36B12243" Association="Self.FK__KICHCO__KICHCO__36B12243">
+            <End Role="DOITUONG" EntitySet="DOITUONG" />
+            <End Role="KICHCO" EntitySet="KICHCO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUDANG__MASP__5070F446" Association="Self.FK__LICHSUDANG__MASP__5070F446">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="LICHSUDANGTIN" EntitySet="LICHSUDANGTIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUDANG__MASP__5165187F" Association="Self.FK__LICHSUDANG__MASP__5165187F">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="LICHSUDANGTIN" EntitySet="LICHSUDANGTIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUMUA__MAGOI__4AB81AF0" Association="Self.FK__LICHSUMUA__MAGOI__4AB81AF0">
+            <End Role="GOITIN" EntitySet="GOITIN" />
+            <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUMUA__NGAYM__49C3F6B7" Association="Self.FK__LICHSUMUA__NGAYM__49C3F6B7">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RATING_C__NGAYRA__2D27B809" Association="Self.FK__RATING_C__NGAYRA__2D27B809">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="RATING_C" EntitySet="RATING_C" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RATING_M__NGAYRA__276EDEB3" Association="Self.FK__RATING_M__NGAYRA__276EDEB3">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="RATING_M" EntitySet="RATING_M" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__ANH__412EB0B6" Association="Self.FK__SANPHAM__ANH__412EB0B6">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MADOITU__4316F928" Association="Self.FK__SANPHAM__MADOITU__4316F928">
+            <End Role="DOITUONG" EntitySet="DOITUONG" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MAKICHC__440B1D61" Association="Self.FK__SANPHAM__MAKICHC__440B1D61">
+            <End Role="KICHCO" EntitySet="KICHCO" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MATHUON__4222D4EF" Association="Self.FK__SANPHAM__MATHUON__4222D4EF">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEU" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TMDT_WEBGIAYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CTDH">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="Int32" Nullable="false" />
+          <Property Name="MASP" Type="Int32" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+          <Property Name="THANHTIEN" Type="Double" />
+          <Property Name="TINHTRANG" Type="Int32" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__CTDH__TINHTRANG__5CD6CB2B" FromRole="CTDH" ToRole="MERCHANTS" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="MACUSTOMER" />
+          </Key>
+          <Property Name="MACUSTOMER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENCUSTOMER" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAYDK" Type="DateTime" Precision="3" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RATING" Type="Int32" />
+          <Property Name="TINHTRANG" Type="Int32" />
+          <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DONHANGs" Relationship="Self.FK__DONHANG__TONGTIE__571DF1D5" FromRole="CUSTOMERS" ToRole="DONHANG" />
+          <NavigationProperty Name="RATING_C" Relationship="Self.FK__RATING_C__NGAYRA__2D27B809" FromRole="CUSTOMERS" ToRole="RATING_C" />
+        </EntityType>
+        <EntityType Name="DOITUONG">
+          <Key>
+            <PropertyRef Name="MADOITUONG" />
+          </Key>
+          <Property Name="MADOITUONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENDOITUONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KICHCOes" Relationship="Self.FK__KICHCO__KICHCO__36B12243" FromRole="DOITUONG" ToRole="KICHCO" />
+          <NavigationProperty Name="SANPHAMs" Relationship="Self.FK__SANPHAM__MADOITU__4316F928" FromRole="DOITUONG" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="MADH" />
+          </Key>
+          <Property Name="MADH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MACUSTOMER" Type="Int32" Nullable="false" />
+          <Property Name="NGAYMUA" Type="DateTime" Precision="3" />
+          <Property Name="TONGTIEN" Type="Double" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__DONHANG__TONGTIE__571DF1D5" FromRole="DONHANG" ToRole="CUSTOMERS" />
+        </EntityType>
+        <EntityType Name="GOITIN">
+          <Key>
+            <PropertyRef Name="MAGOITIN" />
+          </Key>
+          <Property Name="MAGOITIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOTIEN" Type="Double" Nullable="false" />
+          <Property Name="SOTIN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LICHSUMUATINs" Relationship="Self.FK__LICHSUMUA__MAGOI__4AB81AF0" FromRole="GOITIN" ToRole="LICHSUMUATIN" />
+        </EntityType>
+        <EntityType Name="KICHCO">
+          <Key>
+            <PropertyRef Name="MAKICHCO" />
+          </Key>
+          <Property Name="MAKICHCO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MADOITUONG" Type="Int32" Nullable="false" />
+          <Property Name="KICHCO1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DOITUONG" Relationship="Self.FK__KICHCO__KICHCO__36B12243" FromRole="KICHCO" ToRole="DOITUONG" />
+          <NavigationProperty Name="SANPHAMs" Relationship="Self.FK__SANPHAM__MAKICHC__440B1D61" FromRole="KICHCO" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="LICHSUDANGTIN">
+          <Key>
+            <PropertyRef Name="IDDANGTIN" />
+          </Key>
+          <Property Name="IDDANGTIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
+          <Property Name="NGAYDANG" Type="DateTime" Precision="3" />
+          <Property Name="MASP" Type="Int32" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__LICHSUDANG__MASP__5070F446" FromRole="LICHSUDANGTIN" ToRole="MERCHANTS" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__LICHSUDANG__MASP__5165187F" FromRole="LICHSUDANGTIN" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="LICHSUMUATIN">
+          <Key>
+            <PropertyRef Name="IDMUATIN" />
+          </Key>
+          <Property Name="IDMUATIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
+          <Property Name="MAGOITIN" Type="Int32" Nullable="false" />
+          <Property Name="NGAYMUA" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GOITIN" Relationship="Self.FK__LICHSUMUA__MAGOI__4AB81AF0" FromRole="LICHSUMUATIN" ToRole="GOITIN" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__LICHSUMUA__NGAYM__49C3F6B7" FromRole="LICHSUMUATIN" ToRole="MERCHANTS" />
+        </EntityType>
+        <EntityType Name="MERCHANT">
+          <Key>
+            <PropertyRef Name="MAMERCHANT" />
+          </Key>
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENMERCHANT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAYDK" Type="DateTime" Precision="3" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TINHTRANG" Type="Int32" />
+          <Property Name="SOLANBIKHOA" Type="Int32" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RATING" Type="Int32" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__TINHTRANG__5CD6CB2B" FromRole="MERCHANTS" ToRole="CTDH" />
+          <NavigationProperty Name="LICHSUDANGTINs" Relationship="Self.FK__LICHSUDANG__MASP__5070F446" FromRole="MERCHANTS" ToRole="LICHSUDANGTIN" />
+          <NavigationProperty Name="LICHSUMUATINs" Relationship="Self.FK__LICHSUMUA__NGAYM__49C3F6B7" FromRole="MERCHANTS" ToRole="LICHSUMUATIN" />
+          <NavigationProperty Name="RATING_M" Relationship="Self.FK__RATING_M__NGAYRA__276EDEB3" FromRole="MERCHANTS" ToRole="RATING_M" />
+          <NavigationProperty Name="SANPHAMs" Relationship="Self.FK__SANPHAM__ANH__412EB0B6" FromRole="MERCHANTS" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="RATING_C">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="Int32" Nullable="false" />
+          <Property Name="MASP" Type="Int32" Nullable="false" />
+          <Property Name="MACUSTOMER" Type="Int32" Nullable="false" />
+          <Property Name="RATING" Type="Int32" />
+          <Property Name="NGAYRATING" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__RATING_C__NGAYRA__2D27B809" FromRole="RATING_C" ToRole="CUSTOMERS" />
+        </EntityType>
+        <EntityType Name="RATING_M">
+          <Key>
+            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MADH" Type="Int32" Nullable="false" />
+          <Property Name="MASP" Type="Int32" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
+          <Property Name="RATING" Type="Int32" />
+          <Property Name="NGAYRATING" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__RATING_M__NGAYRA__276EDEB3" FromRole="RATING_M" ToRole="MERCHANTS" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENSP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAYDANG" Type="DateTime" Precision="3" />
+          <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+          <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
+          <Property Name="MATHUONGHIEU" Type="Int32" Nullable="false" />
+          <Property Name="MADOITUONG" Type="Int32" Nullable="false" />
+          <Property Name="MAKICHCO" Type="Int32" Nullable="false" />
+          <Property Name="TINHTRANG" Type="Int32" />
+          <Property Name="GIA" Type="Double" Nullable="false" />
+          <Property Name="GIAGIAM" Type="Double" />
+          <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ANH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOITUONG" Relationship="Self.FK__SANPHAM__MADOITU__4316F928" FromRole="SANPHAM" ToRole="DOITUONG" />
+          <NavigationProperty Name="KICHCO" Relationship="Self.FK__SANPHAM__MAKICHC__440B1D61" FromRole="SANPHAM" ToRole="KICHCO" />
+          <NavigationProperty Name="LICHSUDANGTINs" Relationship="Self.FK__LICHSUDANG__MASP__5165187F" FromRole="SANPHAM" ToRole="LICHSUDANGTIN" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__SANPHAM__ANH__412EB0B6" FromRole="SANPHAM" ToRole="MERCHANTS" />
+          <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK__SANPHAM__MATHUON__4222D4EF" FromRole="SANPHAM" ToRole="THUONGHIEU" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="MATHUONGHIEU" />
+          </Key>
+          <Property Name="MATHUONGHIEU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENTHUONGHIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SANPHAMs" Relationship="Self.FK__SANPHAM__MATHUON__4222D4EF" FromRole="THUONGHIEU" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="WEBMASTER">
+          <Key>
+            <PropertyRef Name="MAWEBMASTER" />
+          </Key>
+          <Property Name="MAWEBMASTER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENWEBMASTER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CTDH__TINHTRANG__5CD6CB2B">
+          <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DONHANG__TONGTIE__571DF1D5">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="MACUSTOMER" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MACUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RATING_C__NGAYRA__2D27B809">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="RATING_C" Type="Self.RATING_C" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="MACUSTOMER" />
+            </Principal>
+            <Dependent Role="RATING_C">
+              <PropertyRef Name="MACUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KICHCO__KICHCO__36B12243">
+          <End Role="DOITUONG" Type="Self.DOITUONG" Multiplicity="1" />
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITUONG">
+              <PropertyRef Name="MADOITUONG" />
+            </Principal>
+            <Dependent Role="KICHCO">
+              <PropertyRef Name="MADOITUONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MADOITU__4316F928">
+          <End Role="DOITUONG" Type="Self.DOITUONG" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITUONG">
+              <PropertyRef Name="MADOITUONG" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MADOITUONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUMUA__MAGOI__4AB81AF0">
+          <End Role="GOITIN" Type="Self.GOITIN" Multiplicity="1" />
+          <End Role="LICHSUMUATIN" Type="Self.LICHSUMUATIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GOITIN">
+              <PropertyRef Name="MAGOITIN" />
+            </Principal>
+            <Dependent Role="LICHSUMUATIN">
+              <PropertyRef Name="MAGOITIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MAKICHC__440B1D61">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KICHCO">
+              <PropertyRef Name="MAKICHCO" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MAKICHCO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUDANG__MASP__5070F446">
+          <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
+          <End Role="LICHSUDANGTIN" Type="Self.LICHSUDANGTIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="LICHSUDANGTIN">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUDANG__MASP__5165187F">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="LICHSUDANGTIN" Type="Self.LICHSUDANGTIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="LICHSUDANGTIN">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUMUA__NGAYM__49C3F6B7">
+          <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
+          <End Role="LICHSUMUATIN" Type="Self.LICHSUMUATIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="LICHSUMUATIN">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RATING_M__NGAYRA__276EDEB3">
+          <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
+          <End Role="RATING_M" Type="Self.RATING_M" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="RATING_M">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__ANH__412EB0B6">
+          <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MERCHANTS">
+              <PropertyRef Name="MAMERCHANT" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MAMERCHANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SANPHAM__MATHUON__4222D4EF">
+          <End Role="THUONGHIEU" Type="Self.THUONGHIEU" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBGIAYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTDHs" EntityType="Self.CTDH" />
+          <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="DOITUONGs" EntityType="Self.DOITUONG" />
+          <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
+          <EntitySet Name="GOITINs" EntityType="Self.GOITIN" />
+          <EntitySet Name="KICHCOes" EntityType="Self.KICHCO" />
+          <EntitySet Name="LICHSUDANGTINs" EntityType="Self.LICHSUDANGTIN" />
+          <EntitySet Name="LICHSUMUATINs" EntityType="Self.LICHSUMUATIN" />
+          <EntitySet Name="MERCHANTS" EntityType="Self.MERCHANT" />
+          <EntitySet Name="RATING_C" EntityType="Self.RATING_C" />
+          <EntitySet Name="RATING_M" EntityType="Self.RATING_M" />
+          <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+          <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
+          <EntitySet Name="WEBMASTERs" EntityType="Self.WEBMASTER" />
+          <AssociationSet Name="FK__CTDH__TINHTRANG__5CD6CB2B" Association="Self.FK__CTDH__TINHTRANG__5CD6CB2B">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="CTDH" EntitySet="CTDHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DONHANG__TONGTIE__571DF1D5" Association="Self.FK__DONHANG__TONGTIE__571DF1D5">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RATING_C__NGAYRA__2D27B809" Association="Self.FK__RATING_C__NGAYRA__2D27B809">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="RATING_C" EntitySet="RATING_C" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KICHCO__KICHCO__36B12243" Association="Self.FK__KICHCO__KICHCO__36B12243">
+            <End Role="DOITUONG" EntitySet="DOITUONGs" />
+            <End Role="KICHCO" EntitySet="KICHCOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MADOITU__4316F928" Association="Self.FK__SANPHAM__MADOITU__4316F928">
+            <End Role="DOITUONG" EntitySet="DOITUONGs" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUMUA__MAGOI__4AB81AF0" Association="Self.FK__LICHSUMUA__MAGOI__4AB81AF0">
+            <End Role="GOITIN" EntitySet="GOITINs" />
+            <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MAKICHC__440B1D61" Association="Self.FK__SANPHAM__MAKICHC__440B1D61">
+            <End Role="KICHCO" EntitySet="KICHCOes" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUDANG__MASP__5070F446" Association="Self.FK__LICHSUDANG__MASP__5070F446">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="LICHSUDANGTIN" EntitySet="LICHSUDANGTINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUDANG__MASP__5165187F" Association="Self.FK__LICHSUDANG__MASP__5165187F">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="LICHSUDANGTIN" EntitySet="LICHSUDANGTINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUMUA__NGAYM__49C3F6B7" Association="Self.FK__LICHSUMUA__NGAYM__49C3F6B7">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RATING_M__NGAYRA__276EDEB3" Association="Self.FK__RATING_M__NGAYRA__276EDEB3">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="RATING_M" EntitySet="RATING_M" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__ANH__412EB0B6" Association="Self.FK__SANPHAM__ANH__412EB0B6">
+            <End Role="MERCHANTS" EntitySet="MERCHANTS" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SANPHAM__MATHUON__4222D4EF" Association="Self.FK__SANPHAM__MATHUON__4222D4EF">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TMDT_WEBGIAYModelStoreContainer" CdmEntityContainer="WEBGIAYEntities">
+          <EntitySetMapping Name="CTDHs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.CTDH">
+              <MappingFragment StoreEntitySet="CTDH">
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERS">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMERS">
+                <ScalarProperty Name="MACUSTOMER" ColumnName="MACUSTOMER" />
+                <ScalarProperty Name="TENCUSTOMER" ColumnName="TENCUSTOMER" />
+                <ScalarProperty Name="NGAYDK" ColumnName="NGAYDK" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOITUONGs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.DOITUONG">
+              <MappingFragment StoreEntitySet="DOITUONG">
+                <ScalarProperty Name="MADOITUONG" ColumnName="MADOITUONG" />
+                <ScalarProperty Name="TENDOITUONG" ColumnName="TENDOITUONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONHANGs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.DONHANG">
+              <MappingFragment StoreEntitySet="DONHANG">
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="MACUSTOMER" ColumnName="MACUSTOMER" />
+                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GOITINs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.GOITIN">
+              <MappingFragment StoreEntitySet="GOITIN">
+                <ScalarProperty Name="MAGOITIN" ColumnName="MAGOITIN" />
+                <ScalarProperty Name="SOTIEN" ColumnName="SOTIEN" />
+                <ScalarProperty Name="SOTIN" ColumnName="SOTIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KICHCOes">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.KICHCO">
+              <MappingFragment StoreEntitySet="KICHCO">
+                <ScalarProperty Name="MAKICHCO" ColumnName="MAKICHCO" />
+                <ScalarProperty Name="MADOITUONG" ColumnName="MADOITUONG" />
+                <ScalarProperty Name="KICHCO1" ColumnName="KICHCO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICHSUDANGTINs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.LICHSUDANGTIN">
+              <MappingFragment StoreEntitySet="LICHSUDANGTIN">
+                <ScalarProperty Name="IDDANGTIN" ColumnName="IDDANGTIN" />
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="NGAYDANG" ColumnName="NGAYDANG" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICHSUMUATINs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.LICHSUMUATIN">
+              <MappingFragment StoreEntitySet="LICHSUMUATIN">
+                <ScalarProperty Name="IDMUATIN" ColumnName="IDMUATIN" />
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="MAGOITIN" ColumnName="MAGOITIN" />
+                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MERCHANTS">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.MERCHANT">
+              <MappingFragment StoreEntitySet="MERCHANTS">
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="TENMERCHANT" ColumnName="TENMERCHANT" />
+                <ScalarProperty Name="NGAYDK" ColumnName="NGAYDK" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="SOLANBIKHOA" ColumnName="SOLANBIKHOA" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RATING_C">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.RATING_C">
+              <MappingFragment StoreEntitySet="RATING_C">
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MACUSTOMER" ColumnName="MACUSTOMER" />
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+                <ScalarProperty Name="NGAYRATING" ColumnName="NGAYRATING" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RATING_M">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.RATING_M">
+              <MappingFragment StoreEntitySet="RATING_M">
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+                <ScalarProperty Name="NGAYRATING" ColumnName="NGAYRATING" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANPHAMs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.SANPHAM">
+              <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="NGAYDANG" ColumnName="NGAYDANG" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
+                <ScalarProperty Name="MATHUONGHIEU" ColumnName="MATHUONGHIEU" />
+                <ScalarProperty Name="MADOITUONG" ColumnName="MADOITUONG" />
+                <ScalarProperty Name="MAKICHCO" ColumnName="MAKICHCO" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="GIAGIAM" ColumnName="GIAGIAM" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="ANH" ColumnName="ANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THUONGHIEUx">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.THUONGHIEU">
+              <MappingFragment StoreEntitySet="THUONGHIEU">
+                <ScalarProperty Name="MATHUONGHIEU" ColumnName="MATHUONGHIEU" />
+                <ScalarProperty Name="TENTHUONGHIEU" ColumnName="TENTHUONGHIEU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEBMASTERs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.WEBMASTER">
+              <MappingFragment StoreEntitySet="WEBMASTER">
+                <ScalarProperty Name="MAWEBMASTER" ColumnName="MAWEBMASTER" />
+                <ScalarProperty Name="TENWEBMASTER" ColumnName="TENWEBMASTER" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
