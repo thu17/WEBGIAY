@@ -116,11 +116,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Merchant\Models\" />
-    <Folder Include="Areas\Merchant\Views\Home\" />
     <Folder Include="Areas\Merchant\Views\Shared\" />
     <Folder Include="Areas\Webmaster\Models\" />
-    <Folder Include="Assets\Customer\" />
-    <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -132,12 +129,34 @@
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
     <Compile Include="Areas\Webmaster\WebmasterAreaRegistration.cs" />
+    <Compile Include="Common\Functions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Customer\css\bootstrap.min.css" />
+    <Content Include="Assets\Customer\css\flexslider.css" />
+    <Content Include="Assets\Customer\css\form.css" />
+    <Content Include="Assets\Customer\css\jquery-ui.css" />
+    <Content Include="Assets\Customer\css\style.css" />
+    <Content Include="Assets\Customer\fonts\Archivo_Narrow\OFL.txt" />
+    <Content Include="Assets\Customer\fonts\Didact_Gothic\OFL.txt" />
+    <Content Include="Assets\Customer\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Customer\fonts\Lora\OFL.txt" />
+    <Content Include="Assets\Customer\fonts\Pathway_Gothic_One\OFL.txt" />
+    <Content Include="Assets\Customer\images\ADIPOWER-BOOST-BOA-SHOES.jpg" />
+    <Content Include="Assets\Customer\images\ADIZERO-DEFIANT-BOUNCE SHOES.jpg" />
+    <Content Include="Assets\Customer\images\BALLISTIC-SK8-HI-EISSUE-LITE-SHOES-GRAY.jpg" />
+    <Content Include="Assets\Customer\images\LEBRON-SOLDIER XI-SFG.jpg" />
+    <Content Include="Assets\Customer\images\NIKE-AIR-VAPORMAX-FLYKNIT.jpg" />
+    <Content Include="Assets\Customer\images\NIKE-ALPHA-MENACE-PRO-SNAKE-MID-BLACK.jpeg" />
+    <Content Include="Assets\Customer\js\bootstrap.min.js" />
+    <Content Include="Assets\Customer\js\imagezoom.js" />
+    <Content Include="Assets\Customer\js\jquery-2.1.4.min.js" />
+    <Content Include="Assets\Customer\js\jquery.flexslider.js" />
+    <Content Include="Assets\Customer\js\simpleCart.min.js" />
     <Content Include="Assets\W-M\css\sb-admin.css" />
     <Content Include="Assets\W-M\css\sb-admin.min.css" />
     <Content Include="Assets\W-M\js\sb-admin-charts.js" />
@@ -216,6 +235,18 @@
     <Content Include="Assets\W-M\vendor\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Assets\W-M\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Assets\W-M\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Assets\Customer\fonts\Archivo_Narrow\ArchivoNarrow-Regular.ttf" />
+    <Content Include="Assets\Customer\fonts\Didact_Gothic\DidactGothic.ttf" />
+    <Content Include="Assets\Customer\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Customer\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Customer\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Customer\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\Customer\fonts\Pathway_Gothic_One\PathwayGothicOne-Regular.ttf" />
+    <Content Include="Assets\Customer\fonts\Lora\Lora-Bold.ttf" />
+    <Content Include="Assets\Customer\fonts\Lora\Lora-BoldItalic.ttf" />
+    <Content Include="Assets\Customer\fonts\Lora\Lora-Italic.ttf" />
+    <Content Include="Assets\Customer\fonts\Lora\Lora-Regular.ttf" />
+    <Content Include="Areas\Merchant\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

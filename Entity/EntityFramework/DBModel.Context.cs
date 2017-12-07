@@ -25,6 +25,7 @@ namespace Entity.EntityFramework
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ANHCHITIET> ANHCHITIETs { get; set; }
         public virtual DbSet<CTDH> CTDHs { get; set; }
         public virtual DbSet<CUNGSANPHAM> CUNGSANPHAMs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERS { get; set; }

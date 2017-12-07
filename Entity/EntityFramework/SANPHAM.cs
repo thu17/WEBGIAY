@@ -17,6 +17,7 @@ namespace Entity.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
+            this.ANHCHITIETs = new HashSet<ANHCHITIET>();
             this.CTDHs = new HashSet<CTDH>();
             this.CUNGSANPHAMs = new HashSet<CUNGSANPHAM>();
             this.LICHSUDANGTINs = new HashSet<LICHSUDANGTIN>();
@@ -37,6 +38,8 @@ namespace Entity.EntityFramework
         public string MAUSAC { get; set; }
         public string ANH { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ANHCHITIET> ANHCHITIETs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

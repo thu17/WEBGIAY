@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="TMDT_WEBGIAYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANHCHITIET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASP" Type="int" Nullable="false" />
+          <Property Name="ANH" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="CTDH">
           <Key>
             <PropertyRef Name="MADH" />
@@ -166,6 +174,18 @@
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
+        <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="ANHCHITIET" Type="Self.ANHCHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="ANHCHITIET">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CTDH__MAMERCHANT__4D94879B">
           <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
@@ -395,6 +415,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TMDT_WEBGIAYModelStoreContainer">
+          <EntitySet Name="ANHCHITIET" EntityType="Self.ANHCHITIET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTDH" EntityType="Self.CTDH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUNGSANPHAM" EntityType="Self.CUNGSANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" Schema="dbo" store:Type="Tables" />
@@ -410,6 +431,10 @@
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEBMASTER" EntityType="Self.WEBMASTER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="ANHCHITIET" EntitySet="ANHCHITIET" />
+          </AssociationSet>
           <AssociationSet Name="FK__CTDH__MAMERCHANT__4D94879B" Association="Self.FK__CTDH__MAMERCHANT__4D94879B">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="CTDH" EntitySet="CTDH" />
@@ -492,6 +517,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TMDT_WEBGIAYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ANHCHITIET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASP" Type="Int32" Nullable="false" />
+          <Property Name="ANH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__ANHCHITIET__ANH__5AEE82B9" FromRole="ANHCHITIET" ToRole="SANPHAM" />
+        </EntityType>
         <EntityType Name="CTDH">
           <Key>
             <PropertyRef Name="MADH" />
@@ -663,6 +697,7 @@
           <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MAUSAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ANH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ANHCHITIETs" Relationship="Self.FK__ANHCHITIET__ANH__5AEE82B9" FromRole="SANPHAM" ToRole="ANHCHITIET" />
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MASP__4CA06362" FromRole="SANPHAM" ToRole="CTDH" />
           <NavigationProperty Name="CUNGSANPHAMs" Relationship="Self.FK__CUNGSANPH__SOLUO__31EC6D26" FromRole="SANPHAM" ToRole="CUNGSANPHAM" />
           <NavigationProperty Name="DOITUONG" Relationship="Self.FK__SANPHAM__MADOITU__2C3393D0" FromRole="SANPHAM" ToRole="DOITUONG" />
@@ -691,6 +726,18 @@
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="ANHCHITIET" Type="Self.ANHCHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="ANHCHITIET">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CTDH__MAMERCHANT__4D94879B">
           <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
@@ -920,6 +967,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="WEBGIAYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ANHCHITIETs" EntityType="Self.ANHCHITIET" />
           <EntitySet Name="CTDHs" EntityType="Self.CTDH" />
           <EntitySet Name="CUNGSANPHAMs" EntityType="Self.CUNGSANPHAM" />
           <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMER" />
@@ -935,6 +983,10 @@
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
           <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
           <EntitySet Name="WEBMASTERs" EntityType="Self.WEBMASTER" />
+          <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="ANHCHITIET" EntitySet="ANHCHITIETs" />
+          </AssociationSet>
           <AssociationSet Name="FK__CTDH__MAMERCHANT__4D94879B" Association="Self.FK__CTDH__MAMERCHANT__4D94879B">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="CTDH" EntitySet="CTDHs" />
@@ -1018,6 +1070,15 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TMDT_WEBGIAYModelStoreContainer" CdmEntityContainer="WEBGIAYEntities">
+          <EntitySetMapping Name="ANHCHITIETs">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.ANHCHITIET">
+              <MappingFragment StoreEntitySet="ANHCHITIET">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="ANH" ColumnName="ANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CTDHs">
             <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.CTDH">
               <MappingFragment StoreEntitySet="CTDH">
