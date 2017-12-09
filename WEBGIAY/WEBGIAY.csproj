@@ -270,7 +270,6 @@
     <Content Include="Areas\Customer\Views\sanpham\phantrangsanpham.cshtml" />
     <Content Include="Areas\Customer\Views\sanpham\chitietsanpham.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Customer\chitietsanphamcshtml.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
