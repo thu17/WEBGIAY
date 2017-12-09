@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b80f7261c9984493a7716f384544de38" Name="Diagram1">
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.ANHCHITIET" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CTDH" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CUNGSANPHAM" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+      <Diagram DiagramId="0eb174868b3f4b5a9fce2ad318f899aa" Name="Diagram1">
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.ANHCHITIET" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CTDH" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CUNGSANPHAM" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DOITUONG" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DONHANG" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.GOITIN" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.KICHCO" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.LICHSUDANGTIN" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.LICHSUMUATIN" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.MERCHANT" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.PHANLOAI" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DOITUONG" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DONHANG" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.GOITIN" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.KICHCO" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.LICHSUDANGTIN" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.LICHSUMUATIN" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.MERCHANT" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.PHANLOAI" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.RATING" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.SANPHAM" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.SANPHAM" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="24.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.WEBMASTER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="TMDT_WEBGIAYModel.FK__ANHCHITIET__ANH__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="TMDT_WEBGIAYModel.FK__CTDH__MAMERCHANT__4D94879B" ManuallyRouted="false" />

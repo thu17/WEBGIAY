@@ -2,29 +2,33 @@
 @{
     ViewBag.Title = "Index";
 }
-@foreach (var item in Model)
-{
-    <div class="col-md-4 grid-stn simpleCart_shelfItem">
-        <!-- normal -->
-        <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-                <div class="img"><img src="@item.ANH" alt="/" class="img-responsive gri-wid"/></div>
-                <div class="info">
-                    <div class="pull-left styl-hdn">
-                        <h4>@item.TENSP</h4>
+<div class="shop-grid">
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 grid-stn simpleCart_shelfItem">
+                <!-- normal -->
+                <div class="ih-item square effect3 bottom_to_top">
+                    <div class="bottom-2-top">
+                        <div class="img"><img src="@item.ANH" class="img-responsive gri-wid" /></div>
+                        <div class="info">
+                            <div class="pull-left styl-hdn">
+                                <p style="font-size:large">@item.TENSP</p>
+                            </div>
+                            <div class="pull-right styl-price">
+                                <p style="font-size:large"><a href="@Url.Action("chitietsanpham", "sanpham", new {@idctsp=@item.MASP})" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">@String.Format("{0:0,0 vnđ}", item.GIA)</span></a></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
-                    <div class="pull-right styl-price">
-                        <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">@item.GIA VND</span></a></p>
-                    </div>
-                    <div class="clearfix"></div>
+                </div>
+                <!-- end normal -->
+                <div class="quick-view">
+                    <a href="@Url.Action("chitietsanpham", "sanpham", new { @idctsp = @item.MASP })">Quick view</a>
                 </div>
             </div>
-        </div>
-        <!-- end normal -->
-        <div class="quick-view">
-            <a href="#">Quick view</a>
-        </div>
+           
+        }
+        <div class="clearfix"></div>
     </div>
-
-}
-
+</div>

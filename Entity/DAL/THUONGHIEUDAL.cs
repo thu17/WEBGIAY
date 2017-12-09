@@ -6,27 +6,19 @@ using System.Threading.Tasks;
 using Entity.EntityFramework;
 namespace Entity.DAL
 {
-    public class PHANLOAIDAL
+    public class THUONGHIEUDAL
     {
         WEBGIAYEntities db = null;
-        public PHANLOAIDAL()
+        public THUONGHIEUDAL()
         {
             db = new WEBGIAYEntities();
         }
-        public List<PHANLOAI> listphanloai()
+        public List<THUONGHIEU> thuonghieu()
         {
             using (db)
             {
-                var list = db.PHANLOAIs.ToList();
+                var list = db.THUONGHIEUx.ToList();
                 return list;
-            }            
-        }
-        public PHANLOAI phanloainay(int idphanloai)
-        {
-            using (db)
-            {
-                var p = db.PHANLOAIs.Find(idphanloai);
-                return p;
             }
         }
     }

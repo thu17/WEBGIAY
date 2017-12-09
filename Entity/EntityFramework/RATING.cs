@@ -21,6 +21,7 @@ namespace Entity.EntityFramework
         public Nullable<int> RATING_M { get; set; }
         public Nullable<int> RATING_C { get; set; }
         public Nullable<System.DateTime> NGAYRATING { get; set; }
+        public Nullable<int> TRANGTHAI { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual DONHANG DONHANG { get; set; }

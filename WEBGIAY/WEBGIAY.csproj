@@ -46,6 +46,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -124,6 +130,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Customer\Controllers\phanloaiController.cs" />
+    <Compile Include="Areas\Customer\Controllers\sanphamController.cs" />
+    <Compile Include="Areas\Customer\Controllers\thuonghieuController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
@@ -148,10 +157,17 @@
     <Content Include="Assets\Customer\fonts\Pathway_Gothic_One\OFL.txt" />
     <Content Include="Assets\Customer\images\ADIPOWER-BOOST-BOA-SHOES.jpg" />
     <Content Include="Assets\Customer\images\ADIZERO-DEFIANT-BOUNCE SHOES.jpg" />
+    <Content Include="Assets\Customer\images\b-arrow.png" />
     <Content Include="Assets\Customer\images\BALLISTIC-SK8-HI-EISSUE-LITE-SHOES-GRAY.jpg" />
+    <Content Include="Assets\Customer\images\do.png" />
+    <Content Include="Assets\Customer\images\shoes2.jpg" />
     <Content Include="Assets\Customer\images\LEBRON-SOLDIER XI-SFG.jpg" />
     <Content Include="Assets\Customer\images\NIKE-AIR-VAPORMAX-FLYKNIT.jpg" />
     <Content Include="Assets\Customer\images\NIKE-ALPHA-MENACE-PRO-SNAKE-MID-BLACK.jpeg" />
+    <Content Include="Assets\Customer\images\show.jpg" />
+    <Content Include="Assets\Customer\images\show1.jpg" />
+    <Content Include="Assets\Customer\images\show2.jpg" />
+    <Content Include="Assets\Customer\images\show3.jpg" />
     <Content Include="Assets\Customer\js\bootstrap.min.js" />
     <Content Include="Assets\Customer\js\imagezoom.js" />
     <Content Include="Assets\Customer\js\jquery-2.1.4.min.js" />
@@ -190,6 +206,7 @@
     <Content Include="Assets\W-M\vendor\jquery-easing\jquery.easing.min.js" />
     <Content Include="Assets\W-M\vendor\jquery\jquery.js" />
     <Content Include="Assets\W-M\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Webmaster\Views\web.config" />
@@ -247,9 +264,17 @@
     <Content Include="Assets\Customer\fonts\Lora\Lora-Italic.ttf" />
     <Content Include="Assets\Customer\fonts\Lora\Lora-Regular.ttf" />
     <Content Include="Areas\Merchant\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\phanloai\phanloai.cshtml" />
+    <Content Include="Areas\Customer\Views\thuonghieu\thuonghieu.cshtml" />
+    <Content Include="Areas\Customer\Views\sanpham\tatca.cshtml" />
+    <Content Include="Areas\Customer\Views\sanpham\phantrangsanpham.cshtml" />
+    <Content Include="Areas\Customer\Views\sanpham\chitietsanpham.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Customer\chitietsanphamcshtml.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

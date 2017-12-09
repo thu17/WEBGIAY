@@ -13,8 +13,10 @@ namespace WEBGIAY.Areas.Customer.Controllers
         // GET: /Customer/Home/
         public ActionResult Index()
         {
-            return View(new SANPHAMDAL().sanphammoi());
+            return View(new SANPHAMDAL().listsanphammoi());
         }
+        
+
         
 	}
 }

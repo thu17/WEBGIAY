@@ -137,6 +137,7 @@
           <Property Name="RATING_M" Type="int" />
           <Property Name="RATING_C" Type="int" />
           <Property Name="NGAYRATING" Type="datetime" />
+          <Property Name="TRANGTHAI" Type="int" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -675,6 +676,7 @@
           <Property Name="RATING_M" Type="Int32" />
           <Property Name="RATING_C" Type="Int32" />
           <Property Name="NGAYRATING" Type="DateTime" Precision="3" />
+          <Property Name="TRANGTHAI" Type="Int32" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__RATING__MACUSTOM__5629CD9C" FromRole="RATING" ToRole="CUSTOMERS" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK__RATING__NGAYRATI__534D60F1" FromRole="RATING" ToRole="DONHANG" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__RATING__MAMERCHA__5535A963" FromRole="RATING" ToRole="MERCHANTS" />
@@ -1210,6 +1212,7 @@
                 <ScalarProperty Name="RATING_M" ColumnName="RATING_M" />
                 <ScalarProperty Name="RATING_C" ColumnName="RATING_C" />
                 <ScalarProperty Name="NGAYRATING" ColumnName="NGAYRATING" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

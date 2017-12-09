@@ -13,13 +13,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    @*<link href='//fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>*@
+    <link href='//fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
     @*<link href="https://fonts.googleapis.com/css?family=Noto+Serif&amp;subset=vietnamese" rel="stylesheet">*@
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    @*<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">*@
     <!--fonts-->
     <!--bootstrap-->
+    <link href="~/Assets/Customer/css/form.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Assets/Customer/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--coustom css-->
+    
+    <link rel="stylesheet" href="~/Assets/Customer/css/flexslider.css" type="text/css" media="screen" />
+    
     <link href="~/Assets/Customer/css/style.css" rel="stylesheet" type="text/css" />
     <!--shop-kart-js-->
     <script src="~/Assets/Customer/js/simpleCart.min.js"></script>
@@ -28,6 +32,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--bootstrap-js-->
     <script src="~/Assets/Customer/js/bootstrap.min.js"></script>
     <!--script-->
+    <script src="~/Assets/Customer/js/imagezoom.js"></script>
+    <script defer src="~/Assets/Customer/js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="header">
@@ -77,6 +92,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="padding:20px">
                             <ul class="nav navbar-nav nav-font">
                                 <li><a href=@Url.Action("Index","Home")>Trang chủ</a></li>
+                                <li><a href=@Url.Action("tatca","sanpham")>Sản phẩm</a></li>
                                 @{
                 #region
                                 //    <li class="dropdown">
@@ -170,24 +186,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
        
     </div>
-    @*<div class="sub-news">
-        <div class="container">
-            <form>
-                <input type="text" class="sub-email" value="Tìm kiếm..." onfocus="this.value = '';" onblur="    if (this.value == '') { this.value = 'Tìm kiếm...'; }">
-                <a class="btn btn-default subs-btn" href="#" role="button">Tìm</a>
-            </form>
-        </div>
-    </div>*@
-    <div class="shop-grid">
-        <div class="container">
-            @RenderBody()
-            </div>
-        </div>
-    <div class="sub-news">
-        <div class="container">
-            
-        </div>
-    </div>
+    @RenderBody()
     <div class="footer-grid">
         <div class="container">
             <div class="col-md-2 re-ft-grd">
