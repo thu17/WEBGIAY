@@ -20,7 +20,9 @@ namespace Entity.EntityFramework
         public int SOLUONG { get; set; }
         public Nullable<double> THANHTIEN { get; set; }
         public Nullable<int> TINHTRANG { get; set; }
+        public Nullable<int> MAKICHCO { get; set; }
     
+        public virtual KICHCO KICHCO { get; set; }
         public virtual MERCHANT MERCHANT { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }
         public virtual DONHANG DONHANG { get; set; }

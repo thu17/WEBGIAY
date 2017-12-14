@@ -1,0 +1,63 @@
+﻿@model Entity.ViewModel.CUSTOMER_REGISTERViewModel
+@{
+    ViewBag.Title = "register";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+<div class="reg-form">
+    <div class="container">
+        <div class="reg">
+            <h3>Register Now</h3>
+            @*<p>Welcome, please enter the following details to continue.</p>
+            <p>If you have previously registered with us, <a href="#">click here</a></p>*@
+            @Html.ValidationSummary()
+            @if (ViewBag.thanhcong != null)
+            {
+                <p class="text-success">@ViewBag.thanhcong</p>
+            }
+            @using (@Html.BeginForm("register", "customer", FormMethod.Post))
+            {
+                <form>
+                    <ul>
+                        <li class="text-info">Họ tên </li>
+                        <li>@Html.TextBoxFor(model => model.TENCUSTOMER)</li>
+                        @Html.ValidationMessageFor(model => model.TENCUSTOMER)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Ngày sinh: </li>
+                        <li>@Html.TextBoxFor(model => model.NGAYSINH)</li>
+                        @Html.ValidationMessageFor(model => model.NGAYSINH)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Email: </li>
+                        <li>@Html.TextBoxFor(model => model.EMAIL)</li>
+                        @Html.ValidationMessageFor(model => model.EMAIL)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Số điện thoại: </li>
+                        <li>@Html.TextBoxFor(model => model.SDT)</li>
+                        @Html.ValidationMessageFor(model => model.SDT)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Mật khẩu </li>
+                        <li>@Html.PasswordFor(model => model.MATKHAU)</li>
+                        @Html.ValidationMessageFor(model => model.MATKHAU)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Nhập lại mật khẩu:</li>
+                        <li>@Html.PasswordFor(model => model.MATKHAUNHAPLAI)</li>
+                        @Html.ValidationMessageFor(model => model.MATKHAUNHAPLAI)
+                    </ul>
+                    <ul>
+                        <li class="text-info">Địa chỉ</li>
+                        <li>@Html.TextBoxFor(model => model.DIACHI)</li>
+                        @Html.ValidationMessageFor(model => model.DIACHI)
+                    </ul>
+                    <input type="submit" value="Register Now">
+                    <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+

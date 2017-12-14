@@ -58,8 +58,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </form>
                 </div>
                 <div class="login-bars">
-                    <a class="btn btn-default log-bar" href="register.html" role="button">Sign up</a>
-                    <a class="btn btn-default log-bar" href="signup.html" role="button">Login</a>
+                    @*@RenderSection("option",required:false)*@
+                    <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+                    <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
                     <div class="cart box_1">
                         <a href="checkout.html">
                             <h3>

@@ -14,9 +14,6 @@ namespace WEBGIAY.Areas.Customer.Controllers
         public ActionResult Index()
         {
             return View(new SANPHAMDAL().listsanphammoi());
-        }
-        
-
-        
+        }   
 	}
 }

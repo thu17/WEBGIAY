@@ -17,6 +17,7 @@ namespace Entity.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KICHCO()
         {
+            this.CTDHs = new HashSet<CTDH>();
             this.CUNGSANPHAMs = new HashSet<CUNGSANPHAM>();
         }
     
@@ -24,6 +25,8 @@ namespace Entity.EntityFramework
         public int MADOITUONG { get; set; }
         public int KICHCO1 { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTDH> CTDHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CUNGSANPHAM> CUNGSANPHAMs { get; set; }
         public virtual DOITUONG DOITUONG { get; set; }

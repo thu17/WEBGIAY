@@ -24,6 +24,7 @@
           <Property Name="SOLUONG" Type="int" Nullable="false" />
           <Property Name="THANHTIEN" Type="float" />
           <Property Name="TINHTRANG" Type="int" />
+          <Property Name="MAKICHCO" Type="int" />
         </EntityType>
         <EntityType Name="CUNGSANPHAM">
           <Key>
@@ -44,7 +45,7 @@
           <Property Name="NGAYSINH" Type="datetime" />
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
           <Property Name="RATING" Type="int" />
           <Property Name="TINHTRANG" Type="int" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -110,7 +111,7 @@
           <Property Name="CMND" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
           <Property Name="TINHTRANG" Type="int" />
           <Property Name="SOLANBIKHOA" Type="int" />
           <Property Name="NGAYSINH" Type="datetime" />
@@ -157,6 +158,16 @@
           <Property Name="MAUSAC" Type="nvarchar" MaxLength="50" />
           <Property Name="ANH" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="THUONGHIEU">
           <Key>
             <PropertyRef Name="MATHUONGHIEU" />
@@ -173,7 +184,7 @@
           <Property Name="TENWEBMASTER" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="MATKHAU" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
@@ -184,6 +195,18 @@
             </Principal>
             <Dependent Role="ANHCHITIET">
               <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTDH__MAKICHCO__778AC167">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="0..1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KICHCO">
+              <PropertyRef Name="MAKICHCO" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MAKICHCO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,11 +453,16 @@
           <EntitySet Name="PHANLOAI" EntityType="Self.PHANLOAI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RATING" EntityType="Self.RATING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEBMASTER" EntityType="Self.WEBMASTER" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="ANHCHITIET" EntitySet="ANHCHITIET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTDH__MAKICHCO__778AC167" Association="Self.FK__CTDH__MAKICHCO__778AC167">
+            <End Role="KICHCO" EntitySet="KICHCO" />
+            <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
           <AssociationSet Name="FK__CTDH__MAMERCHANT__4D94879B" Association="Self.FK__CTDH__MAMERCHANT__4D94879B">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
@@ -538,6 +566,8 @@
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
           <Property Name="THANHTIEN" Type="Double" />
           <Property Name="TINHTRANG" Type="Int32" />
+          <Property Name="MAKICHCO" Type="Int32" />
+          <NavigationProperty Name="KICHCO" Relationship="Self.FK__CTDH__MAKICHCO__778AC167" FromRole="CTDH" ToRole="KICHCO" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__CTDH__MAMERCHANT__4D94879B" FromRole="CTDH" ToRole="MERCHANTS" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDH__MASP__4CA06362" FromRole="CTDH" ToRole="SANPHAM" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK__CTDH__TINHTRANG__4BAC3F29" FromRole="CTDH" ToRole="DONHANG" />
@@ -563,7 +593,7 @@
           <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RATING" Type="Int32" />
           <Property Name="TINHTRANG" Type="Int32" />
           <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
@@ -607,6 +637,7 @@
           <Property Name="MAKICHCO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MADOITUONG" Type="Int32" Nullable="false" />
           <Property Name="KICHCO1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAKICHCO__778AC167" FromRole="KICHCO" ToRole="CTDH" />
           <NavigationProperty Name="CUNGSANPHAMs" Relationship="Self.FK__CUNGSANPH__MAKIC__32E0915F" FromRole="KICHCO" ToRole="CUNGSANPHAM" />
           <NavigationProperty Name="DOITUONG" Relationship="Self.FK__KICHCO__KICHCO__1BFD2C07" FromRole="KICHCO" ToRole="DOITUONG" />
         </EntityType>
@@ -643,7 +674,7 @@
           <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TINHTRANG" Type="Int32" />
           <Property Name="SOLANBIKHOA" Type="Int32" />
           <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
@@ -709,6 +740,16 @@
           <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MASP__5441852A" FromRole="SANPHAM" ToRole="RATING" />
           <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK__SANPHAM__MATHUON__2B3F6F97" FromRole="SANPHAM" ToRole="THUONGHIEU" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="THUONGHIEU">
           <Key>
             <PropertyRef Name="MATHUONGHIEU" />
@@ -726,7 +767,7 @@
           <Property Name="TENWEBMASTER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MATKHAU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
@@ -737,6 +778,18 @@
             </Principal>
             <Dependent Role="ANHCHITIET">
               <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTDH__MAKICHCO__778AC167">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="0..1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KICHCO">
+              <PropertyRef Name="MAKICHCO" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MAKICHCO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -983,11 +1036,16 @@
           <EntitySet Name="PHANLOAIs" EntityType="Self.PHANLOAI" />
           <EntitySet Name="RATINGs" EntityType="Self.RATING" />
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
           <EntitySet Name="WEBMASTERs" EntityType="Self.WEBMASTER" />
           <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="ANHCHITIET" EntitySet="ANHCHITIETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTDH__MAKICHCO__778AC167" Association="Self.FK__CTDH__MAKICHCO__778AC167">
+            <End Role="KICHCO" EntitySet="KICHCOes" />
+            <End Role="CTDH" EntitySet="CTDHs" />
           </AssociationSet>
           <AssociationSet Name="FK__CTDH__MAMERCHANT__4D94879B" Association="Self.FK__CTDH__MAMERCHANT__4D94879B">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
@@ -1090,6 +1148,7 @@
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
                 <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
                 <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="MAKICHCO" ColumnName="MAKICHCO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1232,6 +1291,17 @@
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="MAUSAC" ColumnName="MAUSAC" />
                 <ScalarProperty Name="ANH" ColumnName="ANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

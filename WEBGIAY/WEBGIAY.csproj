@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Customer\Models\" />
+    <Folder Include="Areas\Customer\Views\base\" />
     <Folder Include="Areas\Merchant\Models\" />
     <Folder Include="Areas\Merchant\Views\Shared\" />
     <Folder Include="Areas\Webmaster\Models\" />
@@ -129,16 +129,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Customer\Controllers\baseController.cs" />
+    <Compile Include="Areas\Customer\Controllers\giohangController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\Controllers\phanloaiController.cs" />
     <Compile Include="Areas\Customer\Controllers\sanphamController.cs" />
     <Compile Include="Areas\Customer\Controllers\thuonghieuController.cs" />
+    <Compile Include="Areas\Customer\Controllers\userController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\CHITIETSANPHAMViewModel.cs" />
+    <Compile Include="Areas\Customer\Models\CUNGSANPHAM_KICHCOViewModel.cs" />
+    <Compile Include="Areas\Customer\Models\CUSTOMERLOGINViewModel.cs" />
+    <Compile Include="Areas\Customer\Models\CUSTOMER_REGISTERViewModel.cs" />
+    <Compile Include="Areas\Customer\Models\ITEMGIOHANGViewModel.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
     <Compile Include="Areas\Webmaster\WebmasterAreaRegistration.cs" />
-    <Compile Include="Common\Functions.cs" />
+    <Compile Include="Common\constant.cs" />
+    <Compile Include="Common\MD5Encryptor.cs" />
+    <Compile Include="Common\RSAal.cs" />
+    <Compile Include="Common\customerlogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,12 +167,12 @@
     <Content Include="Assets\Customer\fonts\Lora\OFL.txt" />
     <Content Include="Assets\Customer\fonts\Pathway_Gothic_One\OFL.txt" />
     <Content Include="Assets\Customer\images\ADIPOWER-BOOST-BOA-SHOES.jpg" />
-    <Content Include="Assets\Customer\images\ADIZERO-DEFIANT-BOUNCE SHOES.jpg" />
+    <Content Include="Assets\Customer\images\ADIZERO-DEFIANT-BOUNCE-SHOES.jpg" />
     <Content Include="Assets\Customer\images\b-arrow.png" />
     <Content Include="Assets\Customer\images\BALLISTIC-SK8-HI-EISSUE-LITE-SHOES-GRAY.jpg" />
     <Content Include="Assets\Customer\images\do.png" />
+    <Content Include="Assets\Customer\images\LEBRON-SOLDIER-XI-SFG.jpg" />
     <Content Include="Assets\Customer\images\shoes2.jpg" />
-    <Content Include="Assets\Customer\images\LEBRON-SOLDIER XI-SFG.jpg" />
     <Content Include="Assets\Customer\images\NIKE-AIR-VAPORMAX-FLYKNIT.jpg" />
     <Content Include="Assets\Customer\images\NIKE-ALPHA-MENACE-PRO-SNAKE-MID-BLACK.jpeg" />
     <Content Include="Assets\Customer\images\show.jpg" />
@@ -269,6 +280,13 @@
     <Content Include="Areas\Customer\Views\sanpham\tatca.cshtml" />
     <Content Include="Areas\Customer\Views\sanpham\phantrangsanpham.cshtml" />
     <Content Include="Areas\Customer\Views\sanpham\chitietsanpham.cshtml" />
+    <Content Include="Areas\Customer\Views\customer\register.cshtml" />
+    <Content Include="EmailTemplate\Confirmation.cshtml" />
+    <Content Include="Areas\Customer\Views\customer\Confirm.cshtml" />
+    <Content Include="Areas\Customer\Views\user\Confirm.cshtml" />
+    <Content Include="Areas\Customer\Views\user\register.cshtml" />
+    <Content Include="Areas\Customer\Views\user\login.cshtml" />
+    <Content Include="Areas\Customer\Views\giohang\listsanphamtronggiohang.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

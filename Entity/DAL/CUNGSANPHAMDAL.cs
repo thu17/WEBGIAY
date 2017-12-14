@@ -13,6 +13,10 @@ namespace Entity.DAL
         {
             db = new WEBGIAYEntities();
         }
+       public List<CUNGSANPHAM>getallcsp()
+        {
+            return db.CUNGSANPHAMs.ToList();
+        }
         public List<int> listsoluong(int idsp,int kichco)
         {
             using (db)
@@ -24,8 +28,12 @@ namespace Entity.DAL
                 for (int i = 0; i <= sl; i++)
                     listsoluong.Add(i);
                 return listsoluong;
-            }
-            
+            }            
+        }
+        public List<CUNGSANPHAM> listcungsanpham(int idsp)
+        {            
+            var list=db.CUNGSANPHAMs.Where(c => c.MASP == idsp).ToList();
+            return list;
         }
     }
 }

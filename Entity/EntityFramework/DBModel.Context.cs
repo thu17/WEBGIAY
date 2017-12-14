@@ -39,6 +39,7 @@ namespace Entity.EntityFramework
         public virtual DbSet<PHANLOAI> PHANLOAIs { get; set; }
         public virtual DbSet<RATING> RATINGs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
         public virtual DbSet<WEBMASTER> WEBMASTERs { get; set; }
     }
