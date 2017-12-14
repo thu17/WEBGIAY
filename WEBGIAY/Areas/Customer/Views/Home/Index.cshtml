@@ -2,6 +2,20 @@
 @{
     ViewBag.Title = "Index";
 }
+@section menutopright{
+    @if (Session["USER_SESSION"] == null)
+    {
+        <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
+    }
+    else
+    {
+
+        var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
+        <a class="btn btn-default log-bar" href="@Url.Action("","")" role="button">@user.TENCUSTOMER</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("dangxuat","user")" role="button">Đăng xuất</a>
+    }
+}
 <div class="shop-grid">
     <div class="container">
         @foreach (var item in Model)

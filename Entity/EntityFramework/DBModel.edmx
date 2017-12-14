@@ -25,6 +25,7 @@
           <Property Name="THANHTIEN" Type="float" />
           <Property Name="TINHTRANG" Type="int" />
           <Property Name="MAKICHCO" Type="int" />
+          <Property Name="GIAGIAM" Type="float" />
         </EntityType>
         <EntityType Name="CUNGSANPHAM">
           <Key>
@@ -567,6 +568,7 @@
           <Property Name="THANHTIEN" Type="Double" />
           <Property Name="TINHTRANG" Type="Int32" />
           <Property Name="MAKICHCO" Type="Int32" />
+          <Property Name="GIAGIAM" Type="Double" />
           <NavigationProperty Name="KICHCO" Relationship="Self.FK__CTDH__MAKICHCO__778AC167" FromRole="CTDH" ToRole="KICHCO" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__CTDH__MAMERCHANT__4D94879B" FromRole="CTDH" ToRole="MERCHANTS" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDH__MASP__4CA06362" FromRole="CTDH" ToRole="SANPHAM" />
@@ -1149,6 +1151,7 @@
                 <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
                 <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
                 <ScalarProperty Name="MAKICHCO" ColumnName="MAKICHCO" />
+                <ScalarProperty Name="GIAGIAM" ColumnName="GIAGIAM" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

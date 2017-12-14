@@ -59,6 +59,7 @@
     <Compile Include="DAL\CUNGSANPHAM_KICHCODAL.cs" />
     <Compile Include="DAL\CUSTOMERDAL.cs" />
     <Compile Include="DAL\DOITUONGDAL.cs" />
+    <Compile Include="DAL\DONGHANGDAL.cs" />
     <Compile Include="DAL\KICHCODAL.cs" />
     <Compile Include="DAL\PHANLOAIDAL.cs" />
     <Compile Include="DAL\SANPHAMDAL.cs" />

@@ -1,9 +1,12 @@
-﻿@model Entity.ViewModel.CUSTOMER_REGISTERViewModel
+﻿@model WEBGIAY.Areas.Customer.Models.CUSTOMER_REGISTERViewModel
 @{
     ViewBag.Title = "register";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-
+@section menutopright{
+    <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+    <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
+}
 <div class="reg-form">
     <div class="container">
         <div class="reg">

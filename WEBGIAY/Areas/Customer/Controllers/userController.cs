@@ -184,6 +184,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                         var customer = dal.getuserbyemail(email);
                         var cSession =new customerlogin();
                         cSession.MACUSTOMER=customer.MACUSTOMER;
+                        cSession.TENCUSTOMER = customer.TENCUSTOMER;
                         cSession.EMAIL=customer.EMAIL;
                         cSession.DIACHI=customer.DIACHI;
                         cSession.MATKHAU=customer.MATKHAU;
@@ -198,5 +199,10 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 return View();
             }
             
+            public ActionResult dangxuat()
+            {
+                constant.CUSTOMER_SESSION = null;
+                return RedirectToAction("login");
+            }
         }
 	}

@@ -1,9 +1,12 @@
-﻿@model Entity.ViewModel.CUSTOMERLOGINViewModel
+﻿@model WEBGIAY.Areas.Customer.Models.CUSTOMERLOGINViewModel
 @{
     ViewBag.Title = "login";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-
+@section menutopright{
+        <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
+}
 <div class="login">
     <div class="container">
         <div class="login-grids">
