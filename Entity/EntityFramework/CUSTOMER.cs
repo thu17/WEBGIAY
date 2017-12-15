@@ -25,16 +25,21 @@ namespace Entity.EntityFramework
         public int MACUSTOMER { get; set; }
         [Display(Name="Họ tên")]
         public string TENCUSTOMER { get; set; }
+        [Display(Name = "Ngày đăng kí")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> NGAYDK { get; set; }
         [Display(Name = "Ngày sinh")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> NGAYSINH { get; set; }
-        [Display(Name = "Số điện thoại")]
+        [Display(Name = "Điện thoại")]
         public string SDT { get; set; }
-        [Display(Name = "Email")]
+        
         public string EMAIL { get; set; }
         [Display(Name = "Mật khẩu")]
         public string MATKHAU { get; set; }
-        public Nullable<int> RATING { get; set; }
+        public Nullable<double> RATING { get; set; }
         public Nullable<int> TINHTRANG { get; set; }
         [Display(Name = "Địa chỉ")]
         public string DIACHI { get; set; }

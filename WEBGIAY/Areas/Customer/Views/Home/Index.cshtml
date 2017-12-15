@@ -12,7 +12,7 @@
     {
 
         var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
-        <a class="btn btn-default log-bar" href="@Url.Action("","")" role="button">@user.TENCUSTOMER</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("listdonhang","user")" role="button">@user.TENCUSTOMER</a>
         <a class="btn btn-default log-bar" href="@Url.Action("dangxuat","user")" role="button">Đăng xuất</a>
     }
 }

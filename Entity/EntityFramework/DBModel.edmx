@@ -47,7 +47,7 @@
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
-          <Property Name="RATING" Type="int" />
+          <Property Name="RATING" Type="float" />
           <Property Name="TINHTRANG" Type="int" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
@@ -120,7 +120,7 @@
           <Property Name="SOLANBIKHOA" Type="int" />
           <Property Name="NGAYSINH" Type="datetime" />
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="RATING" Type="int" />
+          <Property Name="RATING" Type="float" />
           <Property Name="SOTINHIENTAI" Type="int" />
         </EntityType>
         <EntityType Name="PHANLOAI">
@@ -599,7 +599,7 @@
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RATING" Type="Int32" />
+          <Property Name="RATING" Type="Double" />
           <Property Name="TINHTRANG" Type="Int32" />
           <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="DONHANGs" Relationship="Self.FK__DONHANG__TONGTIE__45F365D3" FromRole="CUSTOMERS" ToRole="DONHANG" />
@@ -687,7 +687,7 @@
           <Property Name="SOLANBIKHOA" Type="Int32" />
           <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RATING" Type="Int32" />
+          <Property Name="RATING" Type="Double" />
           <Property Name="SOTINHIENTAI" Type="Int32" />
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAMERCHANT__4D94879B" FromRole="MERCHANTS" ToRole="CTDH" />
           <NavigationProperty Name="LICHSUDANGTINs" Relationship="Self.FK__LICHSUDANG__MASP__3F466844" FromRole="MERCHANTS" ToRole="LICHSUDANGTIN" />

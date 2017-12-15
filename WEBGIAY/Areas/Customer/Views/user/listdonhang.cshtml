@@ -1,0 +1,104 @@
+﻿@model IEnumerable<WEBGIAY.Areas.Customer.Models.DONHANG_CTDHViewModel>
+
+@{
+    ViewBag.Title = "listdonhang";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+    var i = 0;
+}
+
+<div class="container">
+    <section class="sky-form">
+        @{Html.RenderAction("myaccount");}
+        </section>
+        <section class="sky-form">
+            <h2>Lịch sử đơn hàng</h2>
+
+            @foreach (var item in Model)
+            {
+                i++;
+                string tab = "tab" + i;
+                string selector = "#" + tab + ".single-bottom";
+                <div class="tab">
+                    <ul class="place" onclick=expand(@tab)>
+                        <li class="sort" style="color:black;font-size:17px">Đơn hàng: @item.donhang.MADH | Ngày đặt hàng: @item.donhang.NGAYMUA | Tổng tiền : @item.donhang.TONGTIEN</li>
+                        <li class="by"><img src="~/Assets/Customer/images/do.png" alt=""></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div id="@tab" class="single-bottom" style="color:black">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <td>Số điện thoại giao hàng: </td>
+                                    <td colspan="6">@item.donhang.SDT</td>
+                                </tr>
+                                <tr>
+                                    <td>Giao đến địa chỉ:</td>
+                                    <td colspan="6">@item.donhang.DIACHI</td>
+                                </tr>
+                                <tr>
+                                    <td>Ghi chú khác:</td>
+                                    <td colspan="6">@item.donhang.GHICHU</td>
+                                </tr>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Kích thước</th>
+                                    <th>Gía</th>
+                                    <th>Gía khuyến mãi</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiển</th>
+                                    <th>Nhà bán hàng</th>
+                                    <th>Tình trạng đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ct in item.listct)
+                                {
+                                    string tinhtrang = "";
+                                    if (ct.TINHTRANG == 0)
+                                    {
+                                        tinhtrang = "Đã hủy";
+                                    }
+                                    else if (ct.TINHTRANG == 1)
+                                    {
+                                        tinhtrang = "Đang xử lí";
+                                    }
+                                    else if (ct.TINHTRANG == 2)
+                                    {
+                                        tinhtrang = "Đang giao";
+                                    }
+                                    else
+                                    {
+                                        tinhtrang = "Đã giao";
+                                    }
+                                    <tr>
+                                        <td>@ct.TENSP</td>
+                                        <td>@ct.KICHCO</td>
+                                        <td>@ct.GIA</td>
+                                        <td>@(ct.GIAGIAM)</td>
+                                        <td>@ct.SOLUONG</td>
+                                        <td>@ct.THANHTIEN</td>
+                                        <td>@ct.TENMERCHANT</td>
+                                        <td>@tinhtrang</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            <script>
+                $(document).ready(function () {
+                    $(".tab .single-bottom").hide();
+
+                });
+            </script>
+            <!-- script -->
+        </section>
+
+        <div class="clearfix"></div>
+</div>
+<script>
+    function expand(id) {
+        $(id).slideToggle(300);
+    }
+</script>

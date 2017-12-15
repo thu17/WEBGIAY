@@ -187,7 +187,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                         cSession.TENCUSTOMER = customer.TENCUSTOMER;
                         cSession.EMAIL=customer.EMAIL;
                         cSession.DIACHI=customer.DIACHI;
-                        cSession.MATKHAU=customer.MATKHAU;
+                        cSession.MATKHAU = matkhau;
                         cSession.NGAYSINH=customer.NGAYSINH;
                         cSession.RATING=customer.RATING;
                         cSession.SDT=customer.SDT;
@@ -208,8 +208,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
             public ActionResult myaccount()
             {
                 CUSTOMER customer = new CUSTOMER();
-                customerlogin user = new customerlogin();
-                user = (customerlogin)Session["CUSTOMER_SESSION"];
+                var user = (customerlogin)Session["USER_SESSION"];
                 customer.MACUSTOMER = user.MACUSTOMER;
                 customer.MATKHAU = user.MATKHAU;
                 customer.NGAYSINH = user.NGAYSINH;
@@ -219,16 +218,52 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 customer.EMAIL = user.EMAIL;
                 return PartialView(customer);
             }
+            public List<CTDH_SANPHAM_MERCHANT_KICHCOViewModel> listctdh(int iddonhang)
+            {
+                var listsp=new SANPHAMDAL().getallsanpham();
+                var listmerchant=new MERCHANTDAL().getallmerchant();
+                var listkichco=new KICHCODAL().getallkc();
+                var listctdh =new CTDHDAL().listctdh(iddonhang);
 
+                var list = from kc in listkichco //kich co
+                           join ctdh in listctdh
+                           on kc.MAKICHCO equals ctdh.MAKICHCO into kc_ctdh
+                           from kct in kc_ctdh// kich co join ctdh
+                           join sp in listsp
+                           on kct.MASP equals sp.MASP into kc_ctdh_sp
+                           from kctsp in kc_ctdh_sp//  kich co join ctdh join sanpham
+                           join m in listmerchant
+                           on kctsp.MAMERCHANT equals m.MAMERCHANT into complete//kich co join ctdh join sanpham join merchant                          
+                           from c in complete
+                           select new CTDH_SANPHAM_MERCHANT_KICHCOViewModel
+                           {
+                               TENSP = kctsp.TENSP,
+                               TENMERCHANT=c.TENMERCHANT,
+                               SOLUONG=kct.SOLUONG,
+                               THANHTIEN=kct.THANHTIEN,
+                               TINHTRANG=kct.TINHTRANG,
+                               KICHCO=kc.KICHCO1,
+                               GIAGIAM=kctsp.GIAGIAM,
+                               GIA=kctsp.GIA
+                           };
+                return list.ToList();
+            }
             public ActionResult listdonhang()
             {
+                var customer = (customerlogin)Session["USER_SESSION"];
+                int idcustomer = customer.MACUSTOMER;
                 List<DONHANG_CTDHViewModel> list = new List<DONHANG_CTDHViewModel>();
-                DONHANG_CTDHViewModel dhct = new DONHANG_CTDHViewModel();
-
-                var listdonhang=new DONGHANGDAL().listdh();
-                var listctdh=new CTDHDAL().listallctdh();
-               
-                return View();
+                var dh = new DONGHANGDAL().listdh(idcustomer);
+                foreach (DONHANG item in dh)
+                {
+                    DONHANG_CTDHViewModel dhct = new DONHANG_CTDHViewModel();
+                    dhct.donhang = item;
+                    var ctdh = listctdh(item.MADH);
+                    dhct.listct = ctdh;
+                    list.Add(dhct);
+                    
+                }
+                return View(list);
             }
         }
 	}

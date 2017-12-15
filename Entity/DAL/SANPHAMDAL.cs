@@ -16,6 +16,10 @@ namespace Entity.DAL
         {
             db = new WEBGIAYEntities();
         }
+        public List<SANPHAM>getallsanpham()
+        {
+            return db.SANPHAMs.ToList();
+        }
         public List<SANPHAM> listsanphammoi()
         {
             

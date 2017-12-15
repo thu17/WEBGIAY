@@ -14,7 +14,7 @@ namespace WEBGIAY.Common
         public string SDT { get; set; }
         public string EMAIL { get; set; }
         public string MATKHAU { get; set; }
-        public Nullable<int> RATING { get; set; }
+        public Nullable<double> RATING { get; set; }
         public string DIACHI { get; set; }
     }
 }

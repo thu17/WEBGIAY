@@ -13,9 +13,9 @@ namespace Entity.DAL
         {
             db = new WEBGIAYEntities();
         }
-        public List<DONHANG> listdh()
+        public List<DONHANG> listdh(int idcustomer)
         {
-            return db.DONHANGs.ToList();
+            return db.DONHANGs.Where(c=>c.MACUSTOMER==idcustomer).OrderByDescending(d=>d.NGAYMUA).ToList();
         }
         public void luudonhang(DONHANG dh, List<CTDH> ctdh)
         {
