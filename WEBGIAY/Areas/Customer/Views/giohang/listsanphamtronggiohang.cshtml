@@ -16,7 +16,7 @@
 <div class="check">
     <div class="container">
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Continue to basket</a>
+            <a class="continue" href="@Url.Action("tatca","sanpham")">Continue to basket</a>
             <div class="price-details">
                 <h3>CHI TIẾT GIÁ</h3>
                 <span>TỔNG CỘNG</span>
@@ -40,6 +40,48 @@
             <a class="order" href="#" id="submit">Đặt hàng</a>
         </div>
         <div class="col-md-9 cart-items">
+            <h1>Thông tin giao hàng</h1>
+            <table style="padding:10px">
+                <tr>
+                    <td width="100px">
+                        <label class="control-label"> Địa chỉ</label>
+                    </td>
+                    <td width="300px">
+                        <select id="diachi" onchange="showotherdiachi()" class="form-control">
+                            <option value="">@user.DIACHI</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </td>
+                    <td width="300px" >
+                        <input type="text" id="diachikhac" class="form-control " style="visibility: hidden;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100px" >
+                        <label class="control-label">Số điện thoại</label>
+                    </td>
+                    <td width="300px">
+                        <select id="sdt" onchange="showothersdt()" class="form-control">
+                            <option value="">@user.SDT</option>
+                            <option value="other">Khác</option>
+                        </select>
+
+                    </td>
+                    <td width="300px" >
+                        <input type="text" id="sdtkhac" class="form-control" style="visibility: hidden;" />
+                    </td>
+                    <
+                </tr>
+                <tr>
+                    <td width="100px" >
+                        <label class="control-label ">Ghi chú</label>
+                    </td>
+                    <td colspan="2">
+                        <textarea id="ghichu" class="form-control"></textarea>
+                    </td>
+                </tr>
+
+            </table>
             <h1>Giỏ hàng <span id="count">(@Model.Count)</span></h1>
            @{
                 foreach (var item in Model)
@@ -76,66 +118,101 @@
     </div>
 </div>
 <script>
-    $('#submit').click(function(){
-        submit();
+    function showothersdt() {
+        var value = $('#sdt :selected').html();
+        if (value == "Khác") {
+            $('#sdtkhac').css('visibility', 'visible');
+        }
+        else $('#sdtkhac').css('visibility', 'hidden');
+    };
+    function showotherdiachi() {
+        var value = $('#diachi :selected').html();
+        if (value == "Khác") {
+            $('#diachikhac').css('visibility', 'visible');
+        }
+        else $('#diachikhac').css('visibility', 'hidden');
+
+    };
+</script>
+<script>
+    $(document).ready(function () {
+        $('#submit').click(function(){
+            submit();
+        });
+        function clear(masp, makichco) {
+            $('#cart-header' + masp + '' + makichco).fadeOut('slow', function () {
+                $(this).remove();
+            });
+        };
+        function submit() {
+            var diachi;
+            var sdt;
+            var ghichu=document.getElementById("ghichu").value;
+            if ($('#diachi :selected').html() == "Khác") {
+                diachi = document.getElementById("diachikhac").value;
+            }
+            else diachi = $('#sdt :selected').html();
+            if ($('#sdt :selected').html() == "Khác") {
+                sdt = document.getElementById("sdtkhac").value;
+            }
+            else diachi = $('#diachi :selected').html();
+            request = {
+                macustomer: Number(@user.MACUSTOMER),
+                tongtien: Number(@(tongtien - tongtiengiam)),
+                diachi: diachi,
+                sdt: sdt,
+                ghichu: ghichu
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/giohang/luudonhang',
+                data: JSON.stringify(request),
+                contentType: 'application/json;charset=utf-8',
+                error: function (err) {
+                    alert('Error: ' + err.statusText);
+                },
+                success:function(result)
+                {
+                    if (result == -1)
+                        alert("Đơn hàng gửi đi không thành công!");
+                    else
+                    {
+                        alert("Đơn hàng đã được gửi đi");
+                        location.reload();
+                    }
+                    
+                }
+            });
+        }
+        function remove(masp,makichco)
+        {
+            request = {
+                masp: masp,
+                makichco: makichco
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/giohang/removeitem',
+                data: JSON.stringify(request),
+                contentType: 'application/json;charset=utf-8',
+                error: function (err) {
+                    alert('Error: ' + err.statusText);
+                },
+                success:function(result)
+                {
+                    var list = [];
+                    clear(masp, makichco);
+                    $.each(result, function (i, data) {
+                        list.push(data);
+                    });
+                    $('#count').html('(' + list[0] + ')');
+                    $('#total').html(list[1]);
+                    $('#discount').list(data[2]);
+                    $('#lastprice').list(data[3]);
+                    //alert("Đã xóa!");
+                }
+            });
+        }
     });
-    function clear(masp, makichco) {
-        $('#cart-header' + masp + '' + makichco).fadeOut('slow', function () {
-            $(this).remove();
-        });
-
-    }
-    function submit() {
-        request = {
-            macustomer: Number(@user.MACUSTOMER),
-            tongtien: Number(@(tongtien - tongtiengiam))
-        };
-        alert(Number(@(tongtien - tongtiengiam)));
-        $.ajax({
-            type: 'POST',
-            url: '/giohang/luudonhang',
-            data: JSON.stringify(request),
-            contentType: 'application/json;charset=utf-8',
-            error: function (err) {
-                alert('Error: ' + err.statusText);
-            },
-            success:function(result)
-            {
-                if (result == 1)
-                    alert("Đặt hàng thành công!");
-            }
-        });
-    }
-    function remove(masp,makichco)
-    {
-        request = {
-            masp: masp,
-            makichco: makichco
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/giohang/removeitem',
-            data: JSON.stringify(request),
-            contentType: 'application/json;charset=utf-8',
-            error: function (err) {
-                alert('Error: ' + err.statusText);
-            },
-            success:function(result)
-            {
-                var list = [];
-                clear(masp, makichco);
-                $.each(result, function (i, data) {
-                    list.push(data);
-                });
-                $('#count').html('(' + list[0] + ')');
-                $('#total').html(list[1]);
-                $('#discount').list(data[2]);
-                $('#lastprice').list(data[3]);
-                //alert("Đã xóa!");
-
-
-            }
-        });
-    }
 </script>
 

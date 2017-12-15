@@ -141,6 +141,7 @@
     <Compile Include="Areas\Customer\Models\CUNGSANPHAM_KICHCOViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CUSTOMERLOGINViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CUSTOMER_REGISTERViewModel.cs" />
+    <Compile Include="Areas\Customer\Models\DONHANG_CTDHViewModel.cs" />
     <Compile Include="Areas\Customer\Models\ITEMGIOHANGViewModel.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
@@ -287,6 +288,7 @@
     <Content Include="Areas\Customer\Views\user\register.cshtml" />
     <Content Include="Areas\Customer\Views\user\login.cshtml" />
     <Content Include="Areas\Customer\Views\giohang\listsanphamtronggiohang.cshtml" />
+    <Content Include="Areas\Customer\Views\user\myaccount.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

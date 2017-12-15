@@ -96,7 +96,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
             return Json(listresult, JsonRequestBehavior.AllowGet); 
         }
 
-        public ActionResult luudonhang(int macustomer, double tongtien)
+        public ActionResult luudonhang(int macustomer,string diachi,string sdt,string ghichu, double tongtien)
         {
             if (Session[ssgiohang] != null)
             {
@@ -104,6 +104,9 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 dh.MACUSTOMER = macustomer;
                 dh.NGAYMUA = DateTime.Today;
                 dh.TONGTIEN = tongtien;
+                dh.GHICHU = ghichu;
+                dh.SDT = sdt;
+                dh.DIACHI = diachi;
                 List<ITEMGIOHANGViewModel> listitem = new List<ITEMGIOHANGViewModel>();
                 listitem = (List<ITEMGIOHANGViewModel>)Session[ssgiohang];
                 List<CTDH> listctdh = new List<CTDH>();
@@ -121,9 +124,10 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 }
                 DONGHANGDAL dal = new DONGHANGDAL();
                 dal.luudonhang(dh, listctdh);
+                Session[ssgiohang] = null;
             }
             else return Json(-1, JsonRequestBehavior.AllowGet);
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("listsanphamtronggiohang");
         }
 	}
 }

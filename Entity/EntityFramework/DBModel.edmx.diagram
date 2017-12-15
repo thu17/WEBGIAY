@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="15194019a04a4b4bbfdc792ff5fdf563" Name="Diagram1">
+      <Diagram DiagramId="065d53ef8254493bbab1a882b945f2e7" Name="Diagram1">
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.ANHCHITIET" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CTDH" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CUNGSANPHAM" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.CUSTOMER" Width="1.5" PointX="1.5" PointY="24.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DOITUONG" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DONHANG" Width="1.5" PointX="0.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMDT_WEBGIAYModel.DONHANG" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.GOITIN" Width="1.5" PointX="3.75" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.KICHCO" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMDT_WEBGIAYModel.LICHSUDANGTIN" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />

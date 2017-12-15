@@ -204,5 +204,31 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 constant.CUSTOMER_SESSION = null;
                 return RedirectToAction("login");
             }
+            
+            public ActionResult myaccount()
+            {
+                CUSTOMER customer = new CUSTOMER();
+                customerlogin user = new customerlogin();
+                user = (customerlogin)Session["CUSTOMER_SESSION"];
+                customer.MACUSTOMER = user.MACUSTOMER;
+                customer.MATKHAU = user.MATKHAU;
+                customer.NGAYSINH = user.NGAYSINH;
+                customer.SDT = user.SDT;
+                customer.TENCUSTOMER = user.TENCUSTOMER;
+                customer.DIACHI = user.DIACHI;
+                customer.EMAIL = user.EMAIL;
+                return PartialView(customer);
+            }
+
+            public ActionResult listdonhang()
+            {
+                List<DONHANG_CTDHViewModel> list = new List<DONHANG_CTDHViewModel>();
+                DONHANG_CTDHViewModel dhct = new DONHANG_CTDHViewModel();
+
+                var listdonhang=new DONGHANGDAL().listdh();
+                var listctdh=new CTDHDAL().listallctdh();
+               
+                return View();
+            }
         }
 	}

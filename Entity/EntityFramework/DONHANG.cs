@@ -25,6 +25,9 @@ namespace Entity.EntityFramework
         public int MACUSTOMER { get; set; }
         public Nullable<System.DateTime> NGAYMUA { get; set; }
         public Nullable<double> TONGTIEN { get; set; }
+        public string DIACHI { get; set; }
+        public string SDT { get; set; }
+        public string GHICHU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDHs { get; set; }

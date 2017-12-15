@@ -66,6 +66,9 @@
           <Property Name="MACUSTOMER" Type="int" Nullable="false" />
           <Property Name="NGAYMUA" Type="datetime" />
           <Property Name="TONGTIEN" Type="float" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="250" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" />
+          <Property Name="GHICHU" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="GOITIN">
           <Key>
@@ -619,6 +622,9 @@
           <Property Name="MACUSTOMER" Type="Int32" Nullable="false" />
           <Property Name="NGAYMUA" Type="DateTime" Precision="3" />
           <Property Name="TONGTIEN" Type="Double" />
+          <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="GHICHU" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__TINHTRANG__4BAC3F29" FromRole="DONHANG" ToRole="CTDH" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__DONHANG__TONGTIE__45F365D3" FromRole="DONHANG" ToRole="CUSTOMERS" />
           <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__NGAYRATI__534D60F1" FromRole="DONHANG" ToRole="RATING" />
@@ -1195,6 +1201,9 @@
                 <ScalarProperty Name="MACUSTOMER" ColumnName="MACUSTOMER" />
                 <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
                 <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

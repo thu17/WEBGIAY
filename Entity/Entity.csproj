@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\ANHCHITIETDAL.cs" />
+    <Compile Include="DAL\CTDHDAL.cs" />
     <Compile Include="DAL\CUNGSANPHAMDAL.cs" />
     <Compile Include="DAL\CUNGSANPHAM_KICHCODAL.cs" />
     <Compile Include="DAL\CUSTOMERDAL.cs" />

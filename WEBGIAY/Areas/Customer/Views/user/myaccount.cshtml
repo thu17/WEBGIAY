@@ -1,0 +1,101 @@
+﻿@model Entity.EntityFramework.CUSTOMER
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CUSTOMER</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.MACUSTOMER, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MACUSTOMER)
+                @Html.ValidationMessageFor(model => model.MACUSTOMER)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENCUSTOMER, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TENCUSTOMER)
+                @Html.ValidationMessageFor(model => model.TENCUSTOMER)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGAYDK, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.NGAYDK)
+                @Html.ValidationMessageFor(model => model.NGAYDK)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGAYSINH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NGAYSINH)
+                @Html.ValidationMessageFor(model => model.NGAYSINH)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SDT, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT)
+                @Html.ValidationMessageFor(model => model.SDT)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMAIL, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMAIL)
+                @Html.ValidationMessageFor(model => model.EMAIL)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MATKHAU, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.MATKHAU)
+                @Html.ValidationMessageFor(model => model.MATKHAU)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.RATING, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.RATING)
+                @Html.ValidationMessageFor(model => model.RATING)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.TINHTRANG, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.TINHTRANG)
+                @Html.ValidationMessageFor(model => model.TINHTRANG)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DIACHI, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DIACHI)
+                @Html.ValidationMessageFor(model => model.DIACHI)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

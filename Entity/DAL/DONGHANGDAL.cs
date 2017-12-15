@@ -13,13 +13,20 @@ namespace Entity.DAL
         {
             db = new WEBGIAYEntities();
         }
+        public List<DONHANG> listdh()
+        {
+            return db.DONHANGs.ToList();
+        }
         public void luudonhang(DONHANG dh, List<CTDH> ctdh)
         {
             DONHANG donhang = new DONHANG
             {
                 MACUSTOMER=dh.MACUSTOMER,
                 NGAYMUA=dh.NGAYMUA,
-                TONGTIEN=dh.TONGTIEN
+                DIACHI=dh.DIACHI,
+                SDT=dh.SDT,
+                TONGTIEN=dh.TONGTIEN,
+                GHICHU=dh.GHICHU                
             };
             db.DONHANGs.Add(donhang);
             db.SaveChanges();
