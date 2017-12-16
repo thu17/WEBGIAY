@@ -4,11 +4,14 @@
     ViewBag.Title = "listdonhang";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
     var i = 0;
+    var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
 }
-
+@section menutopright{
+    @Html.Partial("~/Areas/Customer/Views/giohang/giohanghientai.cshtml")
+}
 <div class="container">
     <section class="sky-form">
-        @{Html.RenderAction("myaccount");}
+        @{Html.RenderAction("thongtintaikhoan");}
         </section>
         <section class="sky-form">
             <h2>Lịch sử đơn hàng</h2>
@@ -100,5 +103,5 @@
 <script>
     function expand(id) {
         $(id).slideToggle(300);
-    }
+    }   
 </script>

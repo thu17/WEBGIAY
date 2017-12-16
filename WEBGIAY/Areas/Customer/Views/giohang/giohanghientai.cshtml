@@ -1,0 +1,42 @@
+﻿    @if (Session["USER_SESSION"] == null)
+    {
+        <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
+    }
+    else
+    {
+        var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
+        var tongthanhtoan = Session["tongthanhtoan"] == null ? 0 : Session["tongthanhtoan"];
+        var tongsoluong = Session["tongsoluong"] == null ? 0 : Session["tongsoluong"];
+        <a class="btn btn-default log-bar" href="@Url.Action("listdonhang", "user")" role="button">@user.TENCUSTOMER</a>
+        <a class="btn btn-default log-bar" href="@Url.Action("dangxuat","user")" role="button">Đăng xuất</a>
+        @*<div class="cart box_1">
+            <a href="@Url.Action("listsanphamtronggiohang","giohang")">
+                <h3>
+                    <div class="total">
+                        <span id="tt">@(string.Format("{0:0,0} vnđ",tongthanhtoan))</span>(<span id="sl">@(tongsoluong)</span>)
+                    </div>
+                </h3>
+            </a>
+            <a role="button" id="empty">Empty Cart</a>
+            <div class="clearfix"> </div>
+        </div>*@
+    }
+<script>
+    $(document).ready(function () {
+        $('#empty').click(function () {
+            empty();
+        });
+        function empty() {
+            $.ajax({
+                type: 'POST',
+                url: '/giohang/emptycart',
+                contentType: 'application/json;charset=utf-8',
+                success: function (result) {
+                    //$('#sl').html("0");
+                    //$('#tt').html("00 vnđ");
+                }
+            });
+        }
+    });
+</script>

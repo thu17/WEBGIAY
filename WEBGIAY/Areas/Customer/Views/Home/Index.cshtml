@@ -3,19 +3,9 @@
     ViewBag.Title = "Index";
 }
 @section menutopright{
-    @if (Session["USER_SESSION"] == null)
-    {
-        <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
-        <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
-    }
-    else
-    {
-
-        var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
-        <a class="btn btn-default log-bar" href="@Url.Action("listdonhang","user")" role="button">@user.TENCUSTOMER</a>
-        <a class="btn btn-default log-bar" href="@Url.Action("dangxuat","user")" role="button">Đăng xuất</a>
-    }
+    @Html.Partial("~/Areas/Customer/Views/giohang/giohanghientai.cshtml")
 }
+
 <div class="shop-grid">
     <div class="container">
         @foreach (var item in Model)
@@ -30,7 +20,7 @@
                                 <p style="font-size:large">@item.TENSP</p>
                             </div>
                             <div class="pull-right styl-price">
-                                <p style="font-size:large"><a href="@Url.Action("chitietsanpham", "sanpham", new {@idctsp=@item.MASP})" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">@String.Format("{0:0,0 vnđ}", item.GIA)</span></a></p>
+                                <p style="font-size:large"><a href="@Url.Action("chitietsanpham", "sanpham", new { @idctsp = @item.MASP })" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">@String.Format("{0:0,0 vnđ}", item.GIA)</span></a></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>

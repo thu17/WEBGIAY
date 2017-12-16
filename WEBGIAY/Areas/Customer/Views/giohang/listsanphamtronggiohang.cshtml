@@ -7,16 +7,16 @@
 @{
     double? tongtien = 0;
     double? tongtiengiam = 0;
+    int soluong = 0;
     var user = (WEBGIAY.Common.customerlogin)Session["USER_SESSION"];
 }
 @section menutopright{
-        <a class="btn btn-default log-bar" href="@Url.Action("listdonhang","user")" role="button">@user.TENCUSTOMER</a>
-        <a class="btn btn-default log-bar" href="@Url.Action("dangxuat","user")" role="button">Đăng xuất</a>
+    @Html.Partial("~/Areas/Customer/Views/giohang/giohanghientai.cshtml")
 }
 <div class="check">
     <div class="container">
         <div class="col-md-3 cart-total">
-            <a class="continue" href="@Url.Action("tatca","sanpham")">Continue to basket</a>
+            <a class="continue" href="@Url.Action("tatca","sanpham")">Tiếp tục mua hàng</a>
             <div class="price-details">
                 <h3>CHI TIẾT GIÁ</h3>
                 <span>TỔNG CỘNG</span>
@@ -24,6 +24,7 @@
                 {
                     tongtien = tongtien + item.THANHTIENITEM;
                     tongtiengiam = tongtiengiam + item.TIENGIAM;
+                    soluong = soluong + item.SOLUONG;
                 }
                 <span class="total1" id="total">@String.Format("{0:0,0} vnđ",tongtien)</span>
                 <span>GIẢM GIÁ</span>
@@ -82,7 +83,7 @@
                 </tr>
 
             </table>
-            <h1>Giỏ hàng <span id="count">(@Model.Count)</span></h1>
+            <h1>Giỏ hàng <span id="count">(@soluong)</span></h1>
            @{
                 foreach (var item in Model)
                 {
@@ -209,6 +210,8 @@
                     $('#total').html(list[1]);
                     $('#discount').list(data[2]);
                     $('#lastprice').list(data[3]);
+                    //$('#sl').html($('#count').html());
+                    //$('#tt').html($('#lastprice')+ " vnđ");
                     //alert("Đã xóa!");
                 }
             });

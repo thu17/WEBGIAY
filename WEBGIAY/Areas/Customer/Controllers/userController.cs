@@ -37,17 +37,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                     {
                         var user = new CUSTOMER();
                         user.TENCUSTOMER = cr.TENCUSTOMER;
-
-                        
-                        //string privatekey = cr.MATKHAU;
-                        //string publickey = rsa.ToXmlString(false);
-                        //privatekey = rsa.ToXmlString(true);
-                        //plaintext = ByteConverter.GetBytes(cr.MATKHAU);
-                        //encryptedtext = RSAal.Encryption(plaintext, RSA.ExportParameters(false), false);
-                        //user.MATKHAU = RSAal.Encrypt(cr.MATKHAU,publickey);
-
                         user.MATKHAU = MD5Encryptor.MD5Hash(cr.MATKHAU);
-
                         user.DIACHI = cr.DIACHI;
                         user.EMAIL = cr.EMAIL;
                         user.NGAYSINH = cr.NGAYSINH;
@@ -172,13 +162,6 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 }
                 else
                 {
-                    //string privatekey = rsa.ToXmlString(true);
-                    //var decrypt = RSAal.Decrypt(getpwd, privatekey);
-                    //decrypt = RSAal.Decryption(getpwd);
-                    //byte[] _etext = BtConverter.GetBytes(getpwd);
-                    //byte[] dtext = RSAal.RSADecryption(_etext, RSA.ExportParameters(true), false);
-                    //var decrypt = BtConverter.GetString(dtext);
-
                     if ((MD5Encryptor.MD5Hash(matkhau)).Equals(getpwd))
                     {
                         var customer = dal.getuserbyemail(email);
@@ -205,19 +188,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 return RedirectToAction("login");
             }
             
-            public ActionResult myaccount()
-            {
-                CUSTOMER customer = new CUSTOMER();
-                var user = (customerlogin)Session["USER_SESSION"];
-                customer.MACUSTOMER = user.MACUSTOMER;
-                customer.MATKHAU = user.MATKHAU;
-                customer.NGAYSINH = user.NGAYSINH;
-                customer.SDT = user.SDT;
-                customer.TENCUSTOMER = user.TENCUSTOMER;
-                customer.DIACHI = user.DIACHI;
-                customer.EMAIL = user.EMAIL;
-                return PartialView(customer);
-            }
+           
             public List<CTDH_SANPHAM_MERCHANT_KICHCOViewModel> listctdh(int iddonhang)
             {
                 var listsp=new SANPHAMDAL().getallsanpham();
@@ -265,5 +236,40 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 }
                 return View(list);
             }
+            public ActionResult thongtintaikhoan()
+            {
+                CUSTOMER customer = new CUSTOMER();
+                var user = (customerlogin)Session["USER_SESSION"];
+                customer.MACUSTOMER = user.MACUSTOMER;
+                customer.MATKHAU = user.MATKHAU;
+                customer.NGAYSINH = user.NGAYSINH;
+                customer.SDT = user.SDT;
+                customer.TENCUSTOMER = user.TENCUSTOMER;
+                customer.DIACHI = user.DIACHI;
+                customer.EMAIL = user.EMAIL;
+                return PartialView(customer);
+            }
+            public ActionResult editrequest(int idcustomer, string password)
+            {
+                ChangeInfoEmailTemplate(idcustomer,password);
+                return Json(1,JsonRequestBehavior.AllowGet);
+            }
+            public void ChangeInfoEmailTemplate(int idcustomer, string password)
+            {
+                //{E:\Project\asp.net\Register\Register\EmailTemplate\Confirmation.cshtml
+                string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("/EmailTemplate/") + "changeinfoconfirm" + ".cshtml");
+                var regInfo = new CUSTOMERDAL().getcustomer(idcustomer);
+                var accept = "http://localhost:58949/" + "/user/Accept?idcustomer=" + idcustomer + "&password=" + password;
+                var deny = "http://localhost:58949/" + "/user/listdonhang";
+                body = body.Replace("@ViewBag.Accept", accept);
+                body=body.Replace("@ViewBag.Deny",deny);
+                body = body.ToString();
+                BuildEmailTemplate("Xác nhận thay đổi thông tin tài khoản", body, regInfo.EMAIL);
+            }
+            public ActionResult Accept(int idcustomer,string password) {
+                var dal = new CUSTOMERDAL().doimatkhau(idcustomer, MD5Encryptor.MD5Hash(password));
+                return RedirectToAction("listsanphamtronggiohang");
+            }
+           
         }
 	}

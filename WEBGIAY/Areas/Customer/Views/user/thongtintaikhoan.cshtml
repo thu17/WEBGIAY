@@ -1,0 +1,58 @@
+﻿@model Entity.EntityFramework.CUSTOMER
+
+<div>
+    <h2>Thông tin tài khoản</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th width="200px">Họ tên</th>
+                <td width="400px">@Model.TENCUSTOMER</td>
+            </tr>
+            <tr>
+                <th width="200px">Email</th>
+                <td width="400px">@Model.EMAIL</td>
+            </tr>
+            <tr>
+                <th width="200px">Số điện thoại</th>
+                <td width="400px">@Model.SDT</td>
+            </tr>
+            <tr>
+                <th width="200px">Ngày sinh</th>
+                <td width="400px">@Model.NGAYSINH</td>
+            </tr>
+            <tr>
+                <th width="200px">Địa chỉ</th>
+                <td width="400px">@Model.DIACHI</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="mkmoi" class="form form-control" /></td>
+                <td><button id="doimk" class="btn btn-default">Đổi mật khẩu</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#doimk').click(function () {
+        var ma=@Model.MACUSTOMER
+        data = {
+            idcustomer: ma,
+            password: document.getElementById("mkmoi").value
+        };
+        
+        $.ajax({
+            type: 'POST',
+            url: '/user/editrequest',
+            data: JSON.stringify(data),
+            contentType: 'application/json;charset=utf-8',
+            error: function (err) {
+                alert('Error: ' + err.statusText);
+            },
+            success: function (result) {
+                if(result==1)
+                alert("Vui lòng kiểm tra email để xác nhận");
+            }
+        });
+    });
+</script>
+

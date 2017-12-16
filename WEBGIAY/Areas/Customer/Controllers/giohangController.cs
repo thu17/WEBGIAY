@@ -54,7 +54,10 @@ namespace WEBGIAY.Areas.Customer.Controllers
                         otheritem.SOLUONG = soluong;
                         list.Add(otheritem);
                         Session[ssgiohang] = list;
+                        
                     }
+                    //Session["tongsoluong"] = list.Sum(x => x.SOLUONG);
+                    //Session["tongthanhtoan"] = list.Sum(x => x.THANHTIENITEM) - list.Sum(x => x.TIENGIAM);
                 }
                 else
                 {
@@ -65,11 +68,19 @@ namespace WEBGIAY.Areas.Customer.Controllers
                     var list = new List<ITEMGIOHANGViewModel>();
                     list.Add(item);
                     Session[ssgiohang] = list;
+                    ViewBag.sl = list.Sum(x => x.SOLUONG);
+                    //Session["tongsoluong"] = list.Sum(x=>x.SOLUONG);
+                    //Session["tongthanhtoan"] = list.Sum(x=>x.THANHTIENITEM)-list.Sum(x=>x.TIENGIAM);
                 }
+                
             }        
             return RedirectToAction("listsanphamtronggiohang");
         }
-
+        public ActionResult emptycart()
+        {
+            Session[ssgiohang] = null;
+            return RedirectToAction("listsanphamtronggiohang");
+        }
         public ActionResult removeitem(int masp,int makichco)
         {
 
@@ -86,13 +97,17 @@ namespace WEBGIAY.Areas.Customer.Controllers
             double? tongtien = 0;
             double? tonggiam = 0;
             double? tongthanhtoan = 0;
+            int tongsoluong = 0;
             foreach (var item in list)
             {
                 tongtien = tongtien+item.THANHTIENITEM;
                 tonggiam = tonggiam + item.TIENGIAM;
+                tongsoluong = tongsoluong + item.SOLUONG;
             }
             tongthanhtoan = tongtien - tonggiam;
-            List<double?> listresult = new List<double?>() { list.Count, tongtien, tonggiam, tongthanhtoan };
+            //Session["tongsoluong"] = tongsoluong;
+            //Session["tongthanhtoan"] = tongthanhtoan;
+            List<double?> listresult = new List<double?>() { tongsoluong, tongtien, tonggiam, tongthanhtoan };
             return Json(listresult, JsonRequestBehavior.AllowGet); 
         }
 
@@ -125,6 +140,8 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 DONGHANGDAL dal = new DONGHANGDAL();
                 dal.luudonhang(dh, listctdh);
                 Session[ssgiohang] = null;
+                //Session["tongsoluong"] = null;
+                //Session["tongthanhtoan"] = null;
             }
             else return Json(-1, JsonRequestBehavior.AllowGet);
             return RedirectToAction("listsanphamtronggiohang");

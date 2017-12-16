@@ -283,12 +283,14 @@
     <Content Include="Areas\Customer\Views\user\register.cshtml" />
     <Content Include="Areas\Customer\Views\user\login.cshtml" />
     <Content Include="Areas\Customer\Views\giohang\listsanphamtronggiohang.cshtml" />
-    <Content Include="Areas\Customer\Views\user\myaccount.cshtml" />
     <Content Include="Areas\Customer\Views\user\listdonhang.cshtml" />
     <Content Include="Assets\Customer\fonts\Yanone_Kaffeesatz\YanoneKaffeesatz-Bold.ttf" />
     <Content Include="Assets\Customer\fonts\Yanone_Kaffeesatz\YanoneKaffeesatz-ExtraLight.ttf" />
     <Content Include="Assets\Customer\fonts\Yanone_Kaffeesatz\YanoneKaffeesatz-Light.ttf" />
     <Content Include="Assets\Customer\fonts\Yanone_Kaffeesatz\YanoneKaffeesatz-Regular.ttf" />
+    <Content Include="Areas\Customer\Views\giohang\giohanghientai.cshtml" />
+    <Content Include="EmailTemplate\changeinfoconfirm.cshtml" />
+    <Content Include="Areas\Customer\Views\user\thongtintaikhoan.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

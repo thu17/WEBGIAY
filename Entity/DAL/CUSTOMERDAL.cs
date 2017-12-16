@@ -63,6 +63,14 @@ namespace Entity.DAL
             {
                 return db.CUSTOMERS.Where(c => c.EMAIL == email).SingleOrDefault();
             }
+                
+            
+        }
+        public bool doimatkhau(int idcutomer,string password)
+        {
+            db.CUSTOMERS.Where(c => c.MACUSTOMER == idcutomer).SingleOrDefault().MATKHAU = password;
+            db.SaveChanges();
+            return true;
         }
     }
 }
