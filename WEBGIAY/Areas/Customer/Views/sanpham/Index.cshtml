@@ -1,0 +1,307 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+    List<Entity.EntityFramework.THUONGHIEU> listthuonghieu = (List<Entity.EntityFramework.THUONGHIEU>)ViewData["listthuonghieu"];
+    List<Entity.EntityFramework.PHANLOAI> listphanloai = (List<Entity.EntityFramework.PHANLOAI>)ViewData["listphanloai"];
+}
+@section menutopright{
+    @Html.Partial("~/Areas/Customer/Views/giohang/giohanghientai.cshtml")
+}
+@section timkiem{
+
+   
+    @*<button class="btn btn-outline-dark" id="btnsearch">Tìm</button>*@
+}
+    <div class="products-gallery">
+    <div class="container">
+        <div class="col-md-9 grid-gallery" id="tblData">
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-2 grid-details">
+            <div class="grid-addon">
+                    @Html.TextBox("search", null, new { @class = "form-control",@placeholder="Nhập sản phẩm cần tìm" })<input type="submit" id="btnsearch" value="Tìm" class="btn btn-outline-dark" style="float:right;width:262px;margin:5px 0"/>
+                <section class="sky-form">
+                    <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Thương hiệu</h4>
+                    <div class="row row1 scroll-pane">
+                        <div class="col col-2">
+                            @foreach (var item in listthuonghieu)
+                            {
+                                <label class="checkbox"><input type="checkbox" onclick=addth(@item.MATHUONGHIEU) value="@item.MATHUONGHIEU"><i></i>@item.TENTHUONGHIEU</label>
+                            }
+                        </div>
+                    </div>                    
+                </section>
+                <section class="sky-form">
+                    <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Phân loại</h4>
+                    <div class="row row1 scroll-pane">
+                        <div class="col col-2">
+                            @foreach (var item in listphanloai)
+                            {
+                                <label class="checkbox"><input type="checkbox" onclick=addpl(@item.MALOAI) value="@item.MALOAI"><i></i>@item.TENLOAI</label>
+                            }
+                        </div>
+                    </div>                    
+                </section>
+                <section class="sky-form">
+                    <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Gía</h4>
+                    <div class="row row1 scroll-pane">
+                        <div class="col col-2">
+                                <label class="checkbox"><input type="radio" name="gia" onclick=addgia(0,1000000)><i></i>> 1,000,000 vnđ</label>
+                                <label class="checkbox"><input type="radio" name="gia" onclick=addgia(1000000,2000000)><i></i>1,000,000 - 2,000,000 vnđ</label>
+                                <label class="checkbox"><input type="radio" name="gia" onclick=addgia(2000000,3000000)><i></i>2,000,000 - 3,000,000 vnđ</label>
+                                <label class="checkbox"><input type="radio" name="gia" onclick=addgia(3000000,4000000)><i></i>3,000,000 - 4,000,000 vnđ</label>
+                                <label class="checkbox"><input type="radio" name="gia" onclick=addgia(4000000,5000000)><i></i>4,000,000 - 5,000,000 vnđ</label>
+                            <label class="checkbox"><input type="radio" name="gia" onclick=addgia(5000000,0)><i></i>> 5,000,000 vnđ</label>
+                        </div>
+                    </div>
+                    <input type="submit" id="filter" value="Tìm" class="btn btn-outline-dark" style="float:right;width:262px;margin:5px 0" />
+                </section>
+            </div>
+        </div>
+        </div>
+    </div>           
+    
+    <div class="container">
+        <div id="pagination1" class="pagination" style="position:absolute">
+        </div>
+        <div id="pagination2" class="pagination">
+        </div>
+        <div id="pagination3" class="pagination">
+        </div>
+    </div>
+            <script id="data-template" type="x-tmpl-mustache">
+                <div class="col-lg-4 grid-stn simpleCart_shelfItem">
+                    <!-- normal -->
+                    <div class="ih-item square effect3 bottom_to_top">
+                        <div class="bottom-2-top" style="box-sizing: border-box">
+                            <div class="img" style="width:inherit;height:inherit"><img src="{{ANH}}" class="img-responsive gri-wid" /></div>
+                            <div class="info">
+                                <div class="pull-left styl-hdn">
+                                    <p style="font-size:medium">{{TENSP}}</p>
+                                </div>
+                                <div class="pull-right styl-price">
+                                    <p style="font-size:large"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price"></span></p>
+                                    <p style="font-size: medium"><a href="/Customer/sanpham/chitietsanpham?idctsp={{MASP}}" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">{{GIA}}</span></a></p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end normal -->
+                    <div class="quick-view">
+                        <a href="/Customer/sanpham/chitietsanpham?idctsp={{MASP}}">Quick view</a>
+
+                    </div>
+                </div>
+
+            </script>
+            <script>
+                $(document).ready(function () {
+                    listsanpham();
+                });
+                $('#btnsearch').click(function () {
+                    var key = document.getElementById("search").value;
+                    if (key != "") {
+                        timkiem(key);
+                    }
+                });
+            </script>
+            <script>
+                var listth = [];
+                var listpl = [];
+                var listgia = [];
+                addgia = function (tu, den) 
+                {
+                    listgia[0] = tu;
+                    listgia[1] = den;
+                };
+                addpl = function (id) {
+                    var addp = true;
+                    for (i = 0; i < listpl.length; i++) {
+                        if (listpl[i] == id) {
+                            addp = false;
+                            for (j = i; j < listpl.length; j++) {
+                                listpl[j] = listpl[j + 1];
+                                listpl.pop();
+                            }
+                            break;
+                        }
+                    }
+                    if (addp)
+                        listpl.push(id);
+                };
+                addth =function (id)
+                {
+                    var addt = true;
+                    for(i=0;i<listth.length;i++)
+                    {
+                        if(listth[i]==id)
+                        {
+                            addt= false;
+                            for (j = i; j < listth.length; j++)
+                            {
+                                listth[j] = listth[j + 1];
+                                listth.pop();
+                            }
+                            break;
+                        }
+                    }
+                    if(addt)
+                        listth.push(id);                   
+                };
+                var pageSize = 9;
+                var pageIndex = 1;
+                function timkiem(key) {
+                    $("#pagination1").css('visibility', "hidden");
+                    $("#pagination3").css('visibility', "hidden");
+                    $("#pagination2").css('visibility', "visible");
+                    $.ajax({
+                        type: 'GET',
+                        url: '/sanpham/timkiem',
+                        data: { tukhoa: key, page: pageIndex, pageSize: pageSize },
+                        dataType: 'json',
+                        error: function (err) {
+                            alert(err.statusText);
+                        },
+                        success: function (response) {
+                            var data = response.data;
+                            var html = '';
+                            var template = $('#data-template').html();
+                            $.each(data, function (i, item) {
+                                html += Mustache.render(template, {
+                                    ANH: item.ANH,
+                                    TENSP: item.TENSP,
+                                    MASP: item.MASP,
+                                    GIA: item.GIA
+                                });
+                            });
+                            $('#tblData').html("");
+                            $('#tblData').append(html);
+                            pagingtimkiem(response.total, function () {
+                                timkiem(key);
+                            });
+                        }
+                    });
+                }
+                function paging(total, callback) {
+                    var totalPage = Math.ceil(total / pageSize);
+                    $('#pagination1').twbsPagination({
+                        totalPages: totalPage,
+                        visiblePages: 5,
+                        first: "Đầu",
+                        next: "Tiếp",
+                        prev: "Trước",
+                        last: "Cuối",
+                        onPageClick: function (event, page) {
+                            pageIndex = page;
+                            setTimeout(callback, 200);
+                        }
+                    });
+                }
+                function pagingtimkiem(total, callback) {
+                    var totalPage = Math.ceil(total / pageSize);
+                    $('#pagination2').twbsPagination({
+                        totalPages: totalPage,
+                        visiblePages: 5,
+                        first: "Đầu",
+                        next: "Tiếp",
+                        prev: "Trước",
+                        last: "Cuối",
+                        onPageClick: function (event, page) {
+                            pageIndex = page;
+                            setTimeout(callback, 200);
+                        }
+                    });
+                }
+                function pagingtimloc(total, callback) {
+                    var totalPage = Math.ceil(total / pageSize);
+                    $('#pagination3').twbsPagination({
+                        totalPages: totalPage,
+                        visiblePages: 5,
+                        first: "Đầu",
+                        next: "Tiếp",
+                        prev: "Trước",
+                        last: "Cuối",
+                        onPageClick: function (event, page) {
+                            pageIndex = page;
+                            setTimeout(callback, 200);
+                        }
+                    });
+                }
+                function listsanpham() {
+                    $("#pagination2").css('visibility', "hidden");
+                    $("#pagination3").css('visibility', "hidden");
+                    $("#pagination1").css('visibility', "visible");
+                    $.ajax({
+                        type: 'GET',
+                        url: '/sanpham/listsanpham',
+                        data: { page: pageIndex, pageSize: pageSize },
+                        dataType: 'json',
+                        error: function (err) {
+                            alert(err.statusText);
+                        },
+                        success: function (response) {
+                            var data = response.data;
+                            var html = '';
+                            var template = $('#data-template').html();
+                            $.each(data, function (i, item) {
+                                html += Mustache.render(template, {
+                                    ANH: item.ANH,
+                                    TENSP: item.TENSP,
+                                    MASP: item.MASP,
+                                    GIA: item.GIA
+                                });
+                            });
+                            $('#tblData').html(html);
+                            paging(response.total, function () {
+                                listsanpham();
+                            });
+                        }
+                    });
+                };
+                function filter()
+                {
+                    alert(listth.length);
+                    alert(listpl.length);
+                    alert(listgia.length);
+                    loc(listth, listpl, listgia);
+                }
+                $('#filter').click(
+                     function loc() {
+                         $("#pagination1").css('visibility', "hidden");
+                         $("#pagination2").css('visibility', "hidden");
+                         $("#pagination3").css('visibility', "visible");
+                         $.ajax({
+                             type: 'GET',
+                             url: '/sanpham/loc',
+                             data: { thuonghieu: listth, phanloai: listpl, gia: listgia, page: pageIndex, pageSize: pageSize },
+                             dataType: 'json',
+                             traditional: true,
+                             error: function (err) {
+                                 alert(err.statusText);
+                             },
+                             success: function (response) {
+                                 var data = response.data;
+                                 var html = '';
+                                 var template = $('#data-template').html();
+                                 $.each(data, function (i, item) {
+                                     html += Mustache.render(template, {
+                                         ANH: item.ANH,
+                                         TENSP: item.TENSP,
+                                         MASP: item.MASP,
+                                         GIA: item.GIA
+                                     });
+                                 });
+                                 $('#tblData').html("");
+                                 $('#tblData').append(html);
+                                 pagingtimloc(response.total, function () {
+                                     loc();
+                                 });
+                             }
+                         });
+                     }
+                    );
+               
+            </script>
+
+
