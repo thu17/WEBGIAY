@@ -180,9 +180,7 @@ namespace Entity.DAL
                if (sp == null)
                spth.Add(item);
            }
-
-           return spth;
-          
+           return spth;          
        }
     }
 }

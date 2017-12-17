@@ -152,6 +152,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
             {
                 return View();
             }
+        [HttpPost]
             public ActionResult login(string email,string matkhau)
             {
                  var dal =new CUSTOMERDAL();               
@@ -187,8 +188,6 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 constant.CUSTOMER_SESSION = null;
                 return RedirectToAction("login");
             }
-            
-           
             public List<CTDH_SANPHAM_MERCHANT_KICHCOViewModel> listctdh(int iddonhang)
             {
                 var listsp=new SANPHAMDAL().getallsanpham();

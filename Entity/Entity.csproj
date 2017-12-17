@@ -132,6 +132,7 @@
     <Compile Include="EntityFramework\WEBMASTER.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MDAL\MERCHANTDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

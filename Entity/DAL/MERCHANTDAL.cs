@@ -18,5 +18,9 @@ namespace Entity.DAL
         {
             return db.MERCHANTS.ToList();
         }
+        public MERCHANT merinfor(int idmer)
+        {
+            return db.MERCHANTS.Where(i => i.MAMERCHANT == idmer).SingleOrDefault();
+        }
     }
 }

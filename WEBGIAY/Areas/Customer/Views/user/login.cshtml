@@ -17,6 +17,7 @@
                 <p>If you have previously Login with us, <a href="#">Click Here</a></p>
                 @using (Html.BeginForm("login","user",FormMethod.Post))
                 {
+                    @Html.ValidationSummary();
                 <form>
                     <h5>Email:</h5>
                     @Html.TextBoxFor(model => model.EMAIL)
@@ -37,4 +38,3 @@
         </div>
     </div>
 </div>
-
