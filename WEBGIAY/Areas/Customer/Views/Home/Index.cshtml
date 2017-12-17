@@ -5,7 +5,6 @@
 @section menutopright{
     @Html.Partial("~/Areas/Customer/Views/giohang/giohanghientai.cshtml")
 }
-
 <div class="shop-grid">
     <div class="container">
         @foreach (var item in Model)
@@ -13,14 +12,14 @@
             <div class="col-lg-4 grid-stn simpleCart_shelfItem">
                 <!-- normal -->
                 <div class="ih-item square effect3 bottom_to_top">
-                    <div class="bottom-2-top">
+                    <div class="bottom-2-top" style="box-sizing: border-box">
                         <div class="img"><img src="@item.ANH" class="img-responsive gri-wid" /></div>
                         <div class="info">
                             <div class="pull-left styl-hdn">
-                                <p style="font-size:large">@item.TENSP</p>
+                                <p style="font-size:medium">@item.TENSP</p>
                             </div>
                             <div class="pull-right styl-price">
-                                <p style="font-size:large"><a href="@Url.Action("chitietsanpham", "sanpham", new { @idctsp = @item.MASP })" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">@String.Format("{0:0,0 vnđ}", item.GIA)</span></a></p>
+                                <p style="font-size: medium"><a href="@Url.Action("chitietsanpham", "sanpham", new { @idctsp = @item.MASP })" class="item_add"><i class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></i><span class="item_price">@String.Format("{0:0,0 vnđ}", item.GIA)</span></a></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>

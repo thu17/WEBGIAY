@@ -40,6 +40,7 @@ namespace Entity.DAL
             if(c!=null)
             {
                 c.TINHTRANG = 1;
+                db.SaveChanges();
                 return true;
             }
             return false;           
@@ -49,7 +50,7 @@ namespace Entity.DAL
         {
             using (db)
             {
-                object parmeter = new SqlParameter("@EMAIL",email);
+                //object parmeter = new SqlParameter("@EMAIL",email);
                 //List<byte[]> pwd = db.Database.SqlQuery<byte[]>("sp_login @EMAIL", parmeter).ToList();
                 var pwd = db.CUSTOMERS.Where(c => c.EMAIL == email).FirstOrDefault().MATKHAU;
                 if(pwd!=null)                
