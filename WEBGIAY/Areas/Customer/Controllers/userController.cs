@@ -47,7 +47,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                         var result = dao.AddCustomer(user);
                         if (result > 0)
                         {
-                            ViewBag.Success = "Đăng kí thành công";
+                            ViewBag.Success = "Đăng kí thành công. Vui lòng kiểm tra email để kích hoạt tài khoản";
                             BuildEmailTemplate(user.MACUSTOMER);
                             /*
                              phần này khi tạo đơn hàng xong thì gửi thông tin đơn hàng cho khách hàng

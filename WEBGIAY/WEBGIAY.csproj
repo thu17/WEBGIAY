@@ -185,6 +185,8 @@
     <Content Include="Assets\Customer\js\imagezoom.js" />
     <Content Include="Assets\Customer\js\jquery-2.1.4.min.js" />
     <Content Include="Assets\Customer\js\jquery.flexslider.js" />
+    <Content Include="Assets\Customer\js\jquery.twbsPagination.min.js" />
+    <Content Include="Assets\Customer\js\mustache.min.js" />
     <Content Include="Assets\Customer\js\simpleCart.min.js" />
     <Content Include="Assets\W-M\css\sb-admin.css" />
     <Content Include="Assets\W-M\css\sb-admin.min.css" />
@@ -291,6 +293,8 @@
     <Content Include="Areas\Customer\Views\giohang\giohanghientai.cshtml" />
     <Content Include="EmailTemplate\changeinfoconfirm.cshtml" />
     <Content Include="Areas\Customer\Views\user\thongtintaikhoan.cshtml" />
+    <Content Include="Areas\Customer\Views\sanpham\listsanpham.cshtml" />
+    <Content Include="Areas\Customer\Views\sanpham\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

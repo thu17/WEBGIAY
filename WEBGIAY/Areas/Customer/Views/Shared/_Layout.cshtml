@@ -35,6 +35,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--script-->
     <script src="~/Assets/Customer/js/imagezoom.js"></script>
     <script defer src="~/Assets/Customer/js/jquery.flexslider.js"></script>
+    <script src="~/Assets/Customer/js/mustache.min.js"></script>
+    <script src="~/Assets/Customer/js/jquery.twbsPagination.min.js"></script>
     <script>
         // Can also be used with $(document).ready()
         $(window).load(function () {
@@ -51,13 +53,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-top">
                     <div class="logo">
                         <a href="index.html">N-AIR</a>
+                       
                     </div>
-                <div class="container">
-                    <form>
-                        <input type="text" class="sub-email" value="Tìm" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm';}" />
-                        <a class="btn btn-default subs-btn" href="#" role="button">Tìm</a>
-                    </form>
+                <div>
+                    @RenderSection("timkiem", required: false)
                 </div>
+
                 <div class="login-bars">
                     @RenderSection("menutopright",required:false)
                 </div>
@@ -81,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="padding:20px">
                             <ul class="nav navbar-nav nav-font">
                                 <li><a href=@Url.Action("Index","Home")>Trang chủ</a></li>
-                                <li><a href=@Url.Action("tatca","sanpham")>Sản phẩm</a></li>
+                                <li><a href=@Url.Action("Index","sanpham")>Sản phẩm</a></li>
                                 @{
                 #region
                                 //    <li class="dropdown">
@@ -179,17 +180,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="footer-grid">
         <div class="container">
             <div class="col-md-2 re-ft-grd">
-                <h3>Categories</h3>
-                <ul class="categories">
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Kids</a></li>
-                    <li><a href="#">Formal</a></li>
-                    <li><a href="#">Casuals</a></li>
-                    <li><a href="#">Sports</a></li>
-                </ul>
-            </div>
-            <div class="col-md-2 re-ft-grd">
                 <h3>Short links</h3>
                 <ul class="shot-links">
                     <li><a href="#">Contact us</a></li>
@@ -209,13 +199,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="clearfix"></div>
                 </ul>
             </div>
-            @*<div class="col-md-3 re-ft-grd">
+            <div class="col-md-3 re-ft-grd">
                 <div class="bt-logo">
                     <div class="logo">
                         <a href="index.html" class="ft-log">N-AIR</a>
                     </div>
                 </div>
-            </div>*@
+            </div>
             <div class="clearfix"></div>
         </div>
         <div class="copy-rt">
