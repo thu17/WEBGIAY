@@ -46,6 +46,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -105,10 +109,6 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -121,8 +121,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Customer\Views\base\" />
-    <Folder Include="Areas\Merchant\Views\Shared\" />
-    <Folder Include="Areas\Webmaster\Models\" />
+    <Folder Include="Areas\Merchant\Views\donhang\" />
+    <Folder Include="Areas\Webmaster\Views\WebMaster\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -138,23 +138,43 @@
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Customer\Models\CHITIETSANPHAMViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CTDH_SANPHAM_MERCHANT_KICHCOViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\ANHCHITIETViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\CUNGSANPHAMViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CUNGSANPHAM_KICHCOViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CUSTOMERLOGINViewModel.cs" />
     <Compile Include="Areas\Customer\Models\CUSTOMER_REGISTERViewModel.cs" />
     <Compile Include="Areas\Customer\Models\DONHANG_CTDHViewModel.cs" />
     <Compile Include="Areas\Customer\Models\ITEMGIOHANGViewModel.cs" />
+    <Compile Include="Areas\Merchant\Controllers\baseController.cs" />
+    <Compile Include="Areas\Merchant\Controllers\dangtinController.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
     <Compile Include="Areas\Merchant\Controllers\merchantController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
+    <Compile Include="Areas\Merchant\Models\CTDHViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\DANGBANViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\DONHANG_CTDH_ViewModel.cs" />
     <Compile Include="Areas\Merchant\Models\LOGINViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\RATINGViewModel.cs" />
     <Compile Include="Areas\Merchant\Models\REGISTERViewModel.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\DonHangController.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\InvoidController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\MerchantController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\SanphamController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\ThongkeController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\WebMasterController.cs" />
+    <Compile Include="Areas\Webmaster\Models\InvoidViewModel.cs" />
+    <Compile Include="Areas\Webmaster\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Webmaster\Models\Merchant_registerViewModel.cs" />
+    <Compile Include="Areas\Webmaster\Models\WebmasterLoginViewModel.cs" />
     <Compile Include="Areas\Webmaster\WebmasterAreaRegistration.cs" />
     <Compile Include="Common\constant.cs" />
     <Compile Include="Common\MD5Encryptor.cs" />
     <Compile Include="Common\merchantlogin.cs" />
     <Compile Include="Common\RSAal.cs" />
     <Compile Include="Common\customerlogin.cs" />
+    <Compile Include="Common\weblogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +211,27 @@
     <Content Include="Assets\Customer\js\jquery.twbsPagination.min.js" />
     <Content Include="Assets\Customer\js\mustache.min.js" />
     <Content Include="Assets\Customer\js\simpleCart.min.js" />
+    <Content Include="Assets\W-M\css\datepicker.css" />
+    <Content Include="Assets\W-M\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Assets\W-M\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_444444_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_555555_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_777620_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_777777_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Assets\W-M\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\W-M\css\jquery-ui.min.css" />
     <Content Include="Assets\W-M\css\sb-admin.css" />
     <Content Include="Assets\W-M\css\sb-admin.min.css" />
     <Content Include="Assets\W-M\js\sb-admin-charts.js" />
@@ -660,14 +701,12 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Webmaster\Views\web.config" />
     <Content Include="Areas\Customer\Views\web.config" />
     <Content Include="Areas\Merchant\Views\web.config" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Webmaster\Views\Shared\_LayoutWebmaster.cshtml" />
-    <Content Include="Areas\Webmaster\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Merchant\Views\Shared\_LayoutWebmaster.cshtml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Assets\W-M\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
@@ -729,7 +768,6 @@
     <Content Include="Areas\Customer\Views\giohang\giohanghientai.cshtml" />
     <Content Include="EmailTemplate\changeinfoconfirm.cshtml" />
     <Content Include="Areas\Customer\Views\user\thongtintaikhoan.cshtml" />
-    <Content Include="Areas\Customer\Views\sanpham\listsanpham.cshtml" />
     <Content Include="Areas\Customer\Views\sanpham\Index.cshtml" />
     <Content Include="Assets\W-M\login\bower_components\bootstrap-social\.bower.json" />
     <Content Include="Assets\W-M\login\bower_components\bootstrap-social\.editorconfig" />
@@ -1033,6 +1071,30 @@
     <Content Include="Assets\W-M\login\bower_components\raphael\bower.json" />
     <Content Include="Areas\Merchant\Views\merchant\login.cshtml" />
     <Content Include="Areas\Merchant\Views\merchant\register.cshtml" />
+    <Content Include="Areas\Merchant\Views\merchant\Confirm.cshtml" />
+    <Content Include="EmailTemplate\MConfirmation.cshtml" />
+    <Content Include="Areas\Merchant\Views\navigation.cshtml" />
+    <Content Include="Areas\Merchant\Views\Home\donhanghoantat.cshtml" />
+    <Content Include="Areas\Merchant\Views\dangtin\Index.cshtml" />
+    <Content Include="Areas\Merchant\Views\dangtin\dangtin.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Customer\Invoid.cshtml" />
+    <Content Include="Areas\Webmaster\Views\DonHang\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Home\login.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Invoid\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Merchant\Dangtin.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Merchant\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Merchant\Invoid.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Sanpham\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Shared\_LayoutWebmaster.cshtml" />
+    <Content Include="Areas\Webmaster\Views\Thongke\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\web.config" />
+    <Content Include="Areas\Merchant\Views\merchant\info.cshtml" />
+    <Content Include="Areas\Merchant\Views\merchant\muatin.cshtml" />
+    <Content Include="Areas\Merchant\Views\dangtin\tatcabaidang.cshtml" />
+    <Content Include="Areas\Merchant\Views\dangtin\listratingdangcho.cshtml" />
+    <Content Include="Areas\Customer\Views\user\listratingdangcho.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

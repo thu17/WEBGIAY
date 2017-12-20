@@ -20,6 +20,50 @@ namespace Entity.MDAL
                 return mer;
             return null;                
         }
-        
+        public MERCHANT kiemtratendangnhap(string tendangnhap)
+        {
+            var mer = db.MERCHANTS.Where(m=>m.TENDANGNHAP == tendangnhap).SingleOrDefault();
+            return mer;
+        }
+        public MERCHANT kiemtracmnd(string cmnd)
+        {
+            var mer = db.MERCHANTS.Where(m => m.CMND == cmnd).SingleOrDefault();
+            return mer;
+        }
+        public MERCHANT kiemtraemail(string email)
+        {
+            var mer = db.MERCHANTS.Where(m => m.EMAIL == email).SingleOrDefault();
+            return mer;
+        }
+        public MERCHANT getme(int idmer)
+        {
+            var mer = db.MERCHANTS.Where(m => m.MAMERCHANT == idmer).SingleOrDefault();
+            return mer;
+        }
+        public int newme(MERCHANT m)
+        {
+            db.MERCHANTS.Add(m);
+            db.SaveChanges();
+            return m.MAMERCHANT;
+        }
+        public bool active(int idme)
+        {
+            bool check = false;
+            MERCHANT m = db.MERCHANTS.Find(idme);
+            m.TINHTRANG = 1;
+            db.SaveChanges();
+            check = true;
+            return check;
+        }
+        public List<MERCHANT>listallmer()
+        {
+            return db.MERCHANTS.ToList();
+        }
+        public void trutindang(int idmer)
+        {
+            var merchant = db.MERCHANTS.Where(x => x.MAMERCHANT == idmer).SingleOrDefault();
+            merchant.SOTINHIENTAI -= 1;
+            db.SaveChanges();
+        }
     }
 }

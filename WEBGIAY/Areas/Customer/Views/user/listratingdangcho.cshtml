@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WEBGIAY.Areas.Merchant.Models.RATINGViewModel>
+<h2>Đánh giá nhà bán hàng</h2>
+<div class="form-horizontal">
+    <table class="table table-responsive" width="300">
+        <tr>
+            <th>
+                Đơn hàng
+            </th>
+            <th>
+                Sản phẩm
+            </th>
+            <th>
+                Nhà bán hàng
+            </th>
+            <th>
+                Đánh giá
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="100">
+                    @Html.DisplayFor(modelItem => item.MADH)
+                </td>
+                <td width="500">
+                    @Html.DisplayFor(modelItem => item.TENSP)
+                </td>
+                <td width="300">
+                    @Html.DisplayFor(modelItem => item.TENUSER)
+                </td>
+                <td width="200">
+                    <input id="rating" data-madh="@item.MADH" data-masp="@item.MASP" data-mamer="@item.MAUSER" value="5" type="number" max="5" min="0" />
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#rating').off('keypress').on('keypress', function (e) {
+        if (e.which == 13) {
+            var iddonhang = $(this).data('madh');
+            var idsp = $(this).data('masp');
+            var idmer = $(this).data('mamer');
+            var rating = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "/giohang/capnhatdanhgiatucus",
+                data: { iddonhang: iddonhang, idsp: idsp, idcus: idmer, rating: rating },
+                error: function (err) {
+                    alert(err.statusText);
+                },
+                success: function () {
+
+                }
+            });
+        }
+    });
+</script>
+
+

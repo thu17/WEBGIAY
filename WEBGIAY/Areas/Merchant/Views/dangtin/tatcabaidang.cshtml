@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Entity.EntityFramework.SANPHAM>
+
+@{
+    ViewBag.Title = "tatcabaidang";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+}
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
+<table class="table table-responsive" >
+    <tr>
+        <th>
+           Tên sản phẩm
+        </th>
+        <th>
+           Ngày đăng
+        </th>
+        <th>
+           Tình trạng
+        </th>
+        <th>
+           Gía
+        </th>
+        <th>
+            Gía giảm
+        </th>
+        <th>
+            Màu
+        </th>        
+        <th>
+            Đối tượng
+        </th>        
+        <th>
+            Phân loại
+        </th>
+        <th>
+            Thương hiệu
+        </th>
+        <th>
+           Hình ảnh
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="@item.MASP">
+        <td>
+            @Html.DisplayFor(modelItem => item.TENSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYDANG)
+        </td>
+        <td>
+            <a href="" id="gobaidang" onclick=gobaidang(@item.MASP,@item.TINHTRANG)>@(item.TINHTRANG == 1 ? "Đăng" : "Đã gỡ")</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIA)
+        </td>
+        <td width="50">
+            <input min="0" type="number" id="giagiam" data-id="@item.MASP" value="@item.GIAGIAM" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAUSAC)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.DOITUONG.TENDOITUONG)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.PHANLOAI.TENLOAI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THUONGHIEU.TENTHUONGHIEU)
+        </td>
+        <td>
+            <img src="@item.ANH" width="50"height ="50"/>
+        </td>
+        
+    </tr>
+}
+
+</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#giagiam').off('keypress').on('keypress', function (e) {
+        if(e.which==13)
+        {
+            //alert("ok");
+            var id=$(this).data('id');
+            var gia=$(this).val();
+                $.ajax({
+                    type: "post",
+                    url: "/Merchant/dangtin/capnhatgiagiam",
+                    data: { idsp: id, giagiam: gia },
+                    error:function(err){
+                        alert(err.statusText);
+                    },
+                    success:function(res)
+                    {
+                        if (res == -1)
+                            alert("Gía giảm không hợp lệ");
+                        else alert("Đã cập nhật");
+                    }
+                });
+            
+       
+            
+        }
+    });    
+    gobaidang=function(id,tt)
+    {
+        if(tt==1)
+        {
+            $.ajax({
+                type: "post",
+                url: "/Merchant/dangtin/gobaidang",
+                data: { idsp: id},
+                error: function (err) {
+                    alert(err.statusText);
+                },
+                success: function (res) {
+                    if (res==1)
+                        document.getElementById("gobaidang").html("Đã gỡ");
+                }
+            });
+        }
+        
+    }
+</script>

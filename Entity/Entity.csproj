@@ -61,11 +61,15 @@
     <Compile Include="DAL\CUSTOMERDAL.cs" />
     <Compile Include="DAL\DOITUONGDAL.cs" />
     <Compile Include="DAL\DONGHANGDAL.cs" />
+    <Compile Include="DAL\DonHangDAL.cs" />
+    <Compile Include="DAL\HoadonDAL.cs" />
     <Compile Include="DAL\KICHCODAL.cs" />
     <Compile Include="DAL\MERCHANTDAL.cs" />
     <Compile Include="DAL\PHANLOAIDAL.cs" />
     <Compile Include="DAL\SANPHAMDAL.cs" />
     <Compile Include="DAL\THUONGHIEUDAL.cs" />
+    <Compile Include="DAL\TINDANGDAL.cs" />
+    <Compile Include="DAL\WebMasterDAL.cs" />
     <Compile Include="EntityFramework\ANHCHITIET.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -123,16 +127,17 @@
     <Compile Include="EntityFramework\SANPHAM.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\sysdiagram.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EntityFramework\THUONGHIEU.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\WEBMASTER.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MDAL\DONHANGDAL.cs" />
+    <Compile Include="MDAL\GOITINDAL.cs" />
+    <Compile Include="MDAL\LICHSUDANGTINDAL.cs" />
     <Compile Include="MDAL\MERCHANTDAL.cs" />
+    <Compile Include="MDAL\RATINGDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

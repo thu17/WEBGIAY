@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <script src="~/Assets/W-M/js/Chart.min.js"></script>
+</head>
+<body>
+    <h4>Bar Chart Example</h4>
+    <canvas id="test" width="500" height="400"></canvas>
+    <script>
+								var barChartData = {
+									labels : ["Jan","Feb","March","April","May","June","July"],
+									datasets : [
+										{
+											fillColor : "rgb(199, 54, 39)",
+											strokeColor : "rgba(233, 78, 2, 0.9)",
+											data : [65,59,90,81,56,55,40]
+										},
+										{
+											fillColor : "rgb(23, 136, 210)",
+											strokeColor: "rgba(79, 82, 186, 0.9)",
+											data: [40, 70, 55, 20, 45, 70, 60]
+										}
+									]
+								};
+								var myBarChart = new Chart(document.getElementById('test').getContext('2d')).Bar(BarChart, { scaleFontSize: 14, scaleFontColor: "#ff8540" });
+    </script>
+</body>
+</html>

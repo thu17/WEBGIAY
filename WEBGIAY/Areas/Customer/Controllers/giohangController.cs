@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using Entity.DAL;
 using Entity.EntityFramework;
 using WEBGIAY.Areas.Customer.Models;
+using WEBGIAY.Common;
+using Entity.MDAL;
+using WEBGIAY.Areas.Merchant.Models;
 namespace WEBGIAY.Areas.Customer.Controllers
 {
-    public class giohangController : Controller
+    public class giohangController : baseController
     {
         public const string ssgiohang = "ssgiohang";
         //
@@ -73,8 +76,9 @@ namespace WEBGIAY.Areas.Customer.Controllers
                     //Session["tongthanhtoan"] = list.Sum(x=>x.THANHTIENITEM)-list.Sum(x=>x.TIENGIAM);
                 }
                 
-            }        
-            return RedirectToAction("listsanphamtronggiohang");
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+            //return RedirectToAction("listsanphamtronggiohang");
         }
         public ActionResult emptycart()
         {
@@ -119,7 +123,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 dh.MACUSTOMER = macustomer;
                 dh.NGAYMUA = DateTime.Today;
                 dh.TONGTIEN = tongtien;
-                dh.GHICHU = ghichu;
+                dh.GHICHU = ghichu==""?"N/A":ghichu;
                 dh.SDT = sdt;
                 dh.DIACHI = diachi;
                 List<ITEMGIOHANGViewModel> listitem = new List<ITEMGIOHANGViewModel>();
@@ -136,6 +140,8 @@ namespace WEBGIAY.Areas.Customer.Controllers
                     ctdh.MAKICHCO = item.KICHCO.MAKICHCO;
                     ctdh.GIAGIAM = item.SANPHAM.GIAGIAM;
                     listctdh.Add(ctdh);
+                    CUNGSANPHAMDAL csp = new CUNGSANPHAMDAL();
+                    csp.capnhatsoluong(ctdh.MASP, ctdh.MAKICHCO, ctdh.SOLUONG);                    
                 }
                 DONGHANGDAL dal = new DONGHANGDAL();
                 dal.luudonhang(dh, listctdh);
@@ -146,5 +152,6 @@ namespace WEBGIAY.Areas.Customer.Controllers
             else return Json(-1, JsonRequestBehavior.AllowGet);
             return RedirectToAction("listsanphamtronggiohang");
         }
+
 	}
 }

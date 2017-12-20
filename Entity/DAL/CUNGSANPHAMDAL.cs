@@ -35,5 +35,19 @@ namespace Entity.DAL
             var list=db.CUNGSANPHAMs.Where(c => c.MASP == idsp).ToList();
             return list;
         }
+        public bool themcsp(CUNGSANPHAM csp)
+        {
+            bool check = false;
+            db.CUNGSANPHAMs.Add(csp);
+            db.SaveChanges();
+            check = true;
+            return check;
+        }
+        public void capnhatsoluong(int idsp,int kc,int soluong)
+        {
+            var csp = db.CUNGSANPHAMs.Where(c => c.MASP == idsp && c.MAKICHCO == kc).SingleOrDefault();
+            csp.SOLUONG -= soluong;
+            db.SaveChanges();
+        }
     }
 }

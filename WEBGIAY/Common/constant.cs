@@ -9,5 +9,6 @@ namespace WEBGIAY.Common
     {
         public static string CUSTOMER_SESSION = "USER_SESSION";
         public static string MERCHANT_SESSION = "MERCHANT_SESSION";
+        public static string WEBMASTER_SESSION = "WEBMASTER_SESSION";
     }
 }

@@ -41,29 +41,13 @@
                             @Html.ValidationSummary();
                             <form>
                                 <h5>Email:</h5>
-                                @Html.TextBoxFor(model => model.TENDANGNHAP,new {@class="form-control"})
+                                @Html.TextBoxFor(model => model.TENDANGNHAP, new { @class = "form-control", @value = "merchant1" })
                                 <h5>Mật khẩu:</h5>
-                                @Html.PasswordFor(model => model.MATKHAU,new {@class="form-control"})<br>
+                                @Html.PasswordFor(model => model.MATKHAU, new { @class = "form-control", @value = "merchant1" })
+                                <br>
                                 <input type="submit" value="Đăng nhập" class="btn btn-lg btn-success btn-block" />
                             </form>
                         }
-                            @*<form role="form">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="E-mail" name=@Model.TENDANGNHAP type="email" autofocus>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Password" name="@Model.MATKHAU" type="password" value="">
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                            </label>
-                                        </div>
-
-                                        <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
-                                    </fieldset>
-                                </form>*@
                         </div>
                     </div>
                 </div>

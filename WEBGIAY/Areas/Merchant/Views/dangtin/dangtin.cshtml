@@ -1,0 +1,252 @@
+﻿@model WEBGIAY.Areas.Merchant.Models.DANGBANViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+   
+    var listdoituong = ViewBag.DOITUONG as SelectList;
+    var listhuonghieu = ViewBag.THUONGHIEU as SelectList;
+    var listphanloai = ViewBag.PHANLOAI as SelectList;
+}
+
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="">Đăng tin </a>
+    </li>
+    @*<li class="breadcrumb-item active">My Dashboard</li>*@
+</ol>
+<ol>
+    <div class="row">
+        
+        <div class="col-lg-7">
+            @using (Html.BeginForm("dangtin", "dangtin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TENSP, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.TENSP, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.TENSP)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MATHUONGHIEU, "MATHUONGHIEU", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.MATHUONGHIEU, listhuonghieu, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.MATHUONGHIEU)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MADOITUONG, "MADOITUONG", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.MADOITUONG, listdoituong, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.MADOITUONG)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MALOAI, "MALOAI", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.MALOAI, listphanloai, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.MALOAI)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.TINHTRANG, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.TINHTRANG)
+                            @Html.ValidationMessageFor(model => model.TINHTRANG)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GIA, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.GIA, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.GIA)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.GIAGIAM, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.GIAGIAM)
+                            @Html.ValidationMessageFor(model => model.GIAGIAM)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MOTA, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.MOTA, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.MOTA)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MAUSAC, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.MAUSAC, new { @class = "form form-control" })
+                            @Html.ValidationMessageFor(model => model.MAUSAC)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ANH, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.ANH)
+                @Html.ValidationMessageFor(model => model.ANH)*@
+                            <input type="file" id="file" name="ANH" onchange="loadfile(event)" />
+                            <div id="singleimage" class='thumb-image'>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.files, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" id="files" name="files" onchange="loadfile(event)" multiple />
+                            <div id="multifile" class='thumb-image'>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" id="dang"  value="Đăng" class="btn btn-default" />
+                            <span id="err" style="color:red"></span>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <div class="col-lg-5">
+            <table cellspacing="10" cellpadding="1" class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Chọn size</th>
+                        <th>Số lượng</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td width="200px">
+                            <select id="kichco" class="form-control"></select>
+                        </td>
+                        <td width="200px">
+                            <input id="soluong" type="number" min="1" value="1" class="form-control" />
+                        </td>
+                        <td>
+                            <button style="width:100px;height:38px" id="add" onclick="add()" class=" btn btn-primary">Thêm</button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="datacsp"></tbody>
+            </table>
+
+
+        </div>
+    </div>
+   </ol>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        doituongthaydoi();
+        kiemtratindang();
+    });
+    kiemtratindang = function () {
+        $.ajax({
+            type: "GET",
+            url: "/Merchant/dangtin/kiemtradang",
+            success:function(code)
+            {
+                if (code != 1)
+                {
+                    $('#dang').attr("disabled", "disabled");
+                    $('#add').attr("disabled", "disabled");
+                    if (code == 0)
+                        $('#err').html("Bạn còn 0 lần đăng tin");
+                    else $('#err').html("Tài khoản đã bị khóa chức năng đăng tin");
+                }
+                   
+                
+            }
+        });
+    }
+    doituongthaydoi=function()
+    {
+        var iddoituong = Number($('#MADOITUONG :selected').val());
+        $.ajax({
+            type: "GET",
+            url: "/Merchant/dangtin/listkichcoby",
+            data: { iddoituong: iddoituong },
+            contentType: 'json',
+            error: function (err) {
+                alert(err.statusText);
+            },
+            success: function (data) {
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += "<option value=" + item.MAKICHCO + ">" + item.KICHCO1 + "</option>"
+                });
+                $('#kichco').html(html);
+            }
+        });
+    }
+    add=function()
+    {
+        var requestData = {
+            MAKICHCO: Number($('#kichco :selected').val()),
+            KICHCO:$('#kichco :selected').text(),
+            SOLUONG: Number($('#soluong').val())
+        }
+        
+        
+        $.ajax({
+            type: 'POST',
+            url: '/Merchant/dangtin/addcungsanpham',
+            data: JSON.stringify(requestData),
+            contentType: 'application/json;charset=utf-8',
+            error:function(err)
+            {
+                alert(err.statusText);
+            },
+            success:function(data)
+            {
+                var html = "";
+                $.each(data, function (i, item) {
+                    html += "<tr><td>" + item.KICHCO + "</td><td>" + item.SOLUONG + "</td></tr>";
+                });
+                $('#datacsp').html(html);
+            }
+        });
+    }
+    $('#MADOITUONG').change(function () {
+        doituongthaydoi();
+    });
+    loadfile = function (event) {
+        var file = event.target.file;
+        for(var i=0;i<1;i++)
+        {
+            $('#singleimage').append("<img  style='width:100px;height=80px' src='" + URL.createObjectURL(event.target.file[0]) + "' class='dynamicimg'/>")
+        }
+    }
+    loadmultifile=function(event)
+    {
+        
+        var files = event.target.files;
+        for(var i=0;i<files.length;i++)
+        {
+            $('#multifile').append("<img style='width:100px;height=80px' src='" + URL.createObjectURL(event.target.files[i]) + "'class=img-responsive />")
+            
+        }
+    }
+</script>

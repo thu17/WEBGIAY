@@ -50,11 +50,10 @@ namespace Entity.DAL
         {
             using (db)
             {
-                //object parmeter = new SqlParameter("@EMAIL",email);
-                //List<byte[]> pwd = db.Database.SqlQuery<byte[]>("sp_login @EMAIL", parmeter).ToList();
-                var pwd = db.CUSTOMERS.Where(c => c.EMAIL == email).FirstOrDefault().MATKHAU;
+                var pwd = db.CUSTOMERS.Where(c => c.EMAIL == email).SingleOrDefault();
+                
                 if(pwd!=null)                
-                return pwd;
+                return pwd.MATKHAU;
                 return null;
             }
         }
@@ -72,6 +71,18 @@ namespace Entity.DAL
             db.CUSTOMERS.Where(c => c.MACUSTOMER == idcutomer).SingleOrDefault().MATKHAU = password;
             db.SaveChanges();
             return true;
+        }
+        public List<CUSTOMER>listallcustomer()
+        {
+            return db.CUSTOMERS.ToList();
+        }
+        public List<CUSTOMER> lsCus()
+        {
+            using (db)
+            {
+                var list = db.CUSTOMERS.Take(9).ToList();
+                return list;
+            }
         }
     }
 }

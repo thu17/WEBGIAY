@@ -22,5 +22,13 @@ namespace Entity.DAL
                 return db.ANHCHITIETs.Where(a => a.MASP == idsp).ToList();
             }
         }
+        public bool themact(ANHCHITIET a)
+        {
+            bool check = false;
+            db.ANHCHITIETs.Add(a);
+            db.SaveChanges();
+            check = true;
+            return check;
+        }
     }
 }

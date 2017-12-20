@@ -17,6 +17,7 @@
           <Key>
             <PropertyRef Name="MADH" />
             <PropertyRef Name="MASP" />
+            <PropertyRef Name="MAKICHCO" />
           </Key>
           <Property Name="MADH" Type="int" Nullable="false" />
           <Property Name="MASP" Type="int" Nullable="false" />
@@ -24,7 +25,7 @@
           <Property Name="SOLUONG" Type="int" Nullable="false" />
           <Property Name="THANHTIEN" Type="float" />
           <Property Name="TINHTRANG" Type="int" />
-          <Property Name="MAKICHCO" Type="int" />
+          <Property Name="MAKICHCO" Type="int" Nullable="false" />
           <Property Name="GIAGIAM" Type="float" />
         </EntityType>
         <EntityType Name="CUNGSANPHAM">
@@ -162,16 +163,6 @@
           <Property Name="MAUSAC" Type="nvarchar" MaxLength="50" />
           <Property Name="ANH" Type="varchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="THUONGHIEU">
           <Key>
             <PropertyRef Name="MATHUONGHIEU" />
@@ -190,7 +181,7 @@
           <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
+        <Association Name="FK__ANHCHITIET__ANH__5CD6CB2B">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="ANHCHITIET" Type="Self.ANHCHITIET" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,8 +193,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__MAKICHCO__778AC167">
-          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="0..1" />
+        <Association Name="FK__CTDH__MAKICHCO__4BAC3F29">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="MADH" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MADH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTDH__MAKICHCO__4E88ABD4">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KICHCO">
@@ -235,18 +238,6 @@
             </Principal>
             <Dependent Role="CTDH">
               <PropertyRef Name="MASP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CTDH__TINHTRANG__4BAC3F29">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
-            </Principal>
-            <Dependent Role="CTDH">
-              <PropertyRef Name="MADH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,7 +337,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MACUSTOM__5629CD9C">
+        <Association Name="FK__RATING__MACUSTOM__571DF1D5">
           <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -358,7 +349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MAMERCHA__5535A963">
+        <Association Name="FK__RATING__MAMERCHA__5629CD9C">
           <End Role="MERCHANTS" Type="Self.MERCHANTS" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -370,7 +361,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MASP__5441852A">
+        <Association Name="FK__RATING__MASP__5535A963">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -382,7 +373,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__NGAYRATI__534D60F1">
+        <Association Name="FK__RATING__NGAYRATI__5441852A">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -457,14 +448,17 @@
           <EntitySet Name="PHANLOAI" EntityType="Self.PHANLOAI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RATING" EntityType="Self.RATING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEBMASTER" EntityType="Self.WEBMASTER" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
+          <AssociationSet Name="FK__ANHCHITIET__ANH__5CD6CB2B" Association="Self.FK__ANHCHITIET__ANH__5CD6CB2B">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="ANHCHITIET" EntitySet="ANHCHITIET" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__MAKICHCO__778AC167" Association="Self.FK__CTDH__MAKICHCO__778AC167">
+          <AssociationSet Name="FK__CTDH__MAKICHCO__4BAC3F29" Association="Self.FK__CTDH__MAKICHCO__4BAC3F29">
+            <End Role="DONHANG" EntitySet="DONHANG" />
+            <End Role="CTDH" EntitySet="CTDH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTDH__MAKICHCO__4E88ABD4" Association="Self.FK__CTDH__MAKICHCO__4E88ABD4">
             <End Role="KICHCO" EntitySet="KICHCO" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
@@ -474,10 +468,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__CTDH__MASP__4CA06362" Association="Self.FK__CTDH__MASP__4CA06362">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
-            <End Role="CTDH" EntitySet="CTDH" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CTDH__TINHTRANG__4BAC3F29" Association="Self.FK__CTDH__TINHTRANG__4BAC3F29">
-            <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
           <AssociationSet Name="FK__CUNGSANPH__MAKIC__32E0915F" Association="Self.FK__CUNGSANPH__MAKIC__32E0915F">
@@ -512,19 +502,19 @@
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATIN" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MACUSTOM__5629CD9C" Association="Self.FK__RATING__MACUSTOM__5629CD9C">
+          <AssociationSet Name="FK__RATING__MACUSTOM__571DF1D5" Association="Self.FK__RATING__MACUSTOM__571DF1D5">
             <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
             <End Role="RATING" EntitySet="RATING" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MAMERCHA__5535A963" Association="Self.FK__RATING__MAMERCHA__5535A963">
+          <AssociationSet Name="FK__RATING__MAMERCHA__5629CD9C" Association="Self.FK__RATING__MAMERCHA__5629CD9C">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="RATING" EntitySet="RATING" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MASP__5441852A" Association="Self.FK__RATING__MASP__5441852A">
+          <AssociationSet Name="FK__RATING__MASP__5535A963" Association="Self.FK__RATING__MASP__5535A963">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="RATING" EntitySet="RATING" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__NGAYRATI__534D60F1" Association="Self.FK__RATING__NGAYRATI__534D60F1">
+          <AssociationSet Name="FK__RATING__NGAYRATI__5441852A" Association="Self.FK__RATING__NGAYRATI__5441852A">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="RATING" EntitySet="RATING" />
           </AssociationSet>
@@ -557,12 +547,13 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MASP" Type="Int32" Nullable="false" />
           <Property Name="ANH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__ANHCHITIET__ANH__5AEE82B9" FromRole="ANHCHITIET" ToRole="SANPHAM" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__ANHCHITIET__ANH__5CD6CB2B" FromRole="ANHCHITIET" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="CTDH">
           <Key>
             <PropertyRef Name="MADH" />
             <PropertyRef Name="MASP" />
+            <PropertyRef Name="MAKICHCO" />
           </Key>
           <Property Name="MADH" Type="Int32" Nullable="false" />
           <Property Name="MASP" Type="Int32" Nullable="false" />
@@ -570,12 +561,12 @@
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
           <Property Name="THANHTIEN" Type="Double" />
           <Property Name="TINHTRANG" Type="Int32" />
-          <Property Name="MAKICHCO" Type="Int32" />
+          <Property Name="MAKICHCO" Type="Int32" Nullable="false" />
           <Property Name="GIAGIAM" Type="Double" />
-          <NavigationProperty Name="KICHCO" Relationship="Self.FK__CTDH__MAKICHCO__778AC167" FromRole="CTDH" ToRole="KICHCO" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK__CTDH__MAKICHCO__4BAC3F29" FromRole="CTDH" ToRole="DONHANG" />
+          <NavigationProperty Name="KICHCO" Relationship="Self.FK__CTDH__MAKICHCO__4E88ABD4" FromRole="CTDH" ToRole="KICHCO" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__CTDH__MAMERCHANT__4D94879B" FromRole="CTDH" ToRole="MERCHANTS" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDH__MASP__4CA06362" FromRole="CTDH" ToRole="SANPHAM" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.FK__CTDH__TINHTRANG__4BAC3F29" FromRole="CTDH" ToRole="DONHANG" />
         </EntityType>
         <EntityType Name="CUNGSANPHAM">
           <Key>
@@ -603,7 +594,7 @@
           <Property Name="TINHTRANG" Type="Int32" />
           <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="DONHANGs" Relationship="Self.FK__DONHANG__TONGTIE__45F365D3" FromRole="CUSTOMERS" ToRole="DONHANG" />
-          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MACUSTOM__5629CD9C" FromRole="CUSTOMERS" ToRole="RATING" />
+          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MACUSTOM__571DF1D5" FromRole="CUSTOMERS" ToRole="RATING" />
         </EntityType>
         <EntityType Name="DOITUONG">
           <Key>
@@ -625,9 +616,9 @@
           <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="GHICHU" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__TINHTRANG__4BAC3F29" FromRole="DONHANG" ToRole="CTDH" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAKICHCO__4BAC3F29" FromRole="DONHANG" ToRole="CTDH" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__DONHANG__TONGTIE__45F365D3" FromRole="DONHANG" ToRole="CUSTOMERS" />
-          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__NGAYRATI__534D60F1" FromRole="DONHANG" ToRole="RATING" />
+          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__NGAYRATI__5441852A" FromRole="DONHANG" ToRole="RATING" />
         </EntityType>
         <EntityType Name="GOITIN">
           <Key>
@@ -645,7 +636,7 @@
           <Property Name="MAKICHCO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MADOITUONG" Type="Int32" Nullable="false" />
           <Property Name="KICHCO1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAKICHCO__778AC167" FromRole="KICHCO" ToRole="CTDH" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAKICHCO__4E88ABD4" FromRole="KICHCO" ToRole="CTDH" />
           <NavigationProperty Name="CUNGSANPHAMs" Relationship="Self.FK__CUNGSANPH__MAKIC__32E0915F" FromRole="KICHCO" ToRole="CUNGSANPHAM" />
           <NavigationProperty Name="DOITUONG" Relationship="Self.FK__KICHCO__KICHCO__1BFD2C07" FromRole="KICHCO" ToRole="DOITUONG" />
         </EntityType>
@@ -692,7 +683,7 @@
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MAMERCHANT__4D94879B" FromRole="MERCHANTS" ToRole="CTDH" />
           <NavigationProperty Name="LICHSUDANGTINs" Relationship="Self.FK__LICHSUDANG__MASP__3F466844" FromRole="MERCHANTS" ToRole="LICHSUDANGTIN" />
           <NavigationProperty Name="LICHSUMUATINs" Relationship="Self.FK__LICHSUMUA__NGAYM__38996AB5" FromRole="MERCHANTS" ToRole="LICHSUMUATIN" />
-          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MAMERCHA__5535A963" FromRole="MERCHANTS" ToRole="RATING" />
+          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MAMERCHA__5629CD9C" FromRole="MERCHANTS" ToRole="RATING" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK__SANPHAM__ANH__2A4B4B5E" FromRole="MERCHANTS" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="PHANLOAI">
@@ -716,10 +707,10 @@
           <Property Name="RATING_C" Type="Int32" />
           <Property Name="NGAYRATING" Type="DateTime" Precision="3" />
           <Property Name="TRANGTHAI" Type="Int32" />
-          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__RATING__MACUSTOM__5629CD9C" FromRole="RATING" ToRole="CUSTOMERS" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.FK__RATING__NGAYRATI__534D60F1" FromRole="RATING" ToRole="DONHANG" />
-          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__RATING__MAMERCHA__5535A963" FromRole="RATING" ToRole="MERCHANTS" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__RATING__MASP__5441852A" FromRole="RATING" ToRole="SANPHAM" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__RATING__MACUSTOM__571DF1D5" FromRole="RATING" ToRole="CUSTOMERS" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK__RATING__NGAYRATI__5441852A" FromRole="RATING" ToRole="DONHANG" />
+          <NavigationProperty Name="MERCHANT" Relationship="Self.FK__RATING__MAMERCHA__5629CD9C" FromRole="RATING" ToRole="MERCHANTS" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__RATING__MASP__5535A963" FromRole="RATING" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -738,25 +729,15 @@
           <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MAUSAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ANH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ANHCHITIETs" Relationship="Self.FK__ANHCHITIET__ANH__5AEE82B9" FromRole="SANPHAM" ToRole="ANHCHITIET" />
+          <NavigationProperty Name="ANHCHITIETs" Relationship="Self.FK__ANHCHITIET__ANH__5CD6CB2B" FromRole="SANPHAM" ToRole="ANHCHITIET" />
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__MASP__4CA06362" FromRole="SANPHAM" ToRole="CTDH" />
           <NavigationProperty Name="CUNGSANPHAMs" Relationship="Self.FK__CUNGSANPH__SOLUO__31EC6D26" FromRole="SANPHAM" ToRole="CUNGSANPHAM" />
           <NavigationProperty Name="DOITUONG" Relationship="Self.FK__SANPHAM__MADOITU__2C3393D0" FromRole="SANPHAM" ToRole="DOITUONG" />
           <NavigationProperty Name="LICHSUDANGTINs" Relationship="Self.FK__LICHSUDANG__MASP__403A8C7D" FromRole="SANPHAM" ToRole="LICHSUDANGTIN" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__SANPHAM__ANH__2A4B4B5E" FromRole="SANPHAM" ToRole="MERCHANTS" />
           <NavigationProperty Name="PHANLOAI" Relationship="Self.FK__SANPHAM__MALOAI__2D27B809" FromRole="SANPHAM" ToRole="PHANLOAI" />
-          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MASP__5441852A" FromRole="SANPHAM" ToRole="RATING" />
+          <NavigationProperty Name="RATINGs" Relationship="Self.FK__RATING__MASP__5535A963" FromRole="SANPHAM" ToRole="RATING" />
           <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK__SANPHAM__MATHUON__2B3F6F97" FromRole="SANPHAM" ToRole="THUONGHIEU" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="THUONGHIEU">
           <Key>
@@ -777,7 +758,7 @@
           <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ANHCHITIET__ANH__5AEE82B9">
+        <Association Name="FK__ANHCHITIET__ANH__5CD6CB2B">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="ANHCHITIET" Type="Self.ANHCHITIET" Multiplicity="*" />
           <ReferentialConstraint>
@@ -789,8 +770,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__MAKICHCO__778AC167">
-          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="0..1" />
+        <Association Name="FK__CTDH__MAKICHCO__4BAC3F29">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="MADH" />
+            </Principal>
+            <Dependent Role="CTDH">
+              <PropertyRef Name="MADH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTDH__MAKICHCO__4E88ABD4">
+          <End Role="KICHCO" Type="Self.KICHCO" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KICHCO">
@@ -822,18 +815,6 @@
             </Principal>
             <Dependent Role="CTDH">
               <PropertyRef Name="MASP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CTDH__TINHTRANG__4BAC3F29">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-          <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
-            </Principal>
-            <Dependent Role="CTDH">
-              <PropertyRef Name="MADH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -873,7 +854,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MACUSTOM__5629CD9C">
+        <Association Name="FK__RATING__MACUSTOM__571DF1D5">
           <End Role="CUSTOMERS" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -909,7 +890,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__NGAYRATI__534D60F1">
+        <Association Name="FK__RATING__NGAYRATI__5441852A">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -969,7 +950,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MAMERCHA__5535A963">
+        <Association Name="FK__RATING__MAMERCHA__5629CD9C">
           <End Role="MERCHANTS" Type="Self.MERCHANT" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1005,7 +986,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RATING__MASP__5441852A">
+        <Association Name="FK__RATING__MASP__5535A963">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="RATING" Type="Self.RATING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1044,14 +1025,17 @@
           <EntitySet Name="PHANLOAIs" EntityType="Self.PHANLOAI" />
           <EntitySet Name="RATINGs" EntityType="Self.RATING" />
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
           <EntitySet Name="WEBMASTERs" EntityType="Self.WEBMASTER" />
-          <AssociationSet Name="FK__ANHCHITIET__ANH__5AEE82B9" Association="Self.FK__ANHCHITIET__ANH__5AEE82B9">
+          <AssociationSet Name="FK__ANHCHITIET__ANH__5CD6CB2B" Association="Self.FK__ANHCHITIET__ANH__5CD6CB2B">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="ANHCHITIET" EntitySet="ANHCHITIETs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__MAKICHCO__778AC167" Association="Self.FK__CTDH__MAKICHCO__778AC167">
+          <AssociationSet Name="FK__CTDH__MAKICHCO__4BAC3F29" Association="Self.FK__CTDH__MAKICHCO__4BAC3F29">
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+            <End Role="CTDH" EntitySet="CTDHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTDH__MAKICHCO__4E88ABD4" Association="Self.FK__CTDH__MAKICHCO__4E88ABD4">
             <End Role="KICHCO" EntitySet="KICHCOes" />
             <End Role="CTDH" EntitySet="CTDHs" />
           </AssociationSet>
@@ -1061,10 +1045,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__CTDH__MASP__4CA06362" Association="Self.FK__CTDH__MASP__4CA06362">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
-            <End Role="CTDH" EntitySet="CTDHs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CTDH__TINHTRANG__4BAC3F29" Association="Self.FK__CTDH__TINHTRANG__4BAC3F29">
-            <End Role="DONHANG" EntitySet="DONHANGs" />
             <End Role="CTDH" EntitySet="CTDHs" />
           </AssociationSet>
           <AssociationSet Name="FK__CUNGSANPH__MAKIC__32E0915F" Association="Self.FK__CUNGSANPH__MAKIC__32E0915F">
@@ -1079,7 +1059,7 @@
             <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
             <End Role="DONHANG" EntitySet="DONHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MACUSTOM__5629CD9C" Association="Self.FK__RATING__MACUSTOM__5629CD9C">
+          <AssociationSet Name="FK__RATING__MACUSTOM__571DF1D5" Association="Self.FK__RATING__MACUSTOM__571DF1D5">
             <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
             <End Role="RATING" EntitySet="RATINGs" />
           </AssociationSet>
@@ -1091,7 +1071,7 @@
             <End Role="DOITUONG" EntitySet="DOITUONGs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__NGAYRATI__534D60F1" Association="Self.FK__RATING__NGAYRATI__534D60F1">
+          <AssociationSet Name="FK__RATING__NGAYRATI__5441852A" Association="Self.FK__RATING__NGAYRATI__5441852A">
             <End Role="DONHANG" EntitySet="DONHANGs" />
             <End Role="RATING" EntitySet="RATINGs" />
           </AssociationSet>
@@ -1111,7 +1091,7 @@
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="LICHSUMUATIN" EntitySet="LICHSUMUATINs" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MAMERCHA__5535A963" Association="Self.FK__RATING__MAMERCHA__5535A963">
+          <AssociationSet Name="FK__RATING__MAMERCHA__5629CD9C" Association="Self.FK__RATING__MAMERCHA__5629CD9C">
             <End Role="MERCHANTS" EntitySet="MERCHANTS" />
             <End Role="RATING" EntitySet="RATINGs" />
           </AssociationSet>
@@ -1123,7 +1103,7 @@
             <End Role="PHANLOAI" EntitySet="PHANLOAIs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
-          <AssociationSet Name="FK__RATING__MASP__5441852A" Association="Self.FK__RATING__MASP__5441852A">
+          <AssociationSet Name="FK__RATING__MASP__5535A963" Association="Self.FK__RATING__MASP__5535A963">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="RATING" EntitySet="RATINGs" />
           </AssociationSet>
@@ -1303,17 +1283,6 @@
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="MAUSAC" ColumnName="MAUSAC" />
                 <ScalarProperty Name="ANH" ColumnName="ANH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TMDT_WEBGIAYModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

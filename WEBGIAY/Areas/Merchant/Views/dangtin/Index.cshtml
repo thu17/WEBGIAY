@@ -1,0 +1,111 @@
+﻿@model WEBGIAY.Areas.Merchant.Models.DANGBANViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+    var mer = ViewData["MAMERCHANT"];
+
+    var listdoituong = ViewBag.DOITUONG as SelectList;
+    var listhuonghieu = ViewBag.THUONGHIEU as SelectList;
+    var listphanloai = ViewBag.PHANLOAI as SelectList;
+}
+
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+     
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.MASP, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.HiddenFor(model => model.MASP, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.MASP)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENSP, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.TENSP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TENSP)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.MAMERCHANT, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.HiddenFor(model => model.MAMERCHANT, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MAMERCHANT)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MATHUONGHIEU, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.MATHUONGHIEU, listhuonghieu, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MATHUONGHIEU)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MADOITUONG, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.MADOITUONG, listdoituong, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MADOITUONG)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MALOAI, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.MALOAI, listphanloai, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MALOAI)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.TINHTRANG, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.HiddenFor(model => model.TINHTRANG, new { @class = "form form-control"})
+                @Html.ValidationMessageFor(model => model.TINHTRANG)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GIA, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.GIA, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.GIA)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MAUSAC, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.MAUSAC, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MAUSAC)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MOTA, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.MOTA, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(model => model.MOTA)
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

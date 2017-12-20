@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Confirm";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+@section menutopright{
+    <a class="btn btn-default log-bar" href="@Url.Action("register","user")" role="button">Đăng kí</a>
+    <a class="btn btn-default log-bar" href="@Url.Action("login","user")" role="button">Đăng nhập</a>
+}
+<div class="reg-form">
+    <div class="container">
+        <div class="reg">
+            <br /><br />
+            <div class="alert alert-warning" id="previous">
+                <strong>Xác nhận tài khoản bán hàng &nbsp;</strong>
+                <input type="submit" class="btn btn-warning" value="Xác nhận" onclick='verified()' />
+            </div>
+            <div class="alert alert-success" id="after" style="display:none">
+                <strong><span class="glyphicon glyphicon-ok"></span>Tài khoản bán hàng của bạn đã được kích hoạt</strong>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function verified()
+    {
+        $.ajax({
+            type: "post",
+            url: "/Merchant/merchant/activeaccount",
+            data: { 'regId': '@ViewBag.regisID' },
+            success:function(msg)
+            {
+                $('#previous').hide();
+                $('#after').show();
+            }
+        });
+    }
+</script>
+
+

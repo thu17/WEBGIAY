@@ -1,0 +1,77 @@
+﻿@using System.Configuration
+@model IEnumerable<Entity.EntityFramework.GOITIN>
+
+@{
+    ViewBag.Title = "View1";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+}
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
+<ol>
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table table-responsive">
+                <tr>
+                    <th>
+                        Gói
+                    </th>
+                    <th>
+                        Gía
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SOTIN)
+                    </th>
+                    <th>
+                        Số tin
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr id="@item.MAGOITIN">
+                        <td>
+                            Gói: @item.MAGOITIN
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SOTIEN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SOTIN)
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" onclick="chon(@item.MAGOITIN)">Chọn</button>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <br />
+            <form action="@ConfigurationManager.AppSettings["urlSubmitPayment"]" method="post">
+
+                <!-- Identify your business so that you can collect the payments. -->
+                <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["accountBusiness"]">
+
+                <!-- Specify a Buy Now button. -->
+                <input type="hidden" name="cmd" value="_xclick">
+
+                <!-- Specify details about the item that buyers will purchase. -->
+                <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
+                <input type="hidden" name="amount" value="5.95">
+                <input type="hidden" name="currency_code" value="USD">
+
+                <!-- Display the payment button. -->
+                <input type="image" name="submit" border="0"
+                       src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
+                       alt="Buy Now">
+                <img alt="" border="0" width="1" height="1"
+                     src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+
+            </form>
+        </div>
+        
+        <div id="giohang"></div>
+    </div>
+</ol>

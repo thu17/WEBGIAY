@@ -11,6 +11,8 @@ using System.Web.Hosting;
 using System.Text;
 using System.Net.Mail;
 using WEBGIAY.Areas.Customer.Models;
+using Entity.MDAL;
+using WEBGIAY.Areas.Merchant.Models;
 namespace WEBGIAY.Areas.Customer.Controllers
 {
     public class userController : Controller
@@ -48,7 +50,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
                         if (result > 0)
                         {
                             ViewBag.Success = "Đăng kí thành công. Vui lòng kiểm tra email để kích hoạt tài khoản";
-                            BuildEmailTemplate(user.MACUSTOMER);
+                            BuildEmailTemplate(result);
                             /*
                              phần này khi tạo đơn hàng xong thì gửi thông tin đơn hàng cho khách hàng
                              string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Customer/templates/neworder.html"));
@@ -144,7 +146,6 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 }
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
-
             
             //LOGIN
             [HttpGet]
@@ -191,7 +192,7 @@ namespace WEBGIAY.Areas.Customer.Controllers
             public List<CTDH_SANPHAM_MERCHANT_KICHCOViewModel> listctdh(int iddonhang)
             {
                 var listsp=new SANPHAMDAL().getallsanpham();
-                var listmerchant=new MERCHANTDAL().getallmerchant();
+                var listmerchant=new Entity.DAL.MERCHANTDAL().getallmerchant();
                 var listkichco=new KICHCODAL().getallkc();
                 var listctdh =new CTDHDAL().listctdh(iddonhang);
 
@@ -207,6 +208,8 @@ namespace WEBGIAY.Areas.Customer.Controllers
                            from c in complete
                            select new CTDH_SANPHAM_MERCHANT_KICHCOViewModel
                            {
+                               MASP=kctsp.MASP,
+                               MAKICHCO=kc.MAKICHCO,
                                TENSP = kctsp.TENSP,
                                TENMERCHANT=c.TENMERCHANT,
                                SOLUONG=kct.SOLUONG,
@@ -269,6 +272,33 @@ namespace WEBGIAY.Areas.Customer.Controllers
                 var dal = new CUSTOMERDAL().doimatkhau(idcustomer, MD5Encryptor.MD5Hash(password));
                 return RedirectToAction("listsanphamtronggiohang");
             }
-           
+
+            public ActionResult listratingdangcho()
+            {
+                var customer = (customerlogin)Session[constant.CUSTOMER_SESSION];
+                var listrat = new RATINGDAL().listchocustomerrating(customer.MACUSTOMER);
+                //var listmer = new Entity.MDAL.MERCHANTDAL().listallmer();
+                //var listdh = new DONGHANGDAL().listdh(customer.MACUSTOMER);
+                var list = (from l in listrat
+                            select new RATINGViewModel()
+                            {
+                                MADH = l.MADH,
+                                MASP = l.SANPHAM.MASP,
+                                TENSP = l.SANPHAM.TENSP,
+                                MAUSER = l.MERCHANT.MAMERCHANT,
+                                TENUSER = l.MERCHANT.TENMERCHANT,
+                                RATING = l.RATING_M
+                            }).ToList();
+                return PartialView(list);
+            }
+            public ActionResult capnhatdanhgiatucus(int iddonhang, int idsp, int idmer, int rating)
+            {
+                //var customer = (customerlogin)Session[constant.CUSTOMER_SESSION];
+                RATINGDAL rat = new RATINGDAL();
+                rat.capnhatdanhgiatucus(iddonhang, idsp, idmer, rating);
+                return RedirectToAction("listratingdangcho");
+            }
+	
         }
+
 	}

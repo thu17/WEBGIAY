@@ -13,6 +13,7 @@
     <section class="sky-form">
         @{Html.RenderAction("thongtintaikhoan");}
         </section>
+   
         <section class="sky-form">
             <h2>Lịch sử đơn hàng</h2>
 
@@ -51,39 +52,44 @@
                                     <th>Thành tiển</th>
                                     <th>Nhà bán hàng</th>
                                     <th>Tình trạng đơn hàng</th>
+                                    <th>Đánh giá</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var ct in item.listct)
-                                {
-                                    string tinhtrang = "";
-                                    if (ct.TINHTRANG == 0)
                                     {
-                                        tinhtrang = "Đã hủy";
+                                        string tinhtrang = "";
+                                        if (ct.TINHTRANG == 0)
+                                        {
+                                            tinhtrang = "Đã hủy";
+                                        }
+                                        else if (ct.TINHTRANG == 1)
+                                        {
+                                            tinhtrang = "Đang xử lí";
+                                        }
+                                        else if (ct.TINHTRANG == 2)
+                                        {
+                                            tinhtrang = "Đang giao";
+                                        }
+                                        else
+                                        {
+                                            tinhtrang = "Đã giao";
+                                        }
+                                        //string idrow = "dh" + item.donhang.MADH + ct.MASP + ct.MAKICHCO;
+                                        <tr>
+                                            <td>@ct.TENSP</td>
+                                            <td>@ct.KICHCO</td>
+                                            <td>@ct.GIA</td>
+                                            <td>@(ct.GIAGIAM)</td>
+                                            <td>@ct.SOLUONG</td>
+                                            <td>@ct.THANHTIEN</td>
+                                            <td>@ct.TENMERCHANT</td>
+                                            <td>@tinhtrang</td>
+                                            @*<td>
+                                                <input type="number" min="0" max="5"  class="col-1" id="rating" onkeypress=danhgia(@item.donhang.MADH,@ct.MASP,@ct.MAKICHCO)/>
+                                            </td>*@
+                                        </tr>
                                     }
-                                    else if (ct.TINHTRANG == 1)
-                                    {
-                                        tinhtrang = "Đang xử lí";
-                                    }
-                                    else if (ct.TINHTRANG == 2)
-                                    {
-                                        tinhtrang = "Đang giao";
-                                    }
-                                    else
-                                    {
-                                        tinhtrang = "Đã giao";
-                                    }
-                                    <tr>
-                                        <td>@ct.TENSP</td>
-                                        <td>@ct.KICHCO</td>
-                                        <td>@ct.GIA</td>
-                                        <td>@(ct.GIAGIAM)</td>
-                                        <td>@ct.SOLUONG</td>
-                                        <td>@ct.THANHTIEN</td>
-                                        <td>@ct.TENMERCHANT</td>
-                                        <td>@tinhtrang</td>
-                                    </tr>
-                                }
                             </tbody>
                         </table>
                     </div>
@@ -92,16 +98,19 @@
             <script>
                 $(document).ready(function () {
                     $(".tab .single-bottom").hide();
-
+                    
                 });
             </script>
             <!-- script -->
         </section>
 
         <div class="clearfix"></div>
+    <section class="sky-form">
+        @{Html.RenderAction("listratingdangcho");}
+    </section>
 </div>
 <script>
     function expand(id) {
         $(id).slideToggle(300);
-    }   
+    }    
 </script>

@@ -1,0 +1,118 @@
+﻿@model Entity.EntityFramework.MERCHANT
+
+@{
+    ViewBag.Title = "info";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+}
+
+
+    <div class="form-horizontal"></div>
+
+    @Html.HiddenFor(model => model.MAMERCHANT)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TENDANGNHAP, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.TENDANGNHAP, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TENMERCHANT, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.TENMERCHANT, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NGAYDK, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.NGAYDK, new { @class="form-control"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CMND, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.CMND, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DIACHI, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.DIACHI, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EMAIL, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.EMAIL, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MATKHAU, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.MATKHAU, new { @class = "form-control",type="password"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(model => model.TINHTRANG, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.HiddenFor(model => model.TINHTRANG, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SOLANBIKHOA, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.SOLANBIKHOA, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NGAYSINH, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.NGAYSINH, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SDT, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.SDT, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RATING, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.RATING, new { @class="form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SOTINHIENTAI, new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.SOTINHIENTAI, new { @class="form-control"})
+
+        </div>
+    </div>
+
+  
+
+

@@ -40,7 +40,6 @@ namespace Entity.DAL
         }
         public SANPHAM sanphamnay(int id)
         {
-            
             return db.SANPHAMs.Find(id);
         }
         public List<SANPHAM> ketquatimkiem(string tukhoa)
@@ -182,5 +181,40 @@ namespace Entity.DAL
            }
            return spth;          
        }
+        public bool themsp(SANPHAM sp)
+       {
+           bool check = false;
+           db.SANPHAMs.Add(sp);
+           db.SaveChanges();
+           check = true;
+           return check;
+       }
+        public List<SANPHAM> sanphamboimer(int idmer)
+        {
+            return db.SANPHAMs.Where(m => m.MAMERCHANT == idmer).ToList();
+        }
+        public bool capnhatgiagiam(int idsp,double gia)
+        {
+            bool check = true;
+            var sp = db.SANPHAMs.Where(x => x.MASP == idsp).SingleOrDefault();
+            if(sp.GIA<gia)
+            {
+                check = false;
+            }
+            else
+            {
+                sp.GIAGIAM = gia;
+                db.SaveChanges();
+            }
+            return check;
+        }
+        public void gobaidang(int idsp)
+        {
+            var sp = db.SANPHAMs.Where(x => x.MASP == idsp).SingleOrDefault();
+            sp.TINHTRANG = 0;
+            db.SaveChanges();
+        }
+      
+        
     }
 }

@@ -24,5 +24,9 @@ namespace Entity.DAL
                 return db.KICHCOes.Find(idkc);
             }
         }
+        public List<KICHCO>listkcdoituong(int iddoituong)
+        {
+            return db.KICHCOes.Where(x => x.MADOITUONG == iddoituong).ToList();
+        }
     }
 }
