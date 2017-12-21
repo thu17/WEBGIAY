@@ -104,6 +104,7 @@
           <Property Name="MAMERCHANT" Type="int" Nullable="false" />
           <Property Name="MAGOITIN" Type="int" Nullable="false" />
           <Property Name="NGAYMUA" Type="datetime" />
+          <Property Name="TRANGTHAI" Type="int" />
         </EntityType>
         <EntityType Name="MERCHANTS">
           <Key>
@@ -144,6 +145,7 @@
           <Property Name="RATING_C" Type="int" />
           <Property Name="NGAYRATING" Type="datetime" />
           <Property Name="TRANGTHAI" Type="int" />
+          <Property Name="NGAYRATING_M" Type="datetime" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -659,6 +661,7 @@
           <Property Name="MAMERCHANT" Type="Int32" Nullable="false" />
           <Property Name="MAGOITIN" Type="Int32" Nullable="false" />
           <Property Name="NGAYMUA" Type="DateTime" Precision="3" />
+          <Property Name="TRANGTHAI" Type="Int32" />
           <NavigationProperty Name="GOITIN" Relationship="Self.FK__LICHSUMUA__MAGOI__398D8EEE" FromRole="LICHSUMUATIN" ToRole="GOITIN" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__LICHSUMUA__NGAYM__38996AB5" FromRole="LICHSUMUATIN" ToRole="MERCHANTS" />
         </EntityType>
@@ -707,6 +710,7 @@
           <Property Name="RATING_C" Type="Int32" />
           <Property Name="NGAYRATING" Type="DateTime" Precision="3" />
           <Property Name="TRANGTHAI" Type="Int32" />
+          <Property Name="NGAYRATING_M" Type="DateTime" Precision="3" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__RATING__MACUSTOM__571DF1D5" FromRole="RATING" ToRole="CUSTOMERS" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK__RATING__NGAYRATI__5441852A" FromRole="RATING" ToRole="DONHANG" />
           <NavigationProperty Name="MERCHANT" Relationship="Self.FK__RATING__MAMERCHA__5629CD9C" FromRole="RATING" ToRole="MERCHANTS" />
@@ -1222,6 +1226,7 @@
                 <ScalarProperty Name="MAMERCHANT" ColumnName="MAMERCHANT" />
                 <ScalarProperty Name="MAGOITIN" ColumnName="MAGOITIN" />
                 <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1264,6 +1269,7 @@
                 <ScalarProperty Name="RATING_C" ColumnName="RATING_C" />
                 <ScalarProperty Name="NGAYRATING" ColumnName="NGAYRATING" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="NGAYRATING_M" ColumnName="NGAYRATING_M" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

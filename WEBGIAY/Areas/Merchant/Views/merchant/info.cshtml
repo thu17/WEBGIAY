@@ -5,7 +5,10 @@
     Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
 }
 
-
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
     <div class="form-horizontal"></div>
 
     @Html.HiddenFor(model => model.MAMERCHANT)

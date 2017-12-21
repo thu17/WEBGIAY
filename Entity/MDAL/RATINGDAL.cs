@@ -25,18 +25,14 @@ namespace Entity.MDAL
             rating.TRANGTHAI = 1;
             db.SaveChanges();
         }
-        public List<RATING> listchomerchantrating(int merchant)
-        {
-            var list = db.RATINGs.Where(r => r.TRANGTHAI == 0 && r.MAMERCHANT==merchant).ToList();
-            return list;
-        }
+       
         public void tinhratingtbcus(int cus)
         {
             var listrat = db.RATINGs.Where(r => r.MACUSTOMER == cus && r.RATING_C != null);
             var sum = listrat.Sum(x => x.RATING_C);
             int count = listrat.Count();
             var average = sum / count;
-            var customer = new CUSTOMERDAL().getcustomer(cus);
+            var customer = db.CUSTOMERS.Find(cus);
             customer.RATING = average;
             db.SaveChanges();
         }
@@ -46,19 +42,25 @@ namespace Entity.MDAL
             var sum = listrat.Sum(x => x.RATING_M);
             int count = listrat.Count();
             var average = sum / count;
-            var merchant = new MERCHANTDAL().getme(mer);
+            var merchant = db.MERCHANTS.Find(mer);
             merchant.RATING = average;
             db.SaveChanges();
         }
         public List<RATING> listchocustomerrating(int custoemr)
         {
-            var list = db.RATINGs.Where(r => r.TRANGTHAI == 0 && r.MACUSTOMER == custoemr).ToList();
+            var list = db.RATINGs.Where(r => r.MACUSTOMER == custoemr && r.TRANGTHAI ==1 && r.RATING_M == null).ToList();
+            return list;
+        }
+        public List<RATING> listchomerchantrating(int merchant)
+        {
+            var list = db.RATINGs.Where(r => r.MAMERCHANT == merchant && r.TRANGTHAI ==1 && r.RATING_C == null).ToList();
             return list;
         }
         public void capnhatdanhgiatumer(int iddonhang,int idsp,int cus,int rating)
         {
             var customer = db.RATINGs.Where(r => r.MADH == iddonhang && r.MASP == idsp).SingleOrDefault();
             customer.RATING_C = rating;
+            customer.NGAYRATING = DateTime.Today;            
             db.SaveChanges();
             tinhratingtbcus(cus);
         }
@@ -66,6 +68,7 @@ namespace Entity.MDAL
         {
             var merrating = db.RATINGs.Where(r => r.MADH == iddonhang && r.MASP == idsp).SingleOrDefault();
             merrating.RATING_M = rating;
+            merrating.NGAYRATING_M = DateTime.Today;            
             db.SaveChanges();
             tinhratingtbmer(mer);
         }

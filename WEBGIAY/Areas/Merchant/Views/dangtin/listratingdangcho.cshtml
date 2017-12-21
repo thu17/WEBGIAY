@@ -9,69 +9,75 @@
 {
     @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
 }
-    <div class="form-horizontal" >
-            <table class="table table-responsive" width="300">
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="">Đánh giá khách hàng</a>
+    </li>
+    @*<li class="breadcrumb-item active">My Dashboard</li>*@
+</ol>
+
+    <div class="pull-right" style="font-style:italic;color:gray">Nhập đánh giá và nhấn enter để gửi</div>
+    <div class="form-horizontal">
+        <table class="table table-responsive" width="300">
+            <tr>
+                <th>
+                    Đơn hàng
+                </th>
+                <th>
+                    Sản phẩm
+                </th>
+                <th>
+                    Khách hàng
+                </th>
+                <th>
+                    Đánh giá
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        Đơn hàng
-                    </th>
-                    <th>
-                        Sản phẩm
-                    </th>
-                    <th>
-                        Khách hàng
-                    </th>
-                    <th>
-                        Đánh giá
-                    </th>
+                    <td width="100">
+                        @Html.DisplayFor(modelItem => item.MADH)
+                    </td>
+                    <td width="500">
+                        @Html.DisplayFor(modelItem => item.TENSP)
+                    </td>
+                    <td width="300">
+                        @Html.DisplayFor(modelItem => item.TENUSER)
+                    </td>
+                    <td width="200">
+                        <input id="rating" data-madh="@item.MADH" data-masp="@item.MASP" data-macus="@item.MAUSER" value="@item.RATING" type="number" max="5" min="0" />
+                    </td>
 
                 </tr>
+            }
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td width="100">
-                            @Html.DisplayFor(modelItem => item.MADH)
-                        </td>
-                        <td width="500">
-                            @Html.DisplayFor(modelItem => item.TENSP)
-                        </td>
-                        <td width="300">
-                            @Html.DisplayFor(modelItem => item.TENUSER)
-                        </td>
-                        <td width="200">
-                            <input id="rating" data-madh="@item.MADH" data-masp="@item.MASP" data-macus="@item.MAUSER" value="5" type="number" max="5" min="0" />
-                        </td>
+        </table>
+    </div>
 
-                    </tr>
-                }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $('#rating').off('keypress').on('keypress', function (e) {
+            if (e.which == 13) {
+                var iddonhang = $(this).data('madh');
+                var idsp = $(this).data('masp');
+                var idcus = $(this).data('macus');
+                var rating = $(this).val();
+                $.ajax({
+                    type: "post",
+                    url: "/Merchant/dangtin/capnhatdanhgiatumer",
+                    data: { iddonhang: iddonhang, idsp: idsp, idcus: idcus, rating: rating },
+                    error: function (err) {
+                        alert(err.statusText);
+                    },
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+        });
+    </script>
 
-            </table>
-        </div>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $('#rating').off('keypress').on('keypress', function (e) {
-        if(e.which==13)
-        {
-            var iddonhang = $(this).data('madh');
-            var idsp = $(this).data('masp');
-            var idcus = $(this).data('macus');
-            var rating = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "/Merchant/dangtin/capnhatdanhgiatumer",
-                data: { iddonhang: iddonhang, idsp: idsp, idcus: idcus, rating: rating },
-                error:function(err)
-                {
-                    alert(err.statusText);
-                },
-                success:function()
-                {
-
-                }
-            });
-        }
-    });
-</script>
-      
 

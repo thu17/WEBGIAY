@@ -14,14 +14,7 @@ namespace Entity.MDAL
             db = new WEBGIAYEntities();
             //db.Configuration.ProxyCreationEnabled = false;
         }
-        //public List<DONHANG> getdhbyid(int iddonhang)
-        //{
-        //    return db.DONHANGs.Where(d=>d.MADH==iddonhang).ToList();
-        //}
-        //public List<CTDH>getctdhbyidmer(int idmer)
-        //{
-        //    return db.CTDHs.Where(d => d.MAMERCHANT == idmer).ToList();
-        //}
+        
         public List<CTDH>getctdhbyid(int iddonhang,int idmer)
         {
             return db.CTDHs.Where(d => d.MADH == iddonhang && d.MAMERCHANT==idmer).ToList();

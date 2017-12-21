@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Entity.EntityFramework.LICHSUMUATIN>
+
+@{
+    ViewBag.Title = "goitinlichsumuatin";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+    var listgoitin = (List<Entity.EntityFramework.GOITIN>)ViewData["listgoitin"];
+}
+
+@section Navigation
+{
+    @Html.Partial("~/Areas/Merchant/Views/navigation.cshtml");
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="">Mua gói tin</a>
+    </li>
+    @*<li class="breadcrumb-item active">My Dashboard</li>*@
+</ol>
+<ol>
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                Gói
+            </th>
+            <th>
+                Gía
+            </th>
+            <th>
+                Số tin
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in listgoitin)
+        {
+            <tr>
+                <td>
+                    Gói: @item.MAGOITIN
+                </td>
+                <td>
+                    @item.SOTIEN
+                </td>
+                <td>
+                    @item.SOTIN
+                </td>
+                <td>
+                    <input type="button" value="Mua" onclick="mua(@item.MAGOITIN)" class="btn-primary" />
+                </td>
+            </tr>
+        }
+
+    </table>
+    </br>
+    </br>
+    <table class="table">
+        <tr>
+            <th>
+                Gói
+            </th>
+            <th>
+                Số tiền
+            </th>
+            <th>
+                Ngày mua
+            </th>
+            <td>
+                Trạng thái
+            </td>
+
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GOITIN.MAGOITIN)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GOITIN.SOTIEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYMUA)
+                    </td>
+                    <td>
+                        @(item.TRANGTHAI == 0 ? "Đang chờ" : (item.TRANGTHAI == 1 ? "Đã thanh toán" : "Đã hủy"))
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Tổng</td>
+                <td>@ViewData["tongtien"]</td>
+            </tr>
+            <tr>
+                <td>
+                    Số tiền phải trả
+                </td>
+                <td>@ViewData["phaitra"]</td>
+            </tr>
+        </tfoot>
+    </table>
+</ol>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    mua= function (magoi) {
+        var magoi=Number(magoi);
+        $.ajax({
+            type: 'post',
+            url: '/Merchant/muatin/themgoi',
+            data: { magoi: magoi },            
+            error:function(e)
+            {
+                alert(e.statusText);
+            },
+            success:function(e)
+            {
+                if(e==1)
+                    location.reload();
+            }
+        });
+    };
+</script>

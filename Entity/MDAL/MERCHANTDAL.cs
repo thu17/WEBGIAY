@@ -65,5 +65,31 @@ namespace Entity.MDAL
             merchant.SOTINHIENTAI -= 1;
             db.SaveChanges();
         }
+        public List<MERCHANT> listtaikhoanbikhoa()
+        {
+            return db.MERCHANTS.Where(x => x.TINHTRANG == -1).ToList();
+        }
+        public void kichhoatlaidangtin(int idmer)
+        {
+            var mer = db.MERCHANTS.Where(x => x.MAMERCHANT == idmer).SingleOrDefault();
+            mer.TINHTRANG = 1;
+            db.SaveChanges();
+        }
+        public List<MERCHANT> kiemtrarating()
+        {
+            var listmer = listallmer();
+            List<MERCHANT> listvuamoikhoa=new List<MERCHANT>();
+            foreach (var item in listmer)
+            {
+                if(item.RATING <1)
+                {
+                    var mer = db.MERCHANTS.Where(x => x.MAMERCHANT == item.MAMERCHANT).SingleOrDefault();
+                    mer.TINHTRANG = -1;
+                    db.SaveChanges();
+                    listvuamoikhoa.Add(item);
+                }
+            }
+            return listvuamoikhoa;
+        }
     }
 }

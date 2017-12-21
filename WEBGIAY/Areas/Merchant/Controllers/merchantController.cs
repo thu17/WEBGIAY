@@ -182,10 +182,6 @@ namespace WEBGIAY.Areas.Merchant.Controllers
             return View(m);
         }
 
-        public ActionResult muatin()
-        {
-            var list = new GOITINDAL().listgoitin();
-            return View(list);
-        }
+       
     }
 }

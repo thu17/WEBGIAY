@@ -18,6 +18,7 @@ namespace Entity.EntityFramework
         public int MAMERCHANT { get; set; }
         public int MAGOITIN { get; set; }
         public Nullable<System.DateTime> NGAYMUA { get; set; }
+        public Nullable<int> TRANGTHAI { get; set; }
     
         public virtual GOITIN GOITIN { get; set; }
         public virtual MERCHANT MERCHANT { get; set; }

@@ -1,0 +1,97 @@
+﻿@model List<WEBGIAY.Areas.Webmaster.Models.MERCHANTMUATINViewModel>
+@{
+    ViewBag.Title = "listmuagoitin";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+}
+
+@section Navigation
+{
+    @Html.Partial("~/Areas/Webmaster/Views/navigationW.cshtml");
+}
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="">Danh sách tài khoản yêu cầu mua gói tin</a>
+    </li>
+</ol>
+<ol>
+    <div class="row">
+        <table></table>
+    </div>
+</ol>
+<ol>
+    <div class="col-lg-12">
+        <div id="result"></div>
+        <div class="pull-right"><button class="btn btn-primary" id="all">Đồng ý tất cả</button></div>
+        <hr />
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="font-size:13px">
+                <thead>
+                    <tr>
+                       <th>ID</th>
+                        <th>Tên nhà bán hàng</th>
+                        <th>Gói</th>
+                        <th>Ngày mua</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MAMERCHANT</td>
+                            <td>@item.TENMERCHANT</td>
+                            <td>@item.SOTIEN /@item.SOTIN</td>
+                            <td>@item.NGAYMUA</td>
+                            <td><button class="btn btn-primary" onclick=accept(@item.IDMUATIN)>Đồng ý</button></td>
+                            <td><button class="btn btn-danger"  onclick=deny(@item.IDMUATIN)>Hủy</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</ol>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#all').click(function () {
+        $.ajax({
+            type: "post",
+            url : "/Webmaster/quanlimer/bantat",
+            error: function (err) { alert(err.statusText) },
+            success: function (data) {
+                if (data == 1)
+                    location.reload();
+            }
+        });       
+
+    });
+    accept=function(id)
+    {
+        $.ajax({
+            type: "post",
+            url: "/Webmaster/quanlimer/bangoitin",
+            data:{idmuatin:id},
+            error: function (err) { alert(err.statusText) },
+            success: function (data) {
+                if (data == 1)
+                    location.reload();
+            }
+        });
+    }
+    deny = function (id) {
+        $.ajax({
+            type: "post",
+            url: "/Webmaster/quanlimer/tuchoiban",
+            data: { idmuatin: id },
+            error: function (err) { alert(err.statusText) },
+            success: function (data) {
+                if (data == 1)
+                    location.reload();
+            }
+        });
+    }
+</script>

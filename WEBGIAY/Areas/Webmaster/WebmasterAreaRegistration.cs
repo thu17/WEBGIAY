@@ -17,7 +17,7 @@ namespace WEBGIAY.Areas.Webmaster
             context.MapRoute(
                 "Webmaster_default",
                 "Webmaster/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new { action = "login", id = UrlParameter.Optional },
                 new string[] { "WEBGIAY.Areas.Webmaster.Controllers" }
             );
         }
