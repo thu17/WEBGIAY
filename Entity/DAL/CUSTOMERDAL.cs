@@ -27,7 +27,6 @@ namespace Entity.DAL
             return c.MACUSTOMER;
         }
 
-
         public CUSTOMER getcustomer(int idcustomer)
         {
             db = new WEBGIAYEntities();
@@ -76,13 +75,13 @@ namespace Entity.DAL
         {
             return db.CUSTOMERS.ToList();
         }
-        public List<CUSTOMER> lsCus()
-        {
-            using (db)
-            {
-                var list = db.CUSTOMERS.Take(9).ToList();
-                return list;
-            }
-        }
+        //public List<CUSTOMER> lsCus()
+        //{
+        //    using (db)
+        //    {
+        //        var list = db.CUSTOMERS.Take(9).ToList();
+        //        return list;
+        //    }
+        //}
     }
 }

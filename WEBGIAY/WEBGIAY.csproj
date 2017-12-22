@@ -157,6 +157,8 @@
     <Compile Include="Areas\Merchant\Models\RATINGViewModel.cs" />
     <Compile Include="Areas\Merchant\Models\REGISTERViewModel.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\quanlicustomerController.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\quanlidonhangController.cs" />
     <Compile Include="Areas\Webmaster\Controllers\quanlimerController.cs" />
     <Compile Include="Areas\Webmaster\Models\LoginViewModel.cs" />
     <Compile Include="Areas\Webmaster\Models\Merchant_registerViewModel.cs" />
@@ -1084,6 +1086,8 @@
     <Content Include="Areas\Webmaster\Views\quanlimer\listtaikhoanbikhoa.cshtml" />
     <Content Include="Areas\Webmaster\Views\quanlimer\listall.cshtml" />
     <Content Include="Areas\Webmaster\Views\quanlimer\listmuagoitin.cshtml" />
+    <Content Include="Areas\Webmaster\Views\quanlicustomer\Index.cshtml" />
+    <Content Include="Areas\Webmaster\Views\quanlidonhang\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

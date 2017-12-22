@@ -34,6 +34,7 @@ namespace Entity.MDAL
         {
             return db.LICHSUMUATINs.Where(x => x.TRANGTHAI == 0).ToList();
         }
+        
         public void banhaykhong(int idmuatin,int code)
         {
             if(code==1)
@@ -67,6 +68,40 @@ namespace Entity.MDAL
                     db.SaveChanges();
                 }
             }
+        }
+        public List<MERCHANT> listtinmerchantdamua()
+        {
+            int ngaybd=1,ngaykt=31;            
+            int namhientai=DateTime.Today.Year;
+            int thanghientai=DateTime.Today.Month;
+            int thangthongke=0;
+            int namthongke=0;
+            if(thanghientai==1) 
+            {
+                thangthongke=12;
+                namthongke=namhientai-1;
+            }
+            else 
+            {
+                thangthongke=thanghientai;
+                namthongke=namhientai;
+            }
+            DateTime ngaybatdauthongke =new DateTime(namthongke,thangthongke,ngaybd);
+            DateTime ngayketthucthongke=new DateTime(namthongke,thangthongke,ngaykt);
+            List<MERCHANT> listmer = db.MERCHANTS.Where(x => x.TINHTRANG == 1).ToList();
+            List<MERCHANT> listmerdctangtin = new List<MERCHANT>();
+            foreach (var item in listmer)
+            {
+                int sotinmuatrongthang = db.LICHSUMUATINs.Where(x => x.MAMERCHANT == item.MAMERCHANT && x.NGAYMUA >= ngaybatdauthongke && x.NGAYMUA <= ngayketthucthongke).Sum(x => x.GOITIN.SOTIN);
+                if(sotinmuatrongthang>50)
+                {
+                    MERCHANT m = db.MERCHANTS.Where(x => x.MAMERCHANT == item.MAMERCHANT).SingleOrDefault();
+                    m.SOTINHIENTAI += 2;
+                    db.SaveChanges();
+                    listmerdctangtin.Add(m);
+                }
+            }
+            return listmerdctangtin;
         }
     }
 }

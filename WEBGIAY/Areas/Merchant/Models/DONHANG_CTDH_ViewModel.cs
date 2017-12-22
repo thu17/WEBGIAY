@@ -19,6 +19,7 @@ namespace WEBGIAY.Areas.Merchant.Models
         //    }
         //    return 0;
         //}
+        public int MAMERCHANT { get; set; }
         public int MADH { get; set; }
         public int MACUSTOMER { get; set; }
         public string TENCUSTOMER { get; set; }

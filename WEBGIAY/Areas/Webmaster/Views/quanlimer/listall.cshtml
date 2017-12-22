@@ -22,7 +22,7 @@
 <ol>    
     <div class="col-lg-12">
         <div id="result"></div>
-        <div class="pull-right"><button class="btn btn-primary" id="kiemtra">Kiểm tra đánh giá</button></div>
+        <div class="pull-right"><button class="btn btn-success" id="khuyenmai">Khuyến mãi tin</button><button class="btn btn-primary" id="kiemtra">Kiểm tra đánh giá</button></div>
         <hr />
         <div class="table-responsive">
             <table class="table table-bordered table-hover" style="font-size:13px">
@@ -84,6 +84,25 @@
                     
                 else
                     $('#result').html("<div class='pull-left' style='color:lightgreen;font-style:italic'> Không có nhà bán hàng nào có rating <1</div>");
+
+            }
+        });
+    });
+    $('#khuyenmai').click(function () {
+        $.ajax({
+            type: "post",
+            url: "/Webmaster/quanlimer/khuyenmai",
+            error: function (err) {
+                alert(err.statusText);
+            },
+            success: function (data) {
+                if (data > 0) {
+                    location.reload();
+                    $('#result').html("<div class='pull-left' style='color:greed;font-style:italic'>" + data + " nhà bán hàng được khuyến mãi</div>");
+                }
+
+                else
+                    $('#result').html("<div class='pull-left' style='color:blue;font-style:italic'> Không có nhà bán hàng nào được khuyến mãi</div>");
 
             }
         });

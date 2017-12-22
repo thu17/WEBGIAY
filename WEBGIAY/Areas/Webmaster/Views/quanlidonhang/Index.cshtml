@@ -1,0 +1,105 @@
+﻿@model List<WEBGIAY.Areas.Merchant.Models.DONHANG_CTDH_ViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Merchant/Views/Shared/_LayoutWebmaster.cshtml";
+    var listmer = ViewBag.MERCHANT as SelectList;
+    var i = 0;
+}
+
+@section Navigation
+{
+@Html.Partial("~/Areas/Webmaster/Views/navigationW.cshtml");
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Assets/Customer/js/mustache.min.js"></script>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="">Danh sách đơn hàng</a>
+    </li>
+
+</ol>
+<ol>
+    <div class="row" id="tblData">
+        <div class="col-lg-12">
+            @foreach (var item in Model)
+            {
+                i++;
+                string tab = "tab" + i;
+                string selector = "#" + tab + ".single-bottom";
+                <div class="tab">
+                    <ul class="place" onclick=expand(@tab) style="list-style-type:none">
+                        <li class="breadcrumb" style="color:black;font-size:16px">Đơn hàng: @item.MADH | Ngày đặt hàng: @item.NGAYMUA | Tình trạng: @(item.TINHTRANG == 0 ? "Đang tiến hàng" : "Hoàn tất") | Tổng tiền : @String.Format("{0:0,0} vnđ", item.TONGTIEN)</li>
+
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div id="@tab" class="single-bottom" style="color:black">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Khách hàng</th>
+                                    <td colspan="6">@item.TENCUSTOMER</td>
+                                </tr>
+                                <tr>
+                                    <th>Số điện thoại giao hàng: </th>
+                                    <td colspan="6">@item.SDT</td>
+                                </tr>
+                                <tr>
+                                    <th>Giao đến địa chỉ:</th>
+                                    <td colspan="6">@item.DIACHI</td>
+                                </tr>
+                                <tr>
+                                    <th>Ghi chú khác:</th>
+                                    <td colspan="6">@item.GHICHU</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Kích thước</th>
+                                    <th>Gía</th>
+                                    <th>Gía khuyến mãi</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiển</th>
+                                    <th>Tình trạng đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ct in item.ctdh)
+                                {
+                                    var iddoi = "dh" + ct.MADH + "" + ct.MASP + "" + ct.MAKICHCO;
+                                    var idhuy = "huy" + ct.MADH + "" + ct.MASP + "" + ct.MAKICHCO;
+                                    <tr>
+                                        <td>@ct.TENSANPHAM</td>
+                                        <td>@ct.KICHCO</td>
+                                        <td>@ct.GIA</td>
+                                        <td>@ct.GIAGIAM</td>
+                                        <td>@ct.SOLUONG</td>
+                                        <td>@ct.THANHTIEN</td>
+                                        <td>@(item.TINHTRANG==0?"Đã hủy":(item.TINHTRANG==1?"Đang xử lí":(item.TINHTRANG==2?"Đang giao":"Đã giao")))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</ol>
+
+
+<script>
+    $(document).ready(function () {
+        //
+        $(".tab .single-bottom").hide();
+    });
+</script>
+
+<script>    
+    expand = function (id) {
+        $(id).slideToggle(300);                   
+    }
+</script>
